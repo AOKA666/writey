@@ -20,7 +20,7 @@
 - **预览级后端**：`worker/index.ts`（Hono）处理 308/301、`/robots.txt`、`/sitemap.xml`、自定义 HTTP 404、session/quota/auth/waitlist，以及永远返回 `payments_closed` 的 `/api/payments/checkout`。D1 schema 见 `migrations/0001_init.sql`。无 D1 或未迁移时前端走 `local_fallback`，编辑器仍可用。
 - **合同**：`contracts/data-contract.json`（schema、样例 payload、错误码、额度态、`payments_closed`、环境变量名）。
 - **分析**：事件助手 `preview_generated`、`export_pdf`、`export_png`、`language_switched`、`quota_hit`、`acceptable_use_clicked`；从不携带 `source_text`。未设置 `VITE_ANALYTICS_MEASUREMENT_ID` 时为文档化 no-op，不伪造 GA4 ID。
-- **QA 演示**：首页标明 “Preview only” 的控件，以及 `?qa=1&qa_plan=&qa_quota=&qa_preview=&qa_export=`。
+- **QA 演示**：仅在 `?qa=1` 或已有的 `qa_plan` / `qa_quota` / `qa_preview` / `qa_export` 查询参数下，首页才显示 “Preview only — QA controls” 面板；默认公开页不渲染该控件。
 
 未使用 `/workspace/writey-keyword-research/design/` 手写稿。未把 Stitch 大图拷进应用。Stitch HTML 中的 `#` 导航已改为 Route Contract 的 canonical 路径。`writey.app` 未作为域名出现在页面或 sitemap。
 

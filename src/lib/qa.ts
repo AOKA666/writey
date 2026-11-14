@@ -36,6 +36,11 @@ export function readQaState(search = window.location.search, hash = window.locat
   };
 }
 
+/** Render the preview-only QA panel only when query flags enable it. */
+export function shouldShowQaControls(qa: Pick<QaState, "enabled">): boolean {
+  return qa.enabled === true;
+}
+
 export function qaSearch(next: Partial<QaState> & { enabled?: boolean }): string {
   const params = new URLSearchParams(window.location.search);
   if (next.enabled === false) {

@@ -41,7 +41,7 @@ WRITEY_BASE=http://127.0.0.1:8787 npm run smoke
 
 `db:migrate:local` applies the D1 schema once. Until it has run, `/api/session` falls back to `local_fallback` (the editor still works).
 
-Preview-only QA flags (not a product feature): `?qa=1`, `qa_plan=free|pro|guest_free`, `qa_quota=exhausted`, `qa_preview=fail|loading`, `qa_export=fail`. A labeled panel also appears on the homepage.
+Preview-only QA flags (not a product feature): `?qa=1`, `qa_plan=free|pro|guest_free`, `qa_quota=exhausted`, `qa_preview=fail|loading`, `qa_export=fail`. A labeled homepage panel appears only when these flags are present.
 
 ## Environment variable names only
 

@@ -1,13 +1,16 @@
 import { useSession } from "@/hooks/useSession";
-import { qaSearch } from "@/lib/qa";
+import { qaSearch, readQaState, shouldShowQaControls } from "@/lib/qa";
 import type { PlanId } from "@/lib/quota";
 import { useNavigate, useLocation } from "react-router-dom";
 
 /** Clearly labeled preview-only controls for QA. Not a product feature. */
 export function QaControls() {
-  const { qa, setPlanForQa, forceQuotaExhausted } = useSession();
+  const { setPlanForQa, forceQuotaExhausted } = useSession();
   const navigate = useNavigate();
   const location = useLocation();
+  const qaFromUrl = readQaState(location.search, location.hash);
+
+  if (!shouldShowQaControls(qaFromUrl)) return null;
 
   function go(partial: Parameters<typeof qaSearch>[0]) {
     const search = qaSearch({ enabled: true, ...partial });
@@ -15,7 +18,7 @@ export function QaControls() {
   }
 
   return (
-    <details className="qa-panel" open={qa.enabled}>
+    <details className="qa-panel" open={qaFromUrl.enabled}>
       <summary>Preview only — QA controls (not a product feature)</summary>
       <p className="hint">
         Use these to demonstrate quota, payments-closed, and error states. Query flags:{" "}

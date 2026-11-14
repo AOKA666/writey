@@ -5,6 +5,7 @@
  * If WRITEY_BASE is unset, only the static redirect map is checked (no HTTP).
  */
 import { isConfirmedProductionOrigin } from "../shared/site-origin.ts";
+import { readQaState, shouldShowQaControls } from "../src/lib/qa.ts";
 
 const BASE = process.env.WRITEY_BASE;
 
@@ -108,6 +109,23 @@ function robotsNoindex(value) {
   return /noindex/i.test(value) && /nofollow/i.test(value);
 }
 
+const QA_PANEL_STRINGS = ["Preview only — QA controls", "Reset quota", "Plan: pro"];
+
+function htmlOmitsQaPanel(html) {
+  return QA_PANEL_STRINGS.every((s) => !html.includes(s));
+}
+
+function recordQaGateChecks(record) {
+  record(!shouldShowQaControls(readQaState("", "")), "QA panel is hidden with no query string");
+  record(!shouldShowQaControls(readQaState("?utm_source=test", "")), "QA panel is hidden with an unrelated query");
+  record(shouldShowQaControls(readQaState("?qa=1", "")), "QA panel is shown when qa=1");
+  record(shouldShowQaControls(readQaState("?qa_plan=pro", "")), "QA panel is shown when qa_plan is set");
+  record(shouldShowQaControls(readQaState("?qa_quota=exhausted", "")), "QA panel is shown when qa_quota is set");
+  record(shouldShowQaControls(readQaState("?qa_preview=fail", "")), "QA panel is shown when qa_preview is set");
+  record(shouldShowQaControls(readQaState("?qa_export=fail", "")), "QA panel is shown when qa_export is set");
+  record(!shouldShowQaControls({ enabled: false }), "shouldShowQaControls is false when enabled is false");
+}
+
 async function check() {
   const results = [];
   const record = (ok, msg) => {
@@ -119,6 +137,7 @@ async function check() {
     record(Object.keys(redirects308).length === 16, "308 alias count is 16");
     record(redirects301.length === 11, "301 synonym + not-do + signup count");
     record(ok200.includes("/refund") && ok200.includes("/acceptable-use"), "indexable legal set includes /refund");
+    recordQaGateChecks(record);
     console.log("No WRITEY_BASE set; skipped HTTP checks. Start wrangler dev and re-run.");
     const failed = results.filter((r) => !r.ok);
     process.exit(failed.length ? 1 : 0);
@@ -126,6 +145,7 @@ async function check() {
 
   const base = BASE.replace(/\/$/, "");
   const isPreview = previewMode(base);
+  recordQaGateChecks(record);
 
   for (const path of ok200) {
     const res = await fetch(base + path, { redirect: "manual" });
@@ -171,6 +191,12 @@ async function check() {
         record(
           /Saved export history is not currently provided|does not provide a stored export history|does not currently provide an in-account export history|not stored for later retrieval/i.test(text),
           `${path} states current export history is not provided`,
+        );
+      }
+      if (path === "/") {
+        record(
+          htmlOmitsQaPanel(text),
+          "/ prerendered HTML omits QA controls panel (Preview only — QA controls, Reset quota, Plan: pro)",
         );
       }
       if (path === "/cookie") {
