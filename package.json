@@ -7,12 +7,12 @@
   "scripts": {
     "dev": "vite",
     "dev:worker": "npm run build && wrangler d1 migrations apply writey-preview --local && wrangler dev --port 8787",
-    "build": "tsc --noEmit && vite build && node scripts/prerender.mjs",
+    "build": "tsc --noEmit && vite build && node --experimental-strip-types scripts/prerender.mjs",
     "preview": "vite preview --port 4173",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.worker.json",
-    "smoke": "node scripts/smoke.mjs",
-    "test:routes": "node scripts/smoke.mjs",
+    "smoke": "node --experimental-strip-types scripts/smoke.mjs",
+    "test:routes": "node --experimental-strip-types scripts/smoke.mjs",
     "db:migrate:local": "wrangler d1 migrations apply writey-preview --local"
   },
   "dependencies": {

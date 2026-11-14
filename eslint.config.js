@@ -11,6 +11,9 @@ export default tseslint.config(
       "node_modules/**",
       "scripts/**",
       "public/**",
+      "shared/**/*.d.ts",
+      "preview-review/**",
+      ".wrangler/**",
     ],
   },
   js.configs.recommended,
@@ -35,6 +38,14 @@ export default tseslint.config(
         "error",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
+    },
+  },
+  {
+    files: ["shared/**/*.{ts,mjs}"],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: "module",
+      globals: globals.node,
     },
   },
   {

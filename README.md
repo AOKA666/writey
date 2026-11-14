@@ -12,7 +12,7 @@ The Cloudflare-first stack (Pages/Workers + D1) is implemented but still **[待�
 - Account routes (noindex): `/login`, `/register`
 - Edge 308 legal aliases, 301 product synonyms, and 301 for accidental assignment/exam paths
 - Custom 404 that links home and `/refund`
-- `/robots.txt` and `/sitemap.xml` (canonical indexable pages only, including `/refund`)
+- `/robots.txt` and `/sitemap.xml` (production sitemap and canonicals only when `SITE_URL` is a confirmed production origin; preview is noindex and the sitemap is an empty urlset)
 - Client-side preview and PDF/PNG export (Free watermark; source text is not stored)
 - Preview-grade session/quota API on a Worker + D1, with a frontend fallback if D1 is absent
 - Payments endpoints always return `payments_closed`
@@ -57,7 +57,7 @@ Do not put real secrets in the repo. Use `.dev.vars` (gitignored) for local wran
 | `AUTH_SECRET` | Optional cookie signing; random session IDs in D1 work without it |
 | `PAYMENT_PROVIDER`, `PAYMENT_SECRET_KEY`, `PAYMENT_WEBHOOK_SECRET` | Reserved names. Do not connect a live provider. |
 | `ANALYTICS_MEASUREMENT_ID`, `VITE_ANALYTICS_MEASUREMENT_ID` | Analytics is [待确认]. Unset → documented no-op. Do not invent a GA4 ID. |
-| `SITE_URL`, `VITE_SITE_URL` | Canonical origin. Unset → `https://[DOMAIN]` marked [待确认]. |
+| `SITE_URL`, `VITE_SITE_URL` | Confirmed production origin only. Unset, placeholder, `writey.app`, `*.workers.dev`, `*.pages.dev`, and localhost are unconfirmed: pages are `noindex, nofollow`, canonical/og:url/JSON-LD URLs are omitted, `robots.txt` has no `Sitemap:` line, and `sitemap.xml` is an empty urlset. Do not set these to a preview host. GSC, custom domain, and production HTTP→HTTPS remain [待确认]. |
 
 ## Deploy a preview (parent / operator)
 
@@ -65,8 +65,8 @@ Do not put real secrets in the repo. Use `.dev.vars` (gitignored) for local wran
 2. `npx wrangler d1 migrations apply writey-preview --remote` (or let the first deploy apply them).
 3. `npm run build`
 4. `npx wrangler deploy` to the `writey-preview` Worker (workers.dev). Do **not** attach a custom domain or production DNS until the owner confirms.
-5. Set `SITE_URL` to the workers.dev (or pages.dev) origin if you want absolute canonicals other than `https://[DOMAIN]`.
-6. Do not announce QA GO. Do not enable live payments.
+5. Leave `SITE_URL` empty on preview. Do **not** set `SITE_URL` or `VITE_SITE_URL` to a workers.dev or pages.dev host to invent canonicals. Only a confirmed production https origin switches marketing pages to `index, follow` and fills canonical, og:url, JSON-LD URLs, sitemap locs, and the robots Sitemap line.
+6. Do not announce QA GO or SEO GO. Do not enable live payments. Do not bind a custom domain until the owner confirms it.
 
 Machine-readable data contract: `contracts/data-contract.json`.
 

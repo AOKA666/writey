@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Seo } from "@/components/Seo";
+import { webPageJsonLd } from "@/lib/schema";
 import { useSession } from "@/hooks/useSession";
 
 export function LoginPage() {
@@ -27,7 +28,13 @@ export function LoginPage() {
 
   return (
     <>
-      <Seo path="/login" />
+      <Seo
+        path="/login"
+        jsonLd={webPageJsonLd("/login", "Log in | Writey", [
+          { name: "Home", path: "/" },
+          { name: "Log in", path: "/login" },
+        ])}
+      />
       <Header />
       <main id="main" className="page-wrap">
         <div className="desk-well auth-card">

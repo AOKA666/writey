@@ -5,14 +5,14 @@
 - Service: Writey
 - Website: `https://[DOMAIN]` 【PENDING CONFIRMATION】
 - Related policy: [Privacy Policy](/privacy)
-- Last updated: 13 November 2026 (draft)
+- Last updated: 14 November 2026 (draft; first-party essential cookie inventory updated)
 - Effective date: 【PENDING CONFIRMATION】
 
 ## 1. What this policy covers
 
 This page explains how Writey uses cookies and similar technologies (such as local storage or a signed session token) on `https://[DOMAIN]`. It should be read with the Privacy Policy.
 
-Exact cookie names, lifetimes, and the analytics or CAPTCHA vendor — if any — are 【PENDING CONFIRMATION】 because the final stack and vendors are not chosen. This draft describes categories that match the current product design. A named cookie table must be filled in before a public launch that sets non-obvious cookies.
+The first-party essential cookies named in section 3 (`writey_guest` and `writey_session`) match the current implementation. Names, lifetimes, and vendors for any additional cookies — including analytics, payment-return, and CAPTCHA or other security cookies, if any — remain 【PENDING CONFIRMATION】 because the final stack and vendors are not all chosen. Do not describe analytics, payment, or third-party security cookies as already in use until a provider is confirmed.
 
 ## 2. How we use cookies
 
@@ -44,12 +44,14 @@ If analytics is enabled:
 
 We do not currently plan advertising, retargeting, or social-pixel cookies for the MVP. If that changes, this Policy and the Privacy Policy will be updated first. We will not silently add a marketing pixel.
 
-## 3. Cookie inventory (to be completed at implementation)
+## 3. Cookie inventory
+
+The rows for `writey_guest` and `writey_session` describe first-party essential cookies in the current implementation. Other rows remain 【PENDING CONFIRMATION】 until the relevant vendor or cookie is actually used.
 
 | Category | Name | Provider | Purpose | Duration | Essential? |
 |---|---|---|---|---|---|
-| Session / auth | 【PENDING CONFIRMATION】 | Writey / auth provider 【PENDING CONFIRMATION】 | Keep you signed in or restore a session | 【PENDING CONFIRMATION】 | Yes |
-| Guest quota | 【PENDING CONFIRMATION】 | Writey | Enforce Free preview and export limits | 【PENDING CONFIRMATION】, aligned with the quota period | Yes |
+| Guest quota / guest session | `writey_guest` | Writey (first-party) | Identify a guest visitor and enforce Free preview and export limits on a best-effort basis | 180 days (Max-Age=15552000). HttpOnly; Secure; SameSite=Lax; Path=/ | Yes |
+| Session / auth | `writey_session` | Writey (first-party) | Keep you signed in or restore a signed-in session after login or registration; removed on logout | 30 days (Max-Age=2592000). HttpOnly; Secure; SameSite=Lax; Path=/ | Yes |
 | Security | 【PENDING CONFIRMATION】 | Writey and, if used, a CAPTCHA provider 【PENDING CONFIRMATION】 | Abuse and request integrity | Session or short-lived | Yes |
 | Payment return | 【PENDING CONFIRMATION】 | Payment provider 【PENDING CONFIRMATION】 | Complete checkout | Short-lived | Yes, when paying |
 | Analytics | 【PENDING CONFIRMATION】 | Analytics provider 【PENDING CONFIRMATION】 | Product measurement | 【PENDING CONFIRMATION】 | No |

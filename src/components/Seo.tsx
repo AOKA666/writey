@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { canonicalUrl, CANONICAL_PLACEHOLDER, configuredSiteUrl } from "@/content/site";
+import { canonicalUrl, configuredSiteUrl } from "@/content/site";
 import { SEO } from "@/content/routes";
 
 type Props = {
@@ -17,6 +17,16 @@ function upsertMeta(selector: string, attrs: Record<string, string>) {
   Object.entries(attrs).forEach(([k, v]) => el?.setAttribute(k, v));
 }
 
+function removeHead(selector: string) {
+  document.head.querySelector(selector)?.remove();
+}
+
+function effectiveRobots(path: string, declared: string, originConfirmed: boolean): string {
+  if (!originConfirmed) return "noindex, nofollow";
+  if (path === "/404" || path === "/login" || path === "/register") return "noindex, nofollow";
+  return declared;
+}
+
 export function Seo({ path, jsonLd }: Props) {
   const meta = SEO[path] ?? SEO["/404"];
 
@@ -24,13 +34,25 @@ export function Seo({ path, jsonLd }: Props) {
     document.title = meta.title;
     document.documentElement.lang = "en";
     upsertMeta('meta[name="description"]', { name: "description", content: meta.description });
-    upsertMeta('meta[name="robots"]', { name: "robots", content: meta.robots });
-    const canon = canonicalUrl(path === "/404" ? "/" : path);
-    upsertMeta('link[rel="canonical"]', { rel: "canonical", href: canon });
+
+    const confirmed = Boolean(configuredSiteUrl());
+    const robots = effectiveRobots(path, meta.robots, confirmed);
+    upsertMeta('meta[name="robots"]', { name: "robots", content: robots });
+
     upsertMeta('meta[property="og:title"]', { property: "og:title", content: meta.title });
     upsertMeta('meta[property="og:description"]', { property: "og:description", content: meta.description });
     upsertMeta('meta[property="og:type"]', { property: "og:type", content: "website" });
-    upsertMeta('meta[property="og:url"]', { property: "og:url", content: canon });
+
+    const canon = path === "/404" ? null : canonicalUrl(path);
+    if (canon) {
+      upsertMeta('link[rel="canonical"]', { rel: "canonical", href: canon });
+      upsertMeta('meta[property="og:url"]', { property: "og:url", content: canon });
+    } else {
+      removeHead('link[rel="canonical"]');
+      removeHead('meta[property="og:url"]');
+    }
+    removeHead('meta[name="writey-canonical-status"]');
+
     const id = "writey-jsonld";
     let script = document.getElementById(id) as HTMLScriptElement | null;
     if (jsonLd) {
@@ -43,12 +65,6 @@ export function Seo({ path, jsonLd }: Props) {
       script.textContent = JSON.stringify(jsonLd);
     } else if (script) {
       script.remove();
-    }
-    if (!configuredSiteUrl()) {
-      upsertMeta('meta[name="writey-canonical-status"]', {
-        name: "writey-canonical-status",
-        content: `Canonical host is ${CANONICAL_PLACEHOLDER} [待确认]`,
-      });
     }
   }, [path, meta, jsonLd]);
 

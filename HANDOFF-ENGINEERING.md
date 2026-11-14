@@ -4,9 +4,9 @@
 - 日期：2026-11-14（Asia/Shanghai）
 - 代码：`/workspace/writey`
 - 分支：`main`（本地仓库，尚无 GitHub/Origin remote；未绑定自定义域名、未生产发布、未开通支付）
-- 实现 Commit SHA：`01623106848104c3ac1dd550b7f275e55ea4539d`
-- 预览 URL：https://writey-preview.yanweijie2781.workers.dev （workers.dev 预览，不是生产域名）
-- 状态给中控：`[NEEDS_REVIEW]` — 远程预览已部署且烟测 65/65 通过；源码尚未推到远程仓库；不要宣布 QA GO，不要绑定未确认域名。
+- 实现 Commit SHA：见文末（本文件与 SEO 返修同一次提交）
+- 预览 URL：https://writey-preview.yanweijie2781.workers.dev （workers.dev 预览，不是生产域名；远程部署仍对应当前已上线的旧提交，本返修尚未远程发布）
+- 状态给中控：`[NEEDS_REVIEW]` — 已完成本地 SEO P0/P1 返修（预览 noindex、去掉占位 canonical、预渲染正文/JSON-LD/OG 与页脚法律链）；不要宣布 QA GO 或 SEO GO，不要绑定未确认域名，不要把 `SITE_URL` 设成 workers.dev。
 
 ## 一句话结论
 
@@ -26,9 +26,11 @@
 
 ## 精确路由
 
-**200 indexable：** `/` `/hindi` `/pricing` `/faq` `/privacy` `/terms` `/cookie` `/refund` `/acceptable-use`
+**营销/法律路径（生产域名确认后才可 index）：** `/` `/hindi` `/pricing` `/faq` `/privacy` `/terms` `/cookie` `/refund` `/acceptable-use`
 
-**200 noindex：** `/login` `/register`（`X-Robots-Tag: noindex, nofollow`，不进 sitemap）
+**始终 noindex：** `/login` `/register` 与自定义 404（`meta robots` 与 `X-Robots-Tag: noindex, nofollow`，不进 sitemap）
+
+**预览 / 未确认生产域名：** 上述全部 HTML 页均为 `noindex, nofollow`（含 meta 与 `X-Robots-Tag`）。不输出 `<link rel="canonical">` 或 `og:url`。JSON-LD 仍写入，但省略需要主机的 url / @id / item。`robots.txt` 保留 `User-agent: *`、`Allow: /`、`Disallow: /login`、`Disallow: /register`，**不含** `Sitemap:` 行。`sitemap.xml` 返回 200 的空 `<urlset>`（无 `<loc>`）。404 在任何模式下都不输出 canonical。
 
 **308：**  
 `/privacy-policy` `/privacy_policy` → `/privacy`  
@@ -44,7 +46,7 @@
 
 **404 noindex：** 未定义路径，自定义页，含返回转换器与 `/refund` 等法律链
 
-**sitemap：** 只列上述 canonical 可索引页（含 `/refund`）。canonical 在未设 `SITE_URL` 时为 `https://[DOMAIN]`，并带 `[待确认]` meta。
+**sitemap / canonical：** 仅当 `SITE_URL` / `VITE_SITE_URL` 是已确认的生产 `https://` 源（不是占位 `[DOMAIN]`、不是 `writey.app`、不是 `*.workers.dev` / `*.pages.dev`、不是 localhost）时，才用同一主机填写 canonical、og:url、JSON-LD URL、sitemap `<loc>` 和 robots 的 `Sitemap:` 行；营销/法律页此时才可为 `index, follow`。不要把预览域写成生产主机。生产域名、GSC、生产 HTTP→HTTPS 仍为 `[待确认]`。
 
 主导航（seo-copy-freeze §0.1）：Converter → `/#editor`，Hindi，Pricing，FAQ，Acceptable Use，Log in，Create account。页脚每张可索引页含 `/pricing` `/faq` `/privacy` `/terms` `/cookie` `/refund` `/acceptable-use`。
 
@@ -68,8 +70,8 @@ WRITEY_BASE=http://127.0.0.1:8787 npm run smoke
 - Worker 名：`writey-preview`
 - URL：https://writey-preview.yanweijie2781.workers.dev
 - D1：`writey-preview`（`D1_DATABASE_ID` 已写入 `wrangler.toml`；迁移 `0001_init.sql` 已应用到远程）
-- 已部署 Worker 的 `SITE_URL` 设为上述 preview origin，便于 sitemap/canonical 烟测；`wrangler.toml` 里仍留空，生产域名保持 `[待确认]`。Prerender HTML 的占位 canonical 仍可能是 `https://[DOMAIN]`。
-- 未绑定自定义域名，未做生产 DNS，未开通真实支付。
+- 已部署的远程预览仍是返修前的版本，直到中控/父代理重新发布本提交。`wrangler.toml` 的 `SITE_URL` 保持空字符串。即使有人把 `SITE_URL` 设成 workers.dev 预览域，代码也会把它视为未确认，继续 noindex、不写 canonical、不在 sitemap 列出预览 URL。
+- 未绑定自定义域名，未做生产 DNS，未开通真实支付，未提交 GSC。
 
 ## 环境变量（只写名称）
 
@@ -81,9 +83,9 @@ WRITEY_BASE=http://127.0.0.1:8787 npm run smoke
 
 - `npm run lint`：通过
 - `npm run typecheck`：通过（`tsconfig.json` + `tsconfig.worker.json`）
-- `npm run build`：通过。主包约 336 kB gzip ~104 kB；`pdf-lib` 动态拆包。
+- `npm run build`：通过。主包约 339 kB gzip ~105 kB；`pdf-lib` 动态拆包。预渲染为 preview-noindex（无确认生产 origin）。
 - `wrangler.toml` 设置 `html_handling = "none"` 后，`GET /` 返回完整 prerender HTML（此前默认 auto-trailing-slash 把 `/index.html` 重定向回 `/`，会出现空 200）。
-- `WRITEY_BASE=http://127.0.0.1:8787 npm run smoke`：**65/65 passed**（可索引页 200 且 HTML 含 title、无 `writey.app`；登录/注册 200 + noindex；未知路径 404；全部 308/301；checkout = `payments_closed`；sitemap 含 `/refund`、不含 `/login`）。
+- `WRITEY_BASE=http://127.0.0.1:8788 npm run smoke`：**164/164 passed**（本地 `wrangler dev --port 8788`，2026-11-14 Asia/Shanghai）。预览/本地断言包括：营销/法律页初始 HTML 含 H1 与正文、JSON-LD、og:title、页脚法律链；`noindex, nofollow`（meta 与 `X-Robots-Tag`）；无 `writey.app`、无 `https://[DOMAIN]`；robots 无 `Sitemap:` 行；sitemap 为空 urlset；定价/首页 JSON-LD 无 Offer / AggregateOffer；`/cookie` 含 `writey_guest` / `writey_session` 清单行；既有 308/301 与 `payments_closed` 仍在。
 - `GET /api/session` 在 `npm run db:migrate:local` 后 `backend: "d1"`；迁移前为 `local_fallback`。
 - 自托管字体 200：`/fonts/fonts.css`、`newsreader-latin-400-normal.woff2`、`kalam-devanagari-400-normal.woff2`。
 
@@ -92,7 +94,8 @@ WRITEY_BASE=http://127.0.0.1:8787 npm run smoke
 ## 已知缺口
 
 - **无 Git 远程仓库**：代码只在本机 `/workspace/writey`。Cursor 不能代建 GitHub 仓库；需要学员/中控建空仓库并给 URL 后再 push。当前预览部署来自该本地 `main` 实现提交。
-- **SEO 正文未 SSR**：prerender 写入了各路由的 title/meta/canonical/robots；正文（含法律页 markdown）在客户端 hydration。对“查看源代码即见全文”的 QA 是 P1。
+- **预渲染正文已补（本次 SEO 返修）**：各路由初始 HTML 含 title/description、有效 robots、OG、`#writey-jsonld`，以及 `#root` 内的 H1、导语、关键 H2/短文、FAQ 短答、法律页全文（含 Draft for review 横幅）和页脚法律链（`/privacy` `/terms` `/cookie` `/refund` `/acceptable-use`）。`src/main.tsx` 仍用 `createRoot`，hydration 会替换静态 `#root`，这是预期行为。不是完整 SSR。
+- **Cookie 清单**：已将合规真源 `cookie-policy.md` 原样同步到 `src/content/legal/cookie.md`。预渲染 `/cookie` 含 `writey_guest`（180 天，Max-Age=15552000，HttpOnly; Secure; SameSite=Lax; Path=/，Essential）与 `writey_session`（退出时删除，30 天，Max-Age=2592000，同样安全属性，Essential）。分析、支付回跳、验证码等行仍为【PENDING CONFIRMATION】。Worker 现有 cookie 属性与清单一致，未改实现。不要宣布 Compliance GO。
 - **手写字体**：Caveat / Patrick Hand / Kalam / Dancing Script 仅作标本，UI 一律标注 Pending commercial licence。不得宣称 Hindi 一等商用字体已交付。
 - **分析/支付/域名/主体/GST/退款窗口** 仍 `[待确认]`。
 - `/faq` 与 `/refund` 已单独做窄屏 CSS（390px 无横向滚动意图）；未做真实设备截图（本任务在共享 box 上实现，无要求打开用户桌面）。
@@ -125,10 +128,10 @@ WRITEY_BASE=http://127.0.0.1:8787 npm run smoke
 
 - 下一阶段：中控安排 preview deploy 后，再并行 PM / SEO / 合规复核，然后才是 QA。不要跳过这些门槛。
 - 必须读取：本文件、`README.md`、`contracts/data-contract.json`、`wrangler.toml`
-- 不能假设：已有生产域名、已开通支付、已完成远程部署、或 QA 已 GO
+- 不能假设：已有生产域名、已开通支付、已完成远程部署、已提交 GSC、或 QA / SEO 已 GO
 
 ## Commit
 
-- 分支：`main`（无 remote）
-- 实现 SHA：`01623106848104c3ac1dd550b7f275e55ea4539d`（前端+Worker 源码，预览部署对应此提交）
-- 后续若有记录 D1 id / 本交接文件的 chore 提交，以 `git -C /workspace/writey log --oneline` 为准，不改变已部署源码。
+- 分支：`main`（无 remote；本返修不要 push、不要 `wrangler deploy`）
+- SEO 返修 SHA：本分支这次 `fix:` 提交（完整 SHA 见交接回报，以 `git rev-parse HEAD` 为准）
+- 先前实现 SHA：`01623106848104c3ac1dd550b7f275e55ea4539d`（当前远程预览仍可能对应此提交，直到重新部署）

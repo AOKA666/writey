@@ -1,9 +1,10 @@
 /** Site origin and placeholders. Never invent a real hostname. */
 
+import { absoluteUrl, confirmedProductionOrigin } from "../../shared/site-origin.ts";
+
 export const BRAND_NAME = "Writey";
 export const BRAND_PENDING_NOTE = "Writey (brand display name is [待确认])";
 export const DOMAIN_PLACEHOLDER = "[DOMAIN]";
-export const CANONICAL_PLACEHOLDER = "https://[DOMAIN]";
 export const PENDING_MARK = "[待确认]";
 
 export const SUPPORT_EMAIL = "support@[DOMAIN]";
@@ -30,24 +31,20 @@ export const PRICES = {
 export const PRICE_STATUS_SENTENCE =
   "Recommended plan structure. Prices are shown in USD and are not a live offer until confirmed. Applicable taxes will be shown at checkout.";
 
-/** Build-time public origin. Empty or placeholder if SITE_URL is not confirmed. */
+/**
+ * Build-time public origin. Only a confirmed production https origin is used.
+ * Empty values, placeholders, writey.app, *.workers.dev, *.pages.dev, and localhost are rejected.
+ */
 export function configuredSiteUrl(): string | null {
-  const raw = import.meta.env.VITE_SITE_URL?.trim();
-  if (!raw) return null;
-  if (/writey\.app/i.test(raw)) {
-    // Discard unconfirmed invented hostnames if they appear in env by mistake.
-    return null;
-  }
-  return raw.replace(/\/$/, "");
+  return confirmedProductionOrigin(import.meta.env.VITE_SITE_URL);
 }
 
-export function canonicalOrigin(): string {
-  return configuredSiteUrl() ?? CANONICAL_PLACEHOLDER;
+export function canonicalOrigin(): string | null {
+  return configuredSiteUrl();
 }
 
-export function canonicalUrl(pathname: string): string {
-  const path = pathname === "/" ? "/" : pathname.replace(/\/$/, "") || "/";
-  return `${canonicalOrigin()}${path}`;
+export function canonicalUrl(pathname: string): string | null {
+  return absoluteUrl(canonicalOrigin(), pathname);
 }
 
 export function footerYear(): number {

@@ -2,12 +2,18 @@ import { Link } from "react-router-dom";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Seo } from "@/components/Seo";
+import { webPageJsonLd } from "@/lib/schema";
 import { FOOTER_LINKS } from "@/content/routes";
 
 export function NotFoundPage() {
   return (
     <>
-      <Seo path="/404" />
+      <Seo
+        path="/404"
+        jsonLd={webPageJsonLd("/404", "Page not found | Writey", [
+          { name: "Home", path: "/" },
+        ])}
+      />
       <Header />
       <main id="main" className="page-wrap">
         <div className="not-found">

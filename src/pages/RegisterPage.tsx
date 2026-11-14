@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Seo } from "@/components/Seo";
+import { webPageJsonLd } from "@/lib/schema";
 import { useSession } from "@/hooks/useSession";
 
 export function RegisterPage() {
@@ -31,7 +32,13 @@ export function RegisterPage() {
 
   return (
     <>
-      <Seo path="/register" />
+      <Seo
+        path="/register"
+        jsonLd={webPageJsonLd("/register", "Create account | Writey", [
+          { name: "Home", path: "/" },
+          { name: "Create account", path: "/register" },
+        ])}
+      />
       <Header />
       <main id="main" className="page-wrap">
         <div className="desk-well auth-card">

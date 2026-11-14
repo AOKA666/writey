@@ -9,6 +9,7 @@ import {
   SPA_PATHS,
   normalizePath,
 } from "./routes";
+import { absoluteUrl, confirmedProductionOrigin } from "../shared/site-origin.ts";
 
 export interface Env {
   ASSETS: Fetcher;
@@ -25,17 +26,13 @@ const app = new Hono<{ Bindings: Env; Variables: Variables }>();
 const COOKIE = "writey_session";
 const GUEST = "writey_guest";
 
-function originFrom(env: Env, url: URL): string {
-  const configured = env.SITE_URL?.trim().replace(/\/$/, "");
-  if (configured && !/writey\.app/i.test(configured)) return configured;
-  return url.origin;
+function productionOrigin(env: Env): string | null {
+  return confirmedProductionOrigin(env.SITE_URL);
 }
 
-function canonicalPlaceholder(env: Env, url: URL, path: string): string {
-  const origin = env.SITE_URL?.trim()
-    ? originFrom(env, url)
-    : "https://[DOMAIN]";
-  return `${origin.replace(/\/$/, "")}${path === "/" ? "/" : path}`;
+function htmlShouldNoindex(env: Env, path: string, status: number): boolean {
+  if (status === 404 || path === "/login" || path === "/register" || path === "/404") return true;
+  return !productionOrigin(env);
 }
 
 function jsonError(c: { json: (d: unknown, s?: number) => Response }, code: string, message: string, status = 400) {
@@ -403,30 +400,40 @@ app.post("/api/analytics", async (c) => {
 });
 
 app.get("/robots.txt", (c) => {
-  const url = new URL(c.req.url);
-  const sitemap = `${originFrom(c.env, url)}/sitemap.xml`;
-  const body = `User-agent: *\nAllow: /\nDisallow: /login\nDisallow: /register\nSitemap: ${sitemap}\n`;
+  const origin = productionOrigin(c.env);
+  let body = "User-agent: *\nAllow: /\nDisallow: /login\nDisallow: /register\n";
+  if (origin) {
+    body += `Sitemap: ${origin}/sitemap.xml\n`;
+  } else {
+    body += "# Production sitemap omitted until a confirmed production SITE_URL is set.\n";
+  }
   return c.text(body, 200, { "Content-Type": "text/plain; charset=utf-8" });
 });
 
 app.get("/sitemap.xml", (c) => {
-  const url = new URL(c.req.url);
-  const urls = INDEXABLE_PATHS.map((path) => {
-    const loc = canonicalPlaceholder(c.env, url, path);
-    return `  <url><loc>${loc}</loc></url>`;
-  }).join("\n");
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
+  const origin = productionOrigin(c.env);
+  const urls = origin
+    ? INDEXABLE_PATHS.map((path) => {
+        const loc = absoluteUrl(origin, path);
+        return `  <url><loc>${loc}</loc></url>`;
+      }).join("\n")
+    : "";
+  const inner = urls ? `\n${urls}\n` : "\n";
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${inner}</urlset>\n`;
   return c.text(xml, 200, { "Content-Type": "application/xml; charset=utf-8" });
 });
 
-async function asset(c: { req: Request | { url: string; raw?: Request }; env: Env; header: (k: string, v: string) => void }, path: string, status = 200) {
+async function asset(c: { req: Request | { url: string; raw?: Request }; env: Env; header: (k: string, v: string) => void }, path: string, status = 200, requestPath?: string) {
   const raw = "raw" in c.req && c.req.raw ? c.req.raw : (c.req as Request);
   const url = new URL(raw.url);
   url.pathname = path;
   const res = await c.env.ASSETS.fetch(new Request(url.toString(), raw));
   const headers = new Headers(res.headers);
-  if (status === 404) {
+  const logicalPath = requestPath ?? (status === 404 ? "/404" : path);
+  if (htmlShouldNoindex(c.env, logicalPath, status)) {
     headers.set("X-Robots-Tag", "noindex, nofollow");
+  }
+  if (status === 404) {
     headers.set("Cache-Control", "no-store");
   }
   return new Response(res.body, { status, headers });
@@ -453,17 +460,12 @@ app.all("*", async (c) => {
 
   if (SPA_PATHS.has(path)) {
     const file = path === "/" ? "/index.html" : `${path}/index.html`;
-    const res = await asset(c, file, 200);
-    if (res.status === 404) return asset(c, "/index.html", 200);
-    if (path === "/login" || path === "/register") {
-      const headers = new Headers(res.headers);
-      headers.set("X-Robots-Tag", "noindex, nofollow");
-      return new Response(res.body, { status: 200, headers });
-    }
+    const res = await asset(c, file, 200, path);
+    if (res.status === 404) return asset(c, "/index.html", 200, path);
     return res;
   }
 
-  return asset(c, "/404.html", 404);
+  return asset(c, "/404.html", 404, "/404");
 });
 
 export default {

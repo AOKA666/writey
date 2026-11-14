@@ -1,4 +1,5 @@
 import { marked, type Tokens } from "marked";
+import { scrubPlaceholderHostUrls } from "../../shared/site-origin.ts";
 import acceptableUseMd from "./legal/acceptable-use.md?raw";
 import cookieMd from "./legal/cookie.md?raw";
 import privacyMd from "./legal/privacy.md?raw";
@@ -100,6 +101,6 @@ export function renderLegalHtml(markdown: string): { html: string; headings: Leg
     return `<h${depth} id="${id}">${clean}</h${depth}>`;
   };
   marked.setOptions({ gfm: true, breaks: false });
-  const html = marked.parse(markdown, { renderer, async: false }) as string;
+  const html = scrubPlaceholderHostUrls(marked.parse(markdown, { renderer, async: false }) as string);
   return { html, headings };
 }

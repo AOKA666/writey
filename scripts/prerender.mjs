@@ -1,11 +1,18 @@
 /**
- * After Vite build, write a foldered HTML file for each route
- * with the correct title, description, robots, canonical, and JSON-LD.
- * Canonical uses VITE_SITE_URL when set; otherwise https://[DOMAIN] ([待确认]).
+ * After Vite build, write a foldered HTML file for each route with title,
+ * description, robots, OG, JSON-LD, and a prerendered body (H1 + key prose).
+ *
+ * Canonical / og:url / JSON-LD absolute URLs are emitted only when
+ * SITE_URL / VITE_SITE_URL is a confirmed production origin.
+ * Preview and unconfirmed builds are noindex and must not emit https://[DOMAIN]
+ * or a preview host as canonical.
  */
-import { readFileSync, writeFileSync, mkdirSync, copyFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { confirmedProductionOrigin, scrubPlaceholderHostUrls } from "../shared/site-origin.ts";
+import { buildHomeJsonLd, buildWebPageJsonLd } from "../shared/jsonld.ts";
+import { faqItemsFor, pageBody } from "./prerender-body.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = join(root, "dist");
@@ -15,8 +22,9 @@ if (!existsSync(indexPath)) {
   process.exit(1);
 }
 
-const SITE = (process.env.VITE_SITE_URL || process.env.SITE_URL || "").replace(/\/$/, "");
-const origin = SITE && !/writey\.app/i.test(SITE) ? SITE : "https://[DOMAIN]";
+const origin = confirmedProductionOrigin(process.env.VITE_SITE_URL || process.env.SITE_URL || "");
+const confirmed = Boolean(origin);
+const BRAND = "Writey";
 
 const pages = [
   {
@@ -25,7 +33,9 @@ const pages = [
     title: "Text to Handwriting Converter | Writey",
     description:
       "Convert typed English or Hindi text into handwriting-style pages. Preview in your browser, then download PDF or PNG. No account needed to start.",
-    robots: "index, follow",
+    indexable: true,
+    crumbs: [{ name: "Home", path: "/" }],
+    jsonLd: "home",
   },
   {
     path: "/hindi",
@@ -33,7 +43,11 @@ const pages = [
     title: "Convert Hindi Text to Handwriting | Writey",
     description:
       "Preview Hindi (Devanagari) text as handwriting-style pages, then export PDF or PNG. Use the same Writey editor for English. This is a language support page.",
-    robots: "index, follow",
+    indexable: true,
+    crumbs: [
+      { name: "Home", path: "/" },
+      { name: "Hindi", path: "/hindi" },
+    ],
   },
   {
     path: "/pricing",
@@ -41,7 +55,11 @@ const pages = [
     title: "Pricing — Free and Pro Plans | Writey",
     description:
       "Compare Free and Pro plans for handwriting-style page export. USD prices are pending confirmation. Applicable taxes will be shown at checkout.",
-    robots: "index, follow",
+    indexable: true,
+    crumbs: [
+      { name: "Home", path: "/" },
+      { name: "Pricing", path: "/pricing" },
+    ],
   },
   {
     path: "/faq",
@@ -49,7 +67,11 @@ const pages = [
     title: "Frequently Asked Questions | Writey",
     description:
       "Answers about Writey’s text to handwriting converter: accounts, English and Hindi, PDF and PNG export, plan limits, and acceptable use.",
-    robots: "index, follow",
+    indexable: true,
+    crumbs: [
+      { name: "Home", path: "/" },
+      { name: "FAQ", path: "/faq" },
+    ],
   },
   {
     path: "/privacy",
@@ -57,7 +79,11 @@ const pages = [
     title: "Privacy Policy | Writey",
     description:
       "How Writey handles information for guest preview and export, optional accounts, and support. This draft is a product policy, not a legal certification.",
-    robots: "index, follow",
+    indexable: true,
+    crumbs: [
+      { name: "Home", path: "/" },
+      { name: "Privacy Policy", path: "/privacy" },
+    ],
   },
   {
     path: "/terms",
@@ -65,7 +91,11 @@ const pages = [
     title: "Terms of Use | Writey",
     description:
       "Terms for using Writey, including guest use, plan limits, acceptable use, and accounts. This draft is not a lawyer’s opinion.",
-    robots: "index, follow",
+    indexable: true,
+    crumbs: [
+      { name: "Home", path: "/" },
+      { name: "Terms of Use", path: "/terms" },
+    ],
   },
   {
     path: "/cookie",
@@ -73,7 +103,11 @@ const pages = [
     title: "Cookie Policy | Writey",
     description:
       "How Writey uses essential cookies for sessions and quota, and how analytics cookies would work only if enabled. Vendor names are not yet confirmed.",
-    robots: "index, follow",
+    indexable: true,
+    crumbs: [
+      { name: "Home", path: "/" },
+      { name: "Cookie Policy", path: "/cookie" },
+    ],
   },
   {
     path: "/refund",
@@ -81,7 +115,11 @@ const pages = [
     title: "Refund & Cancellation Policy | Writey",
     description:
       "How Writey subscriptions may be cancelled and how refund requests are handled. The commercial refund window is still being confirmed.",
-    robots: "index, follow",
+    indexable: true,
+    crumbs: [
+      { name: "Home", path: "/" },
+      { name: "Refund & Cancellation", path: "/refund" },
+    ],
   },
   {
     path: "/acceptable-use",
@@ -89,14 +127,22 @@ const pages = [
     title: "Acceptable Use | Writey",
     description:
       "How you may use Writey’s text to handwriting tool, including allowed uses, academic integrity rules, and features we will not build.",
-    robots: "index, follow",
+    indexable: true,
+    crumbs: [
+      { name: "Home", path: "/" },
+      { name: "Acceptable Use", path: "/acceptable-use" },
+    ],
   },
   {
     path: "/login",
     file: "login/index.html",
     title: "Log in | Writey",
     description: "Log in to keep your monthly quota, view history, or upgrade to Pro.",
-    robots: "noindex, nofollow",
+    indexable: false,
+    crumbs: [
+      { name: "Home", path: "/" },
+      { name: "Log in", path: "/login" },
+    ],
   },
   {
     path: "/register",
@@ -104,7 +150,11 @@ const pages = [
     title: "Create account | Writey",
     description:
       "Create an account to keep quota across days and upgrade to Pro. You can still preview and complete a useful Free export without signing in.",
-    robots: "noindex, nofollow",
+    indexable: false,
+    crumbs: [
+      { name: "Home", path: "/" },
+      { name: "Create account", path: "/register" },
+    ],
   },
   {
     path: "/404",
@@ -112,7 +162,9 @@ const pages = [
     title: "Page not found | Writey",
     description:
       "This page is not available. You can go back to the text to handwriting converter, or open Pricing, FAQ, or Acceptable Use.",
-    robots: "noindex, nofollow",
+    indexable: false,
+    omitCanonical: true,
+    crumbs: [{ name: "Home", path: "/" }],
   },
 ];
 
@@ -123,8 +175,28 @@ function set(html, tagRe, replacement, insertAfter = "</title>") {
   return html.replace(insertAfter, `</title>\n    ${replacement}`);
 }
 
+function remove(html, tagRe) {
+  return html.replace(tagRe, "");
+}
+
+function jsonLdFor(page) {
+  if (page.jsonLd === "home") return buildHomeJsonLd({ brand: BRAND, origin });
+  return buildWebPageJsonLd({
+    brand: BRAND,
+    origin,
+    path: page.path,
+    name: page.title,
+    crumbs: page.crumbs,
+    faq: faqItemsFor(page.path),
+  });
+}
+
 for (const page of pages) {
-  const canon = `${origin}${page.path === "/" ? "/" : page.path}`;
+  const robots = confirmed && page.indexable ? "index, follow" : "noindex, nofollow";
+  const canon = !page.omitCanonical && origin
+    ? `${origin}${page.path === "/" ? "/" : page.path}`
+    : null;
+
   let html = source;
   html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${page.title}</title>`);
   html = set(
@@ -135,25 +207,58 @@ for (const page of pages) {
   html = set(
     html,
     /<meta\s+name="robots"\s+content="[^"]*"\s*\/?>/,
-    `<meta name="robots" content="${page.robots}" />`,
+    `<meta name="robots" content="${robots}" />`,
   );
   html = set(
     html,
-    /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/,
-    `<link rel="canonical" href="${canon}" />`,
+    /<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/,
+    `<meta property="og:title" content="${page.title.replace(/"/g, "&quot;")}" />`,
   );
-  if (!SITE) {
+  html = set(
+    html,
+    /<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/,
+    `<meta property="og:description" content="${page.description.replace(/"/g, "&quot;")}" />`,
+  );
+  html = set(
+    html,
+    /<meta\s+property="og:type"\s+content="[^"]*"\s*\/?>/,
+    `<meta property="og:type" content="website" />`,
+  );
+
+  if (canon) {
+    html = set(html, /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/, `<link rel="canonical" href="${canon}" />`);
     html = set(
       html,
-      /<meta\s+name="writey-canonical-status"\s+content="[^"]*"\s*\/?>/,
-      `<meta name="writey-canonical-status" content="Canonical host is https://[DOMAIN] [待确认]" />`,
+      /<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/,
+      `<meta property="og:url" content="${canon}" />`,
     );
+  } else {
+    html = remove(html, /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>\s*/);
+    html = remove(html, /<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>\s*/);
   }
+  html = remove(html, /<meta\s+name="writey-canonical-status"\s+content="[^"]*"\s*\/?>\s*/);
+
+  const jsonLd = JSON.stringify(jsonLdFor(page));
+  const jsonLdTag = `<script type="application/ld+json" id="writey-jsonld">${jsonLd}</script>`;
+  html = set(html, /<script type="application\/ld\+json" id="writey-jsonld">[\s\S]*?<\/script>/, jsonLdTag);
+
+  const body = pageBody(page.path);
+  if (!html.includes('<div id="root"></div>') && !html.includes('<div id="root">')) {
+    console.error("Could not find #root in template for", page.path);
+    process.exit(1);
+  }
+  html = html.replace(/<div id="root"><\/div>/, `<div id="root">\n      ${body}\n    </div>`);
+
+  html = scrubPlaceholderHostUrls(html);
+  if (html.includes("https://[DOMAIN]") || /writey\.app/i.test(html)) {
+    console.error("Prerender emitted a forbidden host for", page.path);
+    process.exit(1);
+  }
+
   const dest = join(dist, page.file);
   mkdirSync(dirname(dest), { recursive: true });
-  if (dest !== indexPath) writeFileSync(dest, html);
-  else writeFileSync(dest, html);
-  console.log("prerender", page.path, "->", page.file);
+  writeFileSync(dest, html);
+  console.log("prerender", page.path, "->", page.file, confirmed ? "production-origin" : "preview-noindex");
 }
 
-console.log("prerender complete; origin =", origin);
+console.log("prerender complete; confirmed origin =", origin || "(none)");
