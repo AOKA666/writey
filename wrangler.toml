@@ -1,0 +1,30 @@
+# writey preview Worker + static assets.
+# Tech stack is Cloudflare-first but still [待确认].
+# Do not bind a custom domain in this file. Do not put secrets here.
+
+name = "writey-preview"
+main = "worker/index.ts"
+compatibility_date = "2025-10-11"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+# Intercept first so 301/308, /api, sitemap, robots, and HTTP 404 work.
+run_worker_first = true
+# Serve prerendered files at their exact paths (/index.html, /pricing/index.html).
+# The default auto-trailing-slash handling redirected /index.html -> / and
+# produced an empty 200 when the worker rewrote the path.
+html_handling = "none"
+
+# Public, non-secret config. Leave SITE_URL empty until a real origin is confirmed.
+[vars]
+SITE_URL = ""
+
+# Replace database_id with a real D1 id before a remote preview deploy.
+# `wrangler dev` uses a local D1 from this binding regardless.
+[[d1_databases]]
+binding = "DB"
+database_name = "writey-preview"
+database_id = "00000000-0000-0000-0000-000000000001"
+migrations_dir = "migrations"

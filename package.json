@@ -1,0 +1,47 @@
+{
+  "name": "writey",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Writey \u2014 text to handwriting converter (India-facing MVP preview)",
+  "scripts": {
+    "dev": "vite",
+    "dev:worker": "npm run build && wrangler d1 migrations apply writey-preview --local && wrangler dev --port 8787",
+    "build": "tsc --noEmit && vite build && node scripts/prerender.mjs",
+    "preview": "vite preview --port 4173",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.worker.json",
+    "smoke": "node scripts/smoke.mjs",
+    "test:routes": "node scripts/smoke.mjs",
+    "db:migrate:local": "wrangler d1 migrations apply writey-preview --local"
+  },
+  "dependencies": {
+    "fflate": "^0.8.2",
+    "hono": "^4.7.11",
+    "marked": "^15.0.12",
+    "pdf-lib": "^1.17.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261113.1",
+    "@eslint/js": "^9.38.0",
+    "@types/react": "^18.3.26",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "eslint": "^9.38.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.4.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.26.1",
+    "vite": "^6.4.1",
+    "wrangler": "^4.47.0"
+  },
+  "allowScripts": {
+    "esbuild@0.25.12": true,
+    "esbuild@0.28.2": true,
+    "workerd@1.20261113.1": true
+  }
+}

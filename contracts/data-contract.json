@@ -1,0 +1,222 @@
+{
+  "$id": "https://[DOMAIN]/contracts/data-contract.json",
+  "title": "writey Data Contract (preview-grade)",
+  "version": "0.1.0",
+  "updated": "2026-11-14",
+  "timezone_note": "Internal timestamps are ISO-8601 UTC. Display conversion to Asia/Shanghai is [待确认].",
+  "domain": {
+    "placeholder": "https://[DOMAIN]",
+    "status": "[待确认]",
+    "do_not_invent": ["writey.app"]
+  },
+  "storage_rules": {
+    "source_text": "User source_text is NOT stored long-term. Client-side preview and export are preferred. The API must reject payloads that include source_text. Analytics events must never include full source_text.",
+    "export_files": "MVP exports are generated in the browser. R2 is optional and unused in this preview unless later enabled.",
+    "forbidden_fields": ["error_rate", "anti_copy", "scan_shadow", "coffee_stain"]
+  },
+  "plans": {
+    "currency": "USD",
+    "status": "[待确认]",
+    "not_a_live_offer": true,
+    "payments_open": false,
+    "tax_line": "Applicable taxes will be shown at checkout.",
+    "guest_free": {
+      "plan_id": "guest_free",
+      "display_price": "$0",
+      "pages_per_month": 8,
+      "watermark": true,
+      "jobs_per_day": 2,
+      "previews_per_day": 10,
+      "pages_per_export": 8
+    },
+    "free": {
+      "plan_id": "free",
+      "display_price": "$0",
+      "pages_per_month": 8,
+      "watermark": true,
+      "jobs_per_day": 2,
+      "previews_per_day": 10,
+      "pages_per_export": 8
+    },
+    "pro": {
+      "plan_id": "pro",
+      "display_price_monthly": "$3.99",
+      "display_price_yearly": "$39",
+      "pages_per_month": 150,
+      "watermark": false,
+      "jobs_per_day": 10,
+      "previews_per_day": 50,
+      "pages_per_export": 20
+    }
+  },
+  "aesthetic_variation": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["tilt", "ink_pressure", "drift"],
+    "properties": {
+      "tilt": { "type": "number", "minimum": 0, "maximum": 1 },
+      "ink_pressure": { "type": "number", "minimum": 0, "maximum": 1 },
+      "drift": { "type": "number", "minimum": 0, "maximum": 1 }
+    },
+    "description": "Aesthetic only. Never include error_rate, anti_copy, scan_shadow, or coffee_stain."
+  },
+  "export_job": {
+    "description": "Logical export object. In this preview the job is executed client-side and is not persisted.",
+    "example": {
+      "job_id": "job_preview_local",
+      "created_at": "2026-11-14T03:00:00.000Z",
+      "language": "en",
+      "font_id": "oxford-cursive",
+      "style_id": "oxford-cursive",
+      "paper_type": "lined",
+      "margin_top": 18,
+      "margin_right": 16,
+      "margin_bottom": 18,
+      "margin_left": 20,
+      "line_spacing": 28,
+      "ink_color": "blue",
+      "page_size": "A4",
+      "aesthetic_variation": { "tilt": 0.45, "ink_pressure": 0.5, "drift": 0.4 },
+      "output_format": "pdf",
+      "page_count": 1,
+      "status": "done",
+      "download_url": null,
+      "user_id": null
+    },
+    "enums": {
+      "language": ["en", "hi"],
+      "paper_type": ["lined", "blank", "grid"],
+      "output_format": ["pdf", "png"],
+      "status": ["queued", "rendering", "done", "failed"],
+      "page_size": ["A4"]
+    },
+    "notes": [
+      "source_text is intentionally omitted from stored examples.",
+      "PNG multi-page exports are a ZIP of one image per page.",
+      "download_url is unused while export is client-side."
+    ]
+  },
+  "entitlement_example": {
+    "subject_id": "guest:local",
+    "signed_in": false,
+    "email": null,
+    "plan_id": "guest_free",
+    "period_yyyy_mm": "2026-11",
+    "pages_used": 0,
+    "pages_limit": 8,
+    "jobs_used_today": 0,
+    "jobs_limit": 2,
+    "previews_used_today": 0,
+    "previews_limit": 10,
+    "pages_per_preview_limit": 8,
+    "quota_reset_at": "2026-12-01T00:00:00.000Z",
+    "watermark": true,
+    "payments_open": false,
+    "payments_state": "payments_closed"
+  },
+  "api": {
+    "auth": "HttpOnly session cookie writey_session (optional). Guest cookie writey_guest. No Google OAuth in this preview.",
+    "source_text_policy": "Do not send source_text to any endpoint. The worker rejects it if present.",
+    "endpoints": [
+      {
+        "method": "GET",
+        "path": "/api/session",
+        "auth": "optional cookie",
+        "response": { "ok": true, "entitlement": {}, "backend": "d1 or local_fallback" }
+      },
+      {
+        "method": "POST",
+        "path": "/api/auth/register",
+        "auth": "none",
+        "request": { "email": "user@example.com", "password": "********" },
+        "response": { "ok": true, "entitlement": {}, "backend": "d1" }
+      },
+      {
+        "method": "POST",
+        "path": "/api/auth/login",
+        "auth": "none",
+        "request": { "email": "user@example.com", "password": "********" },
+        "response": { "ok": true, "entitlement": {}, "backend": "d1" }
+      },
+      {
+        "method": "POST",
+        "path": "/api/auth/logout",
+        "auth": "session cookie"
+      },
+      {
+        "method": "POST",
+        "path": "/api/quota/consume",
+        "auth": "session or guest cookie",
+        "request": { "kind": "pages|jobs|previews", "pages": 1 },
+        "notes": "Does not accept source_text."
+      },
+      {
+        "method": "POST",
+        "path": "/api/payments/checkout",
+        "auth": "optional",
+        "response_example": {
+          "ok": true,
+          "state": "payments_closed",
+          "payments_open": false,
+          "message": "Payments are not open yet. We will not charge your account. You can keep using the Free plan or ask to be notified at support@[DOMAIN]."
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/api/waitlist",
+        "request": {
+          "kind": "teams_education|payments_open",
+          "name": "Example",
+          "email": "user@example.com",
+          "organisation": "",
+          "message": ""
+        }
+      },
+      {
+        "method": "POST",
+        "path": "/api/analytics",
+        "request": { "event": "preview_generated", "payload": { "page_count": 1, "language": "en" } },
+        "notes": "No-op until ANALYTICS_MEASUREMENT_ID is confirmed. Rejects source_text. Does not name a vendor as selected."
+      }
+    ],
+    "error_codes": [
+      { "code": "invalid_email", "http": 400 },
+      { "code": "weak_password", "http": 400 },
+      { "code": "email_taken", "http": 409 },
+      { "code": "invalid_credentials", "http": 401 },
+      { "code": "backend_unavailable", "http": 503 },
+      { "code": "invalid_kind", "http": 400 },
+      { "code": "forbidden_field", "http": 400 },
+      { "code": "quota_pages_free", "http": "client-side before export" },
+      { "code": "quota_pages_pro", "http": "client-side before export" },
+      { "code": "quota_jobs", "http": "client-side before export" },
+      { "code": "quota_previews", "http": "client-side before export" },
+      { "code": "export_page_limit", "http": "client-side before export" }
+    ]
+  },
+  "analytics_events": [
+    "preview_generated",
+    "export_pdf",
+    "export_png",
+    "language_switched",
+    "quota_hit",
+    "acceptable_use_clicked"
+  ],
+  "env_var_names_only": [
+    "CLOUDFLARE_ACCOUNT_ID",
+    "CLOUDFLARE_API_TOKEN",
+    "D1_DATABASE_BINDING",
+    "D1_DATABASE_ID",
+    "R2_BUCKET",
+    "R2_ACCESS_KEY_ID",
+    "R2_SECRET_ACCESS_KEY",
+    "AUTH_SECRET",
+    "PAYMENT_PROVIDER",
+    "PAYMENT_SECRET_KEY",
+    "PAYMENT_WEBHOOK_SECRET",
+    "ANALYTICS_MEASUREMENT_ID",
+    "VITE_ANALYTICS_MEASUREMENT_ID",
+    "SITE_URL",
+    "VITE_SITE_URL"
+  ]
+}
