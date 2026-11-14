@@ -26,5 +26,5 @@ SITE_URL = ""
 [[d1_databases]]
 binding = "DB"
 database_name = "writey-preview"
-database_id = "00000000-0000-0000-0000-000000000001"
+database_id = "4c3a2341-993a-4ed5-9e4e-67c48d9c912f"
 migrations_dir = "migrations"

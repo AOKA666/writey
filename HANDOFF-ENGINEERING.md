@@ -3,9 +3,10 @@
 - 项目：writey
 - 日期：2026-11-14（Asia/Shanghai）
 - 代码：`/workspace/writey`
-- 分支：`main`（本地仓库，尚无 remote；按任务要求未创建 GitHub 仓库、未绑定域名、未生产发布）
-- Commit SHA：本仓库 `git rev-parse HEAD`（提交时写入会自引用失效，以该命令为准）
-- 状态建议给中控：`[NEEDS_REVIEW]` — 本地可构建、可 `wrangler dev` 预览、路由与支付关闭态已自检；**未做远程 preview deploy**（无本机已验证的 Cloudflare 凭据被用来执行 `wrangler deploy`）。不要宣布 QA GO。
+- 分支：`main`（本地仓库，尚无 GitHub/Origin remote；未绑定自定义域名、未生产发布、未开通支付）
+- 实现 Commit SHA：`01623106848104c3ac1dd550b7f275e55ea4539d`
+- 预览 URL：https://writey-preview.yanweijie2781.workers.dev （workers.dev 预览，不是生产域名）
+- 状态给中控：`[NEEDS_REVIEW]` — 远程预览已部署且烟测 65/65 通过；源码尚未推到远程仓库；不要宣布 QA GO，不要绑定未确认域名。
 
 ## 一句话结论
 
@@ -62,13 +63,13 @@ WRITEY_BASE=http://127.0.0.1:8787 npm run smoke
 
 仅 UI：`npm run dev`（Vite 5173；`/api` 在 worker 起来时可代理到 8787）。
 
-**远程 preview（由中控/父代理通过 Cloudflare 连接器执行，本阶段未执行 `wrangler deploy`）：**
+**远程 preview（已完成，2026-11-14 Asia/Shanghai）：**
 
-1. 创建 D1，把真实 `D1_DATABASE_ID` 写入 `wrangler.toml`（当前为占位 UUID `00000000-0000-0000-0000-000000000001`）。
-2. `npx wrangler d1 migrations apply writey-preview --remote`
-3. `npm run build && npx wrangler deploy`（项目名 `writey-preview`，预期 workers.dev）。
-4. 可选：将 `SITE_URL` / `VITE_SITE_URL` 设为该 preview origin，然后重建以更新 prerender canonical。
-5. 不要绑定自定义域名或生产 DNS。不要开通真实支付。不要宣布 QA GO。
+- Worker 名：`writey-preview`
+- URL：https://writey-preview.yanweijie2781.workers.dev
+- D1：`writey-preview`（`D1_DATABASE_ID` 已写入 `wrangler.toml`；迁移 `0001_init.sql` 已应用到远程）
+- 已部署 Worker 的 `SITE_URL` 设为上述 preview origin，便于 sitemap/canonical 烟测；`wrangler.toml` 里仍留空，生产域名保持 `[待确认]`。Prerender HTML 的占位 canonical 仍可能是 `https://[DOMAIN]`。
+- 未绑定自定义域名，未做生产 DNS，未开通真实支付。
 
 ## 环境变量（只写名称）
 
@@ -86,11 +87,11 @@ WRITEY_BASE=http://127.0.0.1:8787 npm run smoke
 - `GET /api/session` 在 `npm run db:migrate:local` 后 `backend: "d1"`；迁移前为 `local_fallback`。
 - 自托管字体 200：`/fonts/fonts.css`、`newsreader-latin-400-normal.woff2`、`kalam-devanagari-400-normal.woff2`。
 
-本地 preview 进程可能仍在 `http://127.0.0.1:8787`；若已停，按上面命令重新拉起。没有远程 preview URL（未 deploy）。
+本地可用 `npx wrangler dev --port 8787` 复现。远程预览：https://writey-preview.yanweijie2781.workers.dev 。对无自定义 UA 的部分客户端（例如默认 Python urllib）可能被 Cloudflare 边缘拦截为 403；带常规 UA 或本仓库 `npm run smoke` 为 200。
 
 ## 已知缺口
 
-- **未远程部署**：没有 workers.dev/pages.dev URL，也没有 Cloudflare 帐号绑定结果。父代理需用连接器部署。
+- **无 Git 远程仓库**：代码只在本机 `/workspace/writey`。Cursor 不能代建 GitHub 仓库；需要学员/中控建空仓库并给 URL 后再 push。当前预览部署来自该本地 `main` 实现提交。
 - **SEO 正文未 SSR**：prerender 写入了各路由的 title/meta/canonical/robots；正文（含法律页 markdown）在客户端 hydration。对“查看源代码即见全文”的 QA 是 P1。
 - **手写字体**：Caveat / Patrick Hand / Kalam / Dancing Script 仅作标本，UI 一律标注 Pending commercial licence。不得宣称 Hindi 一等商用字体已交付。
 - **分析/支付/域名/主体/GST/退款窗口** 仍 `[待确认]`。
@@ -117,7 +118,7 @@ WRITEY_BASE=http://127.0.0.1:8787 npm run smoke
 - [x] 联系方式仅为 `privacy@[DOMAIN]` / `support@[DOMAIN]`
 - [x] 无 Anti-Copy / Auto Mistake / 扫描伪装字段或卖点
 - [x] lint / typecheck / production build 通过
-- [ ] 远程 preview URL（未部署）
+- [x] 远程 preview URL：https://writey-preview.yanweijie2781.workers.dev （2026-11-14 Asia/Shanghai，`WRITEY_BASE` 烟测 65/65；`/api/session` 为 `backend: "d1"`；checkout 为 `payments_closed`）
 - [ ] QA GO（不得由工程方宣布）
 
 ## 给下游的最小必要信息
@@ -129,4 +130,5 @@ WRITEY_BASE=http://127.0.0.1:8787 npm run smoke
 ## Commit
 
 - 分支：`main`（无 remote）
-- SHA：以 `git -C /workspace/writey rev-parse HEAD` 为准。
+- 实现 SHA：`01623106848104c3ac1dd550b7f275e55ea4539d`（前端+Worker 源码，预览部署对应此提交）
+- 后续若有记录 D1 id / 本交接文件的 chore 提交，以 `git -C /workspace/writey log --oneline` 为准，不改变已部署源码。
