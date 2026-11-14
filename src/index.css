@@ -554,10 +554,18 @@ textarea.editor-input::placeholder { color: var(--color-outline); }
   color: var(--color-on-variant);
   padding: 0.15rem 0.35rem 0.45rem;
 }
-.sheet {
-  position: relative;
-  background: var(--color-paper-bright);
+.sheet-scaler {
+  width: 100%;
   aspect-ratio: 210 / 297;
+  position: relative;
+  overflow: hidden;
+}
+.sheet {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--color-paper-bright);
+  transform-origin: top left;
   overflow: hidden;
   box-shadow: 0 1px 0 rgba(28, 23, 18, 0.04);
 }
@@ -605,7 +613,7 @@ textarea.editor-input::placeholder { color: var(--color-outline); }
   font-family: var(--font-display);
   letter-spacing: 0.15em;
   opacity: 0.08;
-  font-size: clamp(2.5rem, 12vw, 4rem);
+  font-size: 96px;
   font-weight: 700;
   color: var(--color-primary);
 }
@@ -616,7 +624,7 @@ textarea.editor-input::placeholder { color: var(--color-outline); }
 }
 .hand-line {
   white-space: pre;
-  overflow: hidden;
+  overflow: visible;
   transform-origin: left bottom;
 }
 .sheet-empty-hint {

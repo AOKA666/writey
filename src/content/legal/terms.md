@@ -6,7 +6,7 @@
 - Website: `https://[DOMAIN]` 【PENDING CONFIRMATION】
 - Operator: `[LEGAL_ENTITY]` 【PENDING CONFIRMATION】
 - Support: `support@[DOMAIN]` 【PENDING CONFIRMATION】
-- Last updated: 13 November 2026 (draft; display currency revised to USD)
+- Last updated: 14 November 2026 (draft; export history wording revised so it is not described as a live feature)
 - Effective date: 【PENDING CONFIRMATION】
 
 These Terms, together with the [Privacy Policy](/privacy), [Cookie Policy](/cookie), [Refund & Cancellation Policy](/refund), and [Acceptable Use](/acceptable-use) pages, govern your use of Writey. If you do not agree, do not use the service.
@@ -22,7 +22,7 @@ Please read this description carefully:
 - Writey is not an official, government, school, or examination-board service. It does not produce official documents, certificates, or guaranteed academic results.
 - We do not claim that results are 100% accurate, identical to human handwriting, or fit for any particular official use.
 
-The core editor can be used without an account, subject to Free limits. An account is required to keep quota across days, to subscribe to Pro, and to use longer export history.
+The core editor can be used without an account, subject to Free limits. An account is required to keep quota across days and to subscribe to Pro. The current service does not provide a stored export history or a server-side re-download library.
 
 ## 2. Eligibility
 
@@ -45,8 +45,10 @@ Current recommended plan structure (Owner confirmation still required before pri
 
 | Plan | Price (display) | Main commercial limits |
 |---|---|---|
-| Free | $0, USD | Up to 8 export pages per calendar month, visible watermark, standard export quality, 3 basic styles, short re-download window, daily preview cap |
-| Pro | Recommended $3.99 / month or $39 / year, USD display and list price (monthly price may be adjusted within $2.99–$4.99) | Up to 150 export pages per calendar month, no watermark, higher export quality, all licensed MVP styles, 30-day history |
+| Free | $0, USD | Up to 8 export pages per calendar month, visible watermark, standard export quality, 3 basic styles, daily preview cap. No stored re-download library is currently provided. |
+| Pro | Recommended $3.99 / month or $39 / year, USD display and list price (monthly price may be adjusted within $2.99–$4.99) | Up to 150 export pages per calendar month, no watermark, higher export quality, all licensed MVP styles. A 30-day stored export history is not currently provided. |
+
+Exports are generated in the browser for you to save at the time of export. The current service does not offer in-account history viewing or later re-download of past exports. A Free short re-download window or a Pro 30-day export history, if later offered, is 【PENDING CONFIRMATION】 and must not be described as available until it is implemented.
 
 The display and list currency is USD, as confirmed by the Owner on 13 November 2026. This supersedes the earlier INR recommended prices (₹299 / month or ₹2,499 / year), which must not be used. The recommended Pro amounts, the billing timezone, GST or other tax treatment, and the payment provider remain 【PENDING CONFIRMATION】. Until the operator confirms the final prices, they are a proposed structure, not a binding public price list. Do not show an unregulated INR price alongside USD, and do not treat an exchange-rate snapshot as a fixed front-end conversion.
 

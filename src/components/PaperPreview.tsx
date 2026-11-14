@@ -1,14 +1,19 @@
-import { INK_COLORS, DEVANAGARI_FONT, HANDWRITING_STYLES } from "@/content/handwriting";
+import { INK_COLORS } from "@/content/handwriting";
 import {
-  A4_HEIGHT_MM,
-  A4_WIDTH_MM,
   containsDevanagari,
   pageCountFromLines,
-  wrapAndPaginate,
   type LaidOutLine,
 } from "@/lib/layout";
 import type { EditorSettings } from "@/lib/layout";
-import { useMemo, type CSSProperties } from "react";
+import {
+  A4_HEIGHT_PX,
+  A4_WIDTH_PX,
+  MM_TO_PX,
+  PREVIEW_FONT_PX,
+  fontRuns,
+  layoutDocument,
+} from "@/lib/typography";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 
 type Props = {
   text: string;
@@ -19,39 +24,9 @@ type Props = {
   languageLabel: string;
 };
 
-const PREVIEW_FONT = 22;
-
-function measure(text: string, styleId: string, fontSize = PREVIEW_FONT): number {
-  if (typeof document === "undefined") return text.length * fontSize * 0.5;
-  const canvas = measure.canvas || (measure.canvas = document.createElement("canvas"));
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return text.length * fontSize * 0.5;
-  let w = 0;
-  for (const ch of text) {
-    const font = /[\u0900-\u097F]/.test(ch)
-      ? DEVANAGARI_FONT
-      : (HANDWRITING_STYLES.find((s) => s.id === styleId)?.fontFamily ?? "Caveat, cursive");
-    ctx.font = `${fontSize}px ${font}`;
-    w += ctx.measureText(ch).width;
-  }
-  return w;
-}
-measure.canvas = undefined as HTMLCanvasElement | undefined;
-
-function fontFor(ch: string, styleId: string): string {
-  if (/[\u0900-\u097F]/.test(ch)) return DEVANAGARI_FONT;
-  return HANDWRITING_STYLES.find((s) => s.id === styleId)?.fontFamily ?? "Caveat, cursive";
-}
-
 function LineView({ line, settings, fontSize }: { line: LaidOutLine; settings: EditorSettings; fontSize: number }) {
   const ink = INK_COLORS.find((c) => c.id === settings.ink)?.value ?? "#1a3a8a";
-  const chunks: { font: string; text: string }[] = [];
-  for (const ch of line.text) {
-    const font = fontFor(ch, settings.styleId);
-    const last = chunks[chunks.length - 1];
-    if (last && last.font === font) last.text += ch;
-    else chunks.push({ font, text: ch });
-  }
+  const chunks = fontRuns(line.text, settings.styleId);
   return (
     <div
       className="hand-line"
@@ -75,24 +50,46 @@ function LineView({ line, settings, fontSize }: { line: LaidOutLine; settings: E
 
 export function PaperPreview({ text, settings, watermark, loading, error, languageLabel }: Props) {
   const trimmed = text.trim();
+  const [fontsReady, setFontsReady] = useState(
+    typeof document !== "undefined" ? document.fonts.status === "loaded" : false,
+  );
+  const scalerRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(0);
+
+  useEffect(() => {
+    let cancelled = false;
+    const markReady = () => {
+      if (!cancelled) setFontsReady(true);
+    };
+    if (typeof document === "undefined") return;
+    if (document.fonts.status === "loaded") {
+      markReady();
+      return;
+    }
+    void document.fonts.ready.then(markReady);
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useLayoutEffect(() => {
+    const el = scalerRef.current;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const update = () => {
+      const width = el.clientWidth;
+      if (width > 0) setScale(width / A4_WIDTH_PX);
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   const lines = useMemo(() => {
+    void fontsReady;
     if (!trimmed) return [];
-    return wrapAndPaginate(text, {
-      widthMm: A4_WIDTH_MM,
-      heightMm: A4_HEIGHT_MM,
-      margin: {
-        top: settings.marginTop,
-        right: settings.marginRight,
-        bottom: settings.marginBottom,
-        left: settings.marginLeft,
-      },
-      lineSpacingPx: settings.lineSpacing,
-      fontSizePx: PREVIEW_FONT,
-      measure: (s) => measure(s, settings.styleId),
-      variation: settings.variation,
-      variationEnabled: settings.variationEnabled,
-    });
-  }, [text, trimmed, settings]);
+    return layoutDocument(text, settings);
+  }, [text, trimmed, settings, fontsReady]);
 
   const pages = Math.max(1, pageCountFromLines(lines));
   const visiblePages = Math.min(pages, 3);
@@ -114,44 +111,52 @@ export function PaperPreview({ text, settings, watermark, loading, error, langua
               {trimmed && containsDevanagari(text) ? " · देवनागरी" : ""})
             </div>
             <div
-              className={`sheet ${paperClass}`}
-              style={
-                {
-                  "--line": `${settings.lineSpacing}px`,
-                  "--pad-top": `${settings.marginTop * 3.78}px`,
-                  "--pad-left": `${settings.marginLeft * 3.78}px`,
-                } as CSSProperties
-              }
+              className="sheet-scaler"
+              ref={page === 0 ? scalerRef : undefined}
             >
-              <div className="sheet-inner">
-                <div className="sheet-lines" />
-                <div
-                  className="margin-rule"
-                  style={{ left: `${settings.marginLeft * 3.78}px` }}
-                />
-                {watermark ? <div className="sheet-watermark">WRITEY</div> : null}
-                {trimmed ? (
+              <div
+                className={`sheet ${paperClass}`}
+                style={
+                  {
+                    width: A4_WIDTH_PX,
+                    height: A4_HEIGHT_PX,
+                    transform: `scale(${scale})`,
+                    "--line": `${settings.lineSpacing}px`,
+                    "--pad-top": `${settings.marginTop * MM_TO_PX}px`,
+                    "--pad-left": `${settings.marginLeft * MM_TO_PX}px`,
+                  } as CSSProperties
+                }
+              >
+                <div className="sheet-inner">
+                  <div className="sheet-lines" />
                   <div
-                    className="hand-lines"
-                    style={{
-                      paddingTop: settings.marginTop * 3.78,
-                      paddingRight: settings.marginRight * 3.78,
-                      paddingBottom: settings.marginBottom * 3.78,
-                      paddingLeft: settings.marginLeft * 3.78,
-                    }}
-                  >
-                    {pageLines.map((line, i) => (
-                      <LineView key={`${page}-${i}`} line={line} settings={settings} fontSize={PREVIEW_FONT} />
-                    ))}
-                  </div>
-                ) : (
-                  <>
-                    <p className="sheet-empty-hint">{emptyHintEn}</p>
-                    <p className="sheet-empty-hint hi" style={{ top: "38%" }}>
-                      {emptyHintHi}
-                    </p>
-                  </>
-                )}
+                    className="margin-rule"
+                    style={{ left: `${settings.marginLeft * MM_TO_PX}px` }}
+                  />
+                  {watermark ? <div className="sheet-watermark">WRITEY</div> : null}
+                  {trimmed ? (
+                    <div
+                      className="hand-lines"
+                      style={{
+                        paddingTop: settings.marginTop * MM_TO_PX,
+                        paddingRight: settings.marginRight * MM_TO_PX,
+                        paddingBottom: settings.marginBottom * MM_TO_PX,
+                        paddingLeft: settings.marginLeft * MM_TO_PX,
+                      }}
+                    >
+                      {pageLines.map((line, i) => (
+                        <LineView key={`${page}-${i}`} line={line} settings={settings} fontSize={PREVIEW_FONT_PX} />
+                      ))}
+                    </div>
+                  ) : (
+                    <>
+                      <p className="sheet-empty-hint">{emptyHintEn}</p>
+                      <p className="sheet-empty-hint hi" style={{ top: "38%" }}>
+                        {emptyHintHi}
+                      </p>
+                    </>
+                  )}
+                </div>
               </div>
             </div>
           </div>

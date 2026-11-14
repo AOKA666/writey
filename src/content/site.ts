@@ -3,9 +3,9 @@
 import { absoluteUrl, confirmedProductionOrigin } from "../../shared/site-origin.ts";
 
 export const BRAND_NAME = "Writey";
-export const BRAND_PENDING_NOTE = "Writey (brand display name is [待确认])";
+export const BRAND_PENDING_NOTE = "Writey (brand display name is Pending confirmation)";
 export const DOMAIN_PLACEHOLDER = "[DOMAIN]";
-export const PENDING_MARK = "[待确认]";
+export const PENDING_MARK = "【PENDING CONFIRMATION】";
 
 export const SUPPORT_EMAIL = "support@[DOMAIN]";
 export const PRIVACY_EMAIL = "privacy@[DOMAIN]";

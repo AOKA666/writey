@@ -161,6 +161,18 @@ async function check() {
           text.includes('href="/acceptable-use"'),
         `${path} initial HTML includes footer legal links`,
       );
+      record(!text.includes("待确认"), `${path} prerendered HTML has no user-facing 待确认`);
+      record(
+        !/Export history for 30 days, then deleted/i.test(text) &&
+          !/Pro export history is kept for 30 days/i.test(text),
+        `${path} does not present 30-day export history as a shipped feature`,
+      );
+      if (path === "/terms" || path === "/privacy" || path === "/pricing" || path === "/faq" || path === "/") {
+        record(
+          /Saved export history is not currently provided|does not provide a stored export history|does not currently provide an in-account export history|not stored for later retrieval/i.test(text),
+          `${path} states current export history is not provided`,
+        );
+      }
       if (path === "/cookie") {
         record(
           text.includes("writey_guest") && text.includes("Max-Age=15552000") && text.includes("HttpOnly"),
@@ -218,6 +230,14 @@ async function check() {
           text.includes('href="/acceptable-use"'),
         `${path} initial HTML includes footer legal links`,
       );
+      record(!text.includes("待确认"), `${path} prerendered HTML has no user-facing 待确认`);
+      if (path === "/login") {
+        record(!/view history/i.test(text), "/login description has no “view history”");
+        record(
+          text.includes("Log in to keep your monthly quota or upgrade to Pro."),
+          "/login uses the frozen login sentence",
+        );
+      }
     }
   }
 

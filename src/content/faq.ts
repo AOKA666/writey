@@ -17,7 +17,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         "id": 1,
         "question": "Do I need an account to convert text to handwriting?",
-        "answer": "No. You can paste text, preview a page, and complete a useful Free export without signing in. An account is needed to keep your monthly quota across days, subscribe to Pro, or use longer export history."
+        "answer": "No. You can paste text, preview a page, and complete a useful Free export without signing in. An account is needed to keep your monthly quota across days or subscribe to Pro. Saved export history is not currently provided. 【PENDING CONFIRMATION】"
       },
       {
         "id": 2,
@@ -77,7 +77,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         "id": 11,
         "question": "How long can I re-download a file?",
-        "answer": "Free users get only a short re-download window; the current suggestion is up to 24 hours, which is still `[待确认]`. Pro export history is kept for 30 days, then deleted."
+        "answer": "Saved export history is not currently provided. 【PENDING CONFIRMATION】 In the current product, PDF and PNG files download in your browser and are not kept in an account history you can reopen later. Download again from the editor if you still have the text open."
       }
     ]
   },
@@ -87,12 +87,12 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         "id": 12,
         "question": "What are the Free plan limits?",
-        "answer": "Free is $0 and allows up to 8 export pages per calendar month, with a watermark, standard quality, and 3 basic styles. `[待确认]` Daily preview and per-job caps also apply. The core path works without an account."
+        "answer": "Free is $0 and allows up to 8 export pages per calendar month, with a watermark, standard quality, and 3 basic styles. 【PENDING CONFIRMATION】 Daily preview and per-job caps also apply. The core path works without an account."
       },
       {
         "id": 13,
         "question": "What are the Pro plan limits?",
-        "answer": "Pro is a recommended $3.99 per month or $39 per year, in USD, and allows up to 150 export pages per calendar month, with no watermark, higher export quality, and all licensed MVP styles. `[待确认]` These amounts are not a live offer until confirmed. Daily preview and per-job caps still apply."
+        "answer": "Pro is a recommended $3.99 per month or $39 per year, in USD, and allows up to 150 export pages per calendar month, with no watermark, higher export quality, and all licensed MVP styles. 【PENDING CONFIRMATION】 These amounts are not a live offer until confirmed. Daily preview and per-job caps still apply."
       },
       {
         "id": 14,
@@ -107,7 +107,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         "id": 16,
         "question": "Why do I need an account for Pro?",
-        "answer": "An account is required so we can bill the subscription, apply your quota, and keep export history. Guest use remains available on Free for the first useful preview and export."
+        "answer": "An account is required so we can bill the subscription and apply your quota. Guest use remains available on Free for the first useful preview and export. Saved export history is not currently provided. 【PENDING CONFIRMATION】"
       }
     ]
   },
@@ -137,12 +137,12 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         "id": 20,
         "question": "How much does Pro cost?",
-        "answer": "The recommended display prices are $3.99 per month or $39 per year, in USD. `[待确认]` These figures are a proposed structure, not a confirmed live offer. Applicable taxes will be shown at checkout."
+        "answer": "The recommended display prices are $3.99 per month or $39 per year, in USD. 【PENDING CONFIRMATION】 These figures are a proposed structure, not a confirmed live offer. Applicable taxes will be shown at checkout."
       },
       {
         "id": 21,
         "question": "Is Pro unlimited?",
-        "answer": "No. Pro has a monthly cap of 150 export pages, and previews have daily and per-job caps. `[待确认]` Neither plan is unlimited."
+        "answer": "No. Pro has a monthly cap of 150 export pages, and previews have daily and per-job caps. 【PENDING CONFIRMATION】 Neither plan is unlimited."
       },
       {
         "id": 22,
@@ -162,7 +162,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         "id": 25,
         "question": "How do I join the Teams or Education waitlist?",
-        "answer": "Use the waitlist or contact form on the Pricing page, or email `support@[DOMAIN]`. This is a request to be contacted, not a purchase.\n\n---"
+        "answer": "Use the waitlist or contact form on the Pricing page, or email `support@[DOMAIN]`. This is a request to be contacted, not a purchase."
       }
     ]
   }
@@ -182,7 +182,7 @@ export const HOME_FAQ: FaqItem[] = [
     id: 1,
     question: "Do I need an account to convert text to handwriting?",
     answer:
-      "No. You can paste text, preview a page, and complete a useful Free export without signing in. An account is needed to keep quota across days, subscribe to Pro, or use longer export history.",
+      "No. You can paste text, preview a page, and complete a useful Free export without signing in. An account is needed to keep quota across days or subscribe to Pro. Saved export history is not currently provided. 【PENDING CONFIRMATION】",
   },
   {
     id: 5,
@@ -230,7 +230,7 @@ export const PRICING_FAQ: FaqItem[] = [
     id: 201,
     question: "Is Pro unlimited?",
     answer:
-      "No. Pro allows up to 150 export pages per month, and previews have daily caps. [待确认]",
+      "No. Pro allows up to 150 export pages per month, and previews have daily caps. 【PENDING CONFIRMATION】",
   },
   {
     id: 202,

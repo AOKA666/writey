@@ -156,7 +156,7 @@ export const SEO: Record<string, SeoMeta> = {
     path: "/login",
     title: "Log in | Writey",
     description:
-      "Log in to keep your monthly quota, view history, or upgrade to Pro.",
+      "Log in to keep your monthly quota or upgrade to Pro.",
     h1: "Log in",
     robots: "noindex, nofollow",
     inSitemap: false,

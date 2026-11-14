@@ -2,6 +2,10 @@ import type { AestheticVariation, PaperType } from "@/content/handwriting";
 
 export const A4_WIDTH_MM = 210;
 export const A4_HEIGHT_MM = 297;
+/** CSS px per mm at 96dpi. Preview and export share this layout scale. */
+export const MM_TO_PX = 3.7795;
+export const A4_WIDTH_PX = A4_WIDTH_MM * MM_TO_PX;
+export const A4_HEIGHT_PX = A4_HEIGHT_MM * MM_TO_PX;
 
 export type EditorSettings = {
   language: "en" | "hi";
@@ -71,13 +75,10 @@ export function wrapAndPaginate(
     variationEnabled: boolean;
   },
 ): LaidOutLine[] {
-  const innerH = ((opts.heightMm - opts.margin.top - opts.margin.bottom) / opts.heightMm) * 1123;
-  // Use a virtual A4 pixel height of ~1123px at 96dpi-ish scale (297mm * 3.78)
-  const mmToPx = 3.7795;
   const innerHeightPx =
-    (opts.heightMm - opts.margin.top - opts.margin.bottom) * mmToPx;
+    (opts.heightMm - opts.margin.top - opts.margin.bottom) * MM_TO_PX;
   const innerWidthPx =
-    (opts.widthMm - opts.margin.left - opts.margin.right) * mmToPx;
+    (opts.widthMm - opts.margin.left - opts.margin.right) * MM_TO_PX;
   const linesPerPage = Math.max(1, Math.floor(innerHeightPx / opts.lineSpacingPx));
   const paragraphs = text.replace(/\r\n/g, "\n").split("\n");
   const wrapped: string[] = [];
@@ -99,7 +100,6 @@ export function wrapAndPaginate(
     }
     if (current !== "") wrapped.push(current.trimEnd());
   }
-  void innerH;
   const lines: LaidOutLine[] = [];
   wrapped.forEach((line, index) => {
     const page = Math.floor(index / linesPerPage);

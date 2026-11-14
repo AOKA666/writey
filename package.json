@@ -13,7 +13,8 @@
     "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.worker.json",
     "smoke": "node --experimental-strip-types scripts/smoke.mjs",
     "test:routes": "node --experimental-strip-types scripts/smoke.mjs",
-    "db:migrate:local": "wrangler d1 migrations apply writey-preview --local"
+    "db:migrate:local": "wrangler d1 migrations apply writey-preview --local",
+    "test:layout": "node --experimental-strip-types scripts/layout-regression.mjs"
   },
   "dependencies": {
     "fflate": "^0.8.2",

@@ -1,17 +1,12 @@
 
-import {
-  DEVANAGARI_FONT,
-  HANDWRITING_STYLES,
-  INK_COLORS,
-  type PaperType,
-} from "@/content/handwriting";
-import {
-  A4_HEIGHT_MM,
-  A4_WIDTH_MM,
-  wrapAndPaginate,
-  type LaidOutLine,
-} from "@/lib/layout";
+import { INK_COLORS, type PaperType } from "@/content/handwriting";
+import { A4_HEIGHT_MM, A4_WIDTH_MM, MM_TO_PX } from "@/lib/layout";
 import type { EditorSettings } from "@/lib/layout";
+import {
+  PREVIEW_FONT_PX,
+  layoutDocument,
+  paintLineText,
+} from "@/lib/typography";
 
 const MM_TO_PX_EXPORT = 150 / 25.4; // ~150 dpi for Free / standard quality [待确认]
 const MM_TO_PX_PRO = 200 / 25.4;
@@ -22,46 +17,6 @@ export type RenderInput = {
   watermark: boolean;
   quality: "standard" | "high";
 };
-
-function fontForChunk(ch: string, styleId: string): string {
-  const isDeva = /[\u0900-\u097F]/.test(ch);
-  if (isDeva) return DEVANAGARI_FONT;
-  const style = HANDWRITING_STYLES.find((s) => s.id === styleId);
-  return style?.fontFamily ?? "Caveat, cursive";
-}
-
-function measureFactory(settings: EditorSettings, fontSizePx: number) {
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
-  return (s: string) => {
-    if (!ctx) return s.length * fontSizePx * 0.5;
-    let width = 0;
-    for (const ch of s) {
-      ctx.font = `${fontSizePx}px ${fontForChunk(ch, settings.styleId)}`;
-      width += ctx.measureText(ch).width;
-    }
-    return width;
-  };
-}
-
-export function layoutText(input: RenderInput, fontSizePx: number): LaidOutLine[] {
-  const measure = measureFactory(input.settings, fontSizePx);
-  return wrapAndPaginate(input.text, {
-    widthMm: A4_WIDTH_MM,
-    heightMm: A4_HEIGHT_MM,
-    margin: {
-      top: input.settings.marginTop,
-      right: input.settings.marginRight,
-      bottom: input.settings.marginBottom,
-      left: input.settings.marginLeft,
-    },
-    lineSpacingPx: input.settings.lineSpacing * (fontSizePx / 22),
-    fontSizePx,
-    measure,
-    variation: input.settings.variation,
-    variationEnabled: input.settings.variationEnabled,
-  });
-}
 
 function paintPaper(
   ctx: CanvasRenderingContext2D,
@@ -130,15 +85,16 @@ export async function renderPagesToCanvases(input: RenderInput): Promise<HTMLCan
   const scale = input.quality === "high" ? MM_TO_PX_PRO : MM_TO_PX_EXPORT;
   const width = Math.round(A4_WIDTH_MM * scale);
   const height = Math.round(A4_HEIGHT_MM * scale);
-  const fontSizePx = Math.round(11 * (scale / (96 / 25.4))); // ~11pt
-  const lineSpacingPx = input.settings.lineSpacing * (scale / (96 / 25.4));
+  const paintScale = scale / MM_TO_PX;
+  const fontSizePx = PREVIEW_FONT_PX * paintScale;
+  const lineSpacingPx = input.settings.lineSpacing * paintScale;
   const margin = {
     top: input.settings.marginTop * scale,
     right: input.settings.marginRight * scale,
     bottom: input.settings.marginBottom * scale,
     left: input.settings.marginLeft * scale,
   };
-  const lines = layoutText(input, fontSizePx);
+  const lines = layoutDocument(input.text, input.settings);
   const pageCount = lines.length === 0 ? 1 : Math.max(...lines.map((l) => l.page + 1));
   const ink = INK_COLORS.find((c) => c.id === input.settings.ink)?.value ?? "#1a3a8a";
   const canvases: HTMLCanvasElement[] = [];
@@ -156,19 +112,12 @@ export async function renderPagesToCanvases(input: RenderInput): Promise<HTMLCan
       const x = margin.left;
       const y = margin.top + i * lineSpacingPx;
       ctx.save();
-      ctx.translate(line.driftPx * (scale / 3.78), 0);
+      ctx.translate(line.driftPx * paintScale, 0);
       ctx.translate(x, y);
       ctx.rotate((line.tiltDeg * Math.PI) / 180);
       ctx.globalAlpha = line.pressure;
       ctx.fillStyle = ink;
-      let cx = 0;
-      for (const ch of line.text) {
-        const font = fontForChunk(ch, input.settings.styleId);
-        ctx.font = `${fontSizePx}px ${font}`;
-        ctx.textBaseline = "alphabetic";
-        ctx.fillText(ch, cx, 0);
-        cx += ctx.measureText(ch).width;
-      }
+      paintLineText(ctx, line.text, input.settings.styleId, fontSizePx, 0, 0);
       ctx.restore();
     });
     canvases.push(canvas);

@@ -42,14 +42,14 @@ export function PricingPage() {
             <h2>Free plan</h2>
             <p className="plan-price">{PRICES.free}, USD</p>
             <ul className="list-plain">
-              <li>{PRICES.freePagesPerMonth} export pages per calendar month <span className="pending">[待确认]</span></li>
+              <li>{PRICES.freePagesPerMonth} export pages per calendar month <span className="pending">【PENDING CONFIRMATION】</span></li>
               <li>Visible brand watermark that does not cover your text</li>
-              <li>Standard export quality <span className="pending">[待确认]</span></li>
+              <li>Standard export quality <span className="pending">【PENDING CONFIRMATION】</span></li>
               <li>3 basic handwriting styles, including usable Devanagari support</li>
               <li>PDF and PNG export</li>
-              <li>Up to {PRICES.freePreviewPerDay} preview refreshes per day, and up to {PRICES.freePagesPerPreview} pages per preview <span className="pending">[待确认]</span></li>
-              <li>Up to {PRICES.freeJobsPerDay} export jobs per day, still limited by the monthly page cap <span className="pending">[待确认]</span></li>
-              <li>Short re-download window only (suggested: up to 24 hours) <span className="pending">[待确认]</span></li>
+              <li>Up to {PRICES.freePreviewPerDay} preview refreshes per day, and up to {PRICES.freePagesPerPreview} pages per preview <span className="pending">【PENDING CONFIRMATION】</span></li>
+              <li>Up to {PRICES.freeJobsPerDay} export jobs per day, still limited by the monthly page cap <span className="pending">【PENDING CONFIRMATION】</span></li>
+              <li>Saved export history is not currently provided. 【PENDING CONFIRMATION】</li>
               <li>Core path works without an account; sign in to keep quota across days</li>
             </ul>
             <Link className="btn btn-primary" to="/#editor" style={{ marginTop: "1rem" }}>
@@ -59,18 +59,18 @@ export function PricingPage() {
           <article className="desk-well">
             <h2>Pro plan</h2>
             <p className="plan-price">
-              {PRICES.proMonthly} / month or {PRICES.proYearly} / year, USD <span className="pending">[待确认]</span>
+              {PRICES.proMonthly} / month or {PRICES.proYearly} / year, USD <span className="pending">【PENDING CONFIRMATION】</span>
             </p>
             <ul className="list-plain">
-              <li>{PRICES.proPagesPerMonth} export pages per calendar month <span className="pending">[待确认]</span></li>
+              <li>{PRICES.proPagesPerMonth} export pages per calendar month <span className="pending">【PENDING CONFIRMATION】</span></li>
               <li>No watermark</li>
-              <li>Higher export quality <span className="pending">[待确认]</span></li>
-              <li>All licensed MVP styles (total count [待确认]; does not include handwriting cloning)</li>
+              <li>Higher export quality <span className="pending">【PENDING CONFIRMATION】</span></li>
+              <li>All licensed MVP styles (total count 【PENDING CONFIRMATION】; does not include handwriting cloning)</li>
               <li>PDF and PNG export</li>
-              <li>Up to {PRICES.proPreviewPerDay} preview refreshes per day, and up to {PRICES.proPagesPerPreview} pages per preview <span className="pending">[待确认]</span></li>
-              <li>Up to {PRICES.proJobsPerDay} export jobs per day, still limited by the monthly page cap <span className="pending">[待确认]</span></li>
-              <li>Export history for 30 days, then deleted</li>
-              <li>Account required for billing, quota, and history</li>
+              <li>Up to {PRICES.proPreviewPerDay} preview refreshes per day, and up to {PRICES.proPagesPerPreview} pages per preview <span className="pending">【PENDING CONFIRMATION】</span></li>
+              <li>Up to {PRICES.proJobsPerDay} export jobs per day, still limited by the monthly page cap <span className="pending">【PENDING CONFIRMATION】</span></li>
+              <li>Saved export history is not currently provided. 【PENDING CONFIRMATION】</li>
+              <li>Account required for billing and quota</li>
             </ul>
             <p className="prose-muted">
               Neither plan is unlimited. After you reach a cap, wait for the quota to reset or contact support.
@@ -104,17 +104,17 @@ export function PricingPage() {
                 <tr>
                   <td>Display price</td>
                   <td>{PRICES.free}</td>
-                  <td>{PRICES.proMonthly} / month or {PRICES.proYearly} / year <span className="pending">[待确认]</span></td>
+                  <td>{PRICES.proMonthly} / month or {PRICES.proYearly} / year <span className="pending">【PENDING CONFIRMATION】</span></td>
                 </tr>
                 <tr>
                   <td>Currency</td>
                   <td>USD</td>
-                  <td>USD; payment rail <span className="pending">[待确认]</span></td>
+                  <td>USD; payment rail <span className="pending">【PENDING CONFIRMATION】</span></td>
                 </tr>
                 <tr>
                   <td>Export pages / month</td>
-                  <td>{PRICES.freePagesPerMonth} <span className="pending">[待确认]</span></td>
-                  <td>{PRICES.proPagesPerMonth} <span className="pending">[待确认]</span></td>
+                  <td>{PRICES.freePagesPerMonth} <span className="pending">【PENDING CONFIRMATION】</span></td>
+                  <td>{PRICES.proPagesPerMonth} <span className="pending">【PENDING CONFIRMATION】</span></td>
                 </tr>
                 <tr>
                   <td>Watermark</td>
@@ -128,33 +128,33 @@ export function PricingPage() {
                 </tr>
                 <tr>
                   <td>Export quality</td>
-                  <td>Standard <span className="pending">[待确认]</span></td>
-                  <td>Higher export quality <span className="pending">[待确认]</span></td>
+                  <td>Standard <span className="pending">【PENDING CONFIRMATION】</span></td>
+                  <td>Higher export quality <span className="pending">【PENDING CONFIRMATION】</span></td>
                 </tr>
                 <tr>
                   <td>Styles</td>
                   <td>3 basic styles (at least 2 Latin + 1 usable Devanagari)</td>
-                  <td>All licensed MVP styles (total count [待确认]; no handwriting cloning)</td>
+                  <td>All licensed MVP styles (total count 【PENDING CONFIRMATION】; no handwriting cloning)</td>
                 </tr>
                 <tr>
                   <td>Preview</td>
-                  <td>Up to {PRICES.freePreviewPerDay} refreshes / day; up to {PRICES.freePagesPerPreview} pages per preview <span className="pending">[待确认]</span></td>
-                  <td>Up to {PRICES.proPreviewPerDay} refreshes / day; up to {PRICES.proPagesPerPreview} pages per preview <span className="pending">[待确认]</span></td>
+                  <td>Up to {PRICES.freePreviewPerDay} refreshes / day; up to {PRICES.freePagesPerPreview} pages per preview <span className="pending">【PENDING CONFIRMATION】</span></td>
+                  <td>Up to {PRICES.proPreviewPerDay} refreshes / day; up to {PRICES.proPagesPerPreview} pages per preview <span className="pending">【PENDING CONFIRMATION】</span></td>
                 </tr>
                 <tr>
                   <td>Daily export jobs</td>
-                  <td>Up to {PRICES.freeJobsPerDay}, still limited by the monthly page cap <span className="pending">[待确认]</span></td>
-                  <td>Up to {PRICES.proJobsPerDay}, still limited by the monthly page cap <span className="pending">[待确认]</span></td>
+                  <td>Up to {PRICES.freeJobsPerDay}, still limited by the monthly page cap <span className="pending">【PENDING CONFIRMATION】</span></td>
+                  <td>Up to {PRICES.proJobsPerDay}, still limited by the monthly page cap <span className="pending">【PENDING CONFIRMATION】</span></td>
                 </tr>
                 <tr>
                   <td>History</td>
-                  <td>Short re-download window only (suggested ≤ 24 hours, [待确认])</td>
-                  <td>Export history for 30 days, then deleted</td>
+                  <td>Saved export history is not currently provided. 【PENDING CONFIRMATION】</td>
+                  <td>Saved export history is not currently provided. 【PENDING CONFIRMATION】</td>
                 </tr>
                 <tr>
                   <td>Login</td>
                   <td>Core path works without an account; sign in to keep quota across days</td>
-                  <td>Account required for billing, quota, and history</td>
+                  <td>Account required for billing and quota</td>
                 </tr>
               </tbody>
             </table>
@@ -237,7 +237,7 @@ export function PricingPage() {
         <p>
           Payments are not open yet. We will not charge your account. You can keep using the Free plan or ask to be notified at {SUPPORT_EMAIL}.
         </p>
-        <p>Recommended price: {PRICES.proMonthly} / month or {PRICES.proYearly} / year, USD. [待确认] {TAX_LINE}</p>
+        <p>Recommended price: {PRICES.proMonthly} / month or {PRICES.proYearly} / year, USD. 【PENDING CONFIRMATION】 {TAX_LINE}</p>
         <p>
           See <Link to="/terms">Terms of Use</Link>, <Link to="/refund">Refund &amp; Cancellation</Link>, and{" "}
           <Link to="/acceptable-use">Acceptable Use</Link>.

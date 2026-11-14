@@ -75,7 +75,7 @@ export function HomePage() {
         <section className="section desk-well">
           <h2>Choose a handwriting style</h2>
           <p className="prose-muted">
-            Free includes 3 basic styles: at least two Latin styles and one usable Devanagari handwriting style. Pro unlocks all licensed MVP styles. The exact number of Pro styles depends on font licensing and is [待确认]. The MVP does not include cloning your own handwriting.
+            Free includes 3 basic styles: at least two Latin styles and one usable Devanagari handwriting style. Pro unlocks all licensed MVP styles. The exact number of Pro styles depends on font licensing and is 【PENDING CONFIRMATION】. The MVP does not include cloning your own handwriting.
           </p>
         </section>
 
@@ -90,7 +90,7 @@ export function HomePage() {
         <section className="section desk-well">
           <h2>Download PDF or PNG</h2>
           <p className="prose-muted">
-            Both Free and Pro can export PDF and PNG. Free uses standard export quality and a visible watermark. Pro removes the watermark and uses higher export quality. Exact DPI values are [待确认]. Multi-page PNG exports download as a ZIP of one image per page.
+            Both Free and Pro can export PDF and PNG. Free uses standard export quality and a visible watermark. Pro removes the watermark and uses higher export quality. Exact DPI values are 【PENDING CONFIRMATION】. Multi-page PNG exports download as a ZIP of one image per page.
           </p>
         </section>
 
@@ -128,7 +128,7 @@ export function HomePage() {
               <h3>Free</h3>
               <p className="plan-price">{PRICES.free}</p>
               <p className="muted">
-                {PRICES.freePagesPerMonth} export pages per month, with a watermark. <span className="pending">[待确认]</span>
+                {PRICES.freePagesPerMonth} export pages per month, with a watermark. <span className="pending">【PENDING CONFIRMATION】</span>
               </p>
               <ul className="list-plain">
                 <li><IconCheck /> Visible brand watermark</li>
@@ -143,11 +143,11 @@ export function HomePage() {
                 {PRICES.proMonthly} / month or {PRICES.proYearly} / year
               </p>
               <p className="muted">
-                {PRICES.proPagesPerMonth} export pages per month, no watermark. <span className="pending">[待确认]</span>
+                {PRICES.proPagesPerMonth} export pages per month, no watermark. <span className="pending">【PENDING CONFIRMATION】</span>
               </p>
               <ul className="list-plain">
                 <li><IconCheck /> No watermark</li>
-                <li><IconCheck /> Higher export quality <span className="pending">[待确认]</span></li>
+                <li><IconCheck /> Higher export quality <span className="pending">【PENDING CONFIRMATION】</span></li>
                 <li><IconCheck /> All licensed MVP styles</li>
                 <li><IconCheck /> Higher daily caps — still not unlimited</li>
               </ul>

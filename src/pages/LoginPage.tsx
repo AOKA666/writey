@@ -40,7 +40,7 @@ export function LoginPage() {
         <div className="desk-well auth-card">
           <h1 className="display-md" style={{ fontSize: 32, lineHeight: "40px" }}>Log in</h1>
           <p className="muted">
-            Log in to keep your monthly quota, view history, or upgrade to Pro. You can still preview and complete a useful Free export without signing in.
+            Log in to keep your monthly quota or upgrade to Pro.
           </p>
           {ok ? <p>You’re signed in. Your plan limits now apply to this account.</p> : null}
           <form onSubmit={(e) => void onSubmit(e)}>
@@ -59,7 +59,7 @@ export function LoginPage() {
             </div>
           </form>
           <p className="hint">
-            Reset your password. We will send a link to your account email. Provider [待确认].
+            Reset your password. We will send a link to your account email. Provider 【PENDING CONFIRMATION】.
           </p>
         </div>
       </main>

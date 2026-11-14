@@ -137,7 +137,7 @@ const pages = [
     path: "/login",
     file: "login/index.html",
     title: "Log in | Writey",
-    description: "Log in to keep your monthly quota, view history, or upgrade to Pro.",
+    description: "Log in to keep your monthly quota or upgrade to Pro.",
     indexable: false,
     crumbs: [
       { name: "Home", path: "/" },

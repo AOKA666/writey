@@ -7,7 +7,7 @@
 - Operator (legal entity): `[LEGAL_ENTITY]` 【PENDING CONFIRMATION】
 - Registered address: `[REGISTERED_ADDRESS]` 【PENDING CONFIRMATION】
 - Privacy contact: `privacy@[DOMAIN]` 【PENDING CONFIRMATION】 (this is a domain mailbox placeholder; it is not an active inbox until the domain and entity are confirmed)
-- Last updated: 13 November 2026 (draft)
+- Last updated: 14 November 2026 (draft; export history wording revised so it is not described as a live feature)
 - Effective date: 【PENDING CONFIRMATION】
 
 Do not treat Gmail or other consumer mailboxes as a substitute for `privacy@[DOMAIN]`.
@@ -59,7 +59,7 @@ We do not use this tooling to build detection-avoidance features.
 
 ### 3.3 Information we do not intend to collect as a long-term archive
 
-- **Source text:** Your typed or pasted text is used to generate the preview or export. We do not keep it as a long-term archive. If rendering happens only in your browser, the text need not be sent to our servers for layout. If a server must process an export, the text is handled only as needed to complete that task, is not written into analytics events, and is deleted when no longer needed. Short-lived export files are kept only for the download window below.
+- **Source text:** Your typed or pasted text is used to generate the preview or export. We do not keep it as a long-term archive. If rendering happens only in your browser, the text need not be sent to our servers for layout. If a server must process an export, the text is handled only as needed to complete that task, is not written into analytics events, and is deleted when no longer needed. The current service generates exports in the browser and does not keep a stored export library or re-download history for later retrieval. If a later version stores short-lived export files, they will be kept only for a confirmed download window, and this Policy will be updated first 【PENDING CONFIRMATION】.
 - **Analytics events** (`preview_generated`, `export_pdf`, `export_png`, `language_switched`, `quota_hit`, `acceptable_use_clicked`) must not include full source text. The analytics provider is 【PENDING CONFIRMATION】.
 - We do not sell a handwriting-clone feature in MVP, so we do not collect handwriting samples for that purpose.
 
@@ -73,7 +73,7 @@ We use the information above to:
 
 1. Provide the editor, preview, and PDF/PNG export.
 2. Enforce plan limits (including the Free watermark, page caps, preview caps, and abuse controls such as rate limits or a challenge/CAPTCHA if enabled).
-3. Create and maintain optional accounts, Pro billing, and export history.
+3. Create and maintain optional accounts and Pro billing.
 4. Communicate about the service (receipts, quota, security, policy updates, support).
 5. Secure the service and prevent fraud or automated abuse.
 6. Understand aggregated product usage, if analytics is enabled.
@@ -84,10 +84,9 @@ We do not use your source text to publicly display your content, and we do not u
 ## 5. Guest use, accounts, and export retention
 
 - You can preview and complete a useful Free export without an account, subject to Free limits.
-- Keeping quota across days, buying Pro, and viewing longer export history require an account.
-- **Free export files:** no durable history. A short re-download window is planned (recommended: up to 24 hours). The exact window is 【PENDING CONFIRMATION】. After that, the file is deleted or otherwise made inaccessible.
-- **Pro export history:** kept in the account for 30 days, then deleted or made inaccessible.
-- When a file is deleted from history, signed download links stop working.
+- Keeping quota across days and buying Pro require an account.
+- **Export files (current service):** not stored for later retrieval. PDF and PNG exports are generated in the browser for you to save at the time of export. We do not currently provide an in-account export history, a re-download library, or signed links to past exports.
+- A Free short re-download window (recommended: up to 24 hours) or a Pro 30-day account history, if later offered, is 【PENDING CONFIRMATION】 and must not be described as available until it is implemented. If that feature is added, files would then be deleted or made inaccessible after the confirmed window, and any signed download links would stop working when a file is deleted.
 - We keep account, entitlement, and payment records for as long as the account is open and for a further period needed for security, bookkeeping, tax, or disputes. The exact accounting retention period is 【PENDING CONFIRMATION】.
 
 ## 6. Payments and tax records
@@ -120,8 +119,8 @@ When a vendor is confirmed, this table must be updated with the vendor name, loc
 | Data | Planned retention |
 |---|---|
 | Source text | Not kept as a long-term archive; deleted when no longer needed for the current task |
-| Free export files | Short re-download window (recommended ≤ 24 hours) 【PENDING CONFIRMATION】, then delete or make inaccessible |
-| Pro export files / history | 30 days, then delete or make inaccessible |
+| Free export files | Not currently stored for re-download. A short window (recommended ≤ 24 hours), if later offered, is 【PENDING CONFIRMATION】 |
+| Pro export files / history | Not currently provided. A 30-day history, if later offered, is 【PENDING CONFIRMATION】 |
 | Guest quota identifiers | As long as needed to enforce the current quota period and abuse rules |
 | Account profile and entitlements | For the life of the account, then a limited period for security and records 【PENDING CONFIRMATION】 |
 | Payment and tax records | For the period required by applicable tax and accounting rules 【PENDING CONFIRMATION】 |

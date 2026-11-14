@@ -54,7 +54,7 @@ const HOME_FAQ = [
   {
     question: "Do I need an account to convert text to handwriting?",
     answer:
-      "No. You can paste text, preview a page, and complete a useful Free export without signing in. An account is needed to keep quota across days, subscribe to Pro, or use longer export history.",
+      "No. You can paste text, preview a page, and complete a useful Free export without signing in. An account is needed to keep quota across days or subscribe to Pro. Saved export history is not currently provided. 【PENDING CONFIRMATION】",
   },
   {
     question: "Can I convert Hindi text as well as English?",
@@ -105,7 +105,7 @@ function siteFooter() {
           ·
           Privacy: <a href="mailto:privacy@[DOMAIN]">privacy@[DOMAIN]</a>
           <br />
-          © ${year} Writey. Operator and domain are [待确认].
+          © ${year} Writey. Operator and domain are 【PENDING CONFIRMATION】.
         </p>
       </div>
     </footer>`;
@@ -218,7 +218,7 @@ function homeBody() {
         <section class="section desk-well">
           <h2>Choose a handwriting style</h2>
           <p class="prose-muted">
-            Free includes 3 basic styles: at least two Latin styles and one usable Devanagari handwriting style. Pro unlocks all licensed MVP styles. The exact number of Pro styles depends on font licensing and is [待确认]. The MVP does not include cloning your own handwriting.
+            Free includes 3 basic styles: at least two Latin styles and one usable Devanagari handwriting style. Pro unlocks all licensed MVP styles. The exact number of Pro styles depends on font licensing and is 【PENDING CONFIRMATION】. The MVP does not include cloning your own handwriting.
           </p>
         </section>
         <section class="section desk-well">
@@ -230,7 +230,7 @@ function homeBody() {
         <section class="section desk-well">
           <h2>Download PDF or PNG</h2>
           <p class="prose-muted">
-            Both Free and Pro can export PDF and PNG. Free uses standard export quality and a visible watermark. Pro removes the watermark and uses higher export quality. Exact DPI values are [待确认]. Multi-page PNG exports download as a ZIP of one image per page.
+            Both Free and Pro can export PDF and PNG. Free uses standard export quality and a visible watermark. Pro removes the watermark and uses higher export quality. Exact DPI values are 【PENDING CONFIRMATION】. Multi-page PNG exports download as a ZIP of one image per page.
           </p>
         </section>
         <section class="section desk-well">
@@ -264,12 +264,12 @@ function homeBody() {
             <article class="desk-well">
               <h3>Free</h3>
               <p class="plan-price">$0</p>
-              <p class="muted">8 export pages per month, with a watermark. <span class="pending">[待确认]</span></p>
+              <p class="muted">8 export pages per month, with a watermark. <span class="pending">【PENDING CONFIRMATION】</span></p>
             </article>
             <article class="desk-well">
               <h3>Pro</h3>
               <p class="plan-price">$3.99 / month or $39 / year</p>
-              <p class="muted">150 export pages per month, no watermark. <span class="pending">[待确认]</span></p>
+              <p class="muted">150 export pages per month, no watermark. <span class="pending">【PENDING CONFIRMATION】</span></p>
             </article>
           </div>
         </section>
@@ -317,7 +317,7 @@ function hindiBody() {
         <section class="section desk-well">
           <h2>Export PDF or PNG</h2>
           <p class="prose-muted">
-            When the preview looks right, download PDF or PNG. Free exports include a visible brand watermark. Pro removes the watermark and uses higher export quality. [待确认]
+            When the preview looks right, download PDF or PNG. Free exports include a visible brand watermark. Pro removes the watermark and uses higher export quality. 【PENDING CONFIRMATION】
           </p>
         </section>
         <section class="section desk-well">
@@ -359,24 +359,32 @@ function pricingBody() {
             <h2>Free plan</h2>
             <p class="plan-price">$0, USD</p>
             <ul class="list-plain">
-              <li>8 export pages per calendar month <span class="pending">[待确认]</span></li>
+              <li>8 export pages per calendar month <span class="pending">【PENDING CONFIRMATION】</span></li>
               <li>Visible brand watermark that does not cover your text</li>
-              <li>Standard export quality <span class="pending">[待确认]</span></li>
+              <li>Standard export quality <span class="pending">【PENDING CONFIRMATION】</span></li>
               <li>3 basic handwriting styles, including usable Devanagari support</li>
               <li>PDF and PNG export</li>
+              <li>Up to 10 preview refreshes per day, and up to 8 pages per preview <span class="pending">【PENDING CONFIRMATION】</span></li>
+              <li>Up to 2 export jobs per day, still limited by the monthly page cap <span class="pending">【PENDING CONFIRMATION】</span></li>
+              <li>Saved export history is not currently provided. 【PENDING CONFIRMATION】</li>
+              <li>Core path works without an account; sign in to keep quota across days</li>
             </ul>
           </article>
           <article class="desk-well">
             <h2>Pro plan</h2>
             <p class="plan-price">
-              $3.99 / month or $39 / year, USD <span class="pending">[待确认]</span>
+              $3.99 / month or $39 / year, USD <span class="pending">【PENDING CONFIRMATION】</span>
             </p>
             <ul class="list-plain">
-              <li>150 export pages per calendar month <span class="pending">[待确认]</span></li>
+              <li>150 export pages per calendar month <span class="pending">【PENDING CONFIRMATION】</span></li>
               <li>No watermark</li>
-              <li>Higher export quality <span class="pending">[待确认]</span></li>
-              <li>All licensed MVP styles (total count [待确认]; does not include handwriting cloning)</li>
+              <li>Higher export quality <span class="pending">【PENDING CONFIRMATION】</span></li>
+              <li>All licensed MVP styles (total count 【PENDING CONFIRMATION】; does not include handwriting cloning)</li>
               <li>PDF and PNG export</li>
+              <li>Up to 50 preview refreshes per day, and up to 20 pages per preview <span class="pending">【PENDING CONFIRMATION】</span></li>
+              <li>Up to 10 export jobs per day, still limited by the monthly page cap <span class="pending">【PENDING CONFIRMATION】</span></li>
+              <li>Saved export history is not currently provided. 【PENDING CONFIRMATION】</li>
+              <li>Account required for billing and quota</li>
             </ul>
             <p class="prose-muted">
               Neither plan is unlimited. After you reach a cap, wait for the quota to reset or contact support.
@@ -431,7 +439,7 @@ export function pageBody(path) {
         <div class="desk-well auth-card">
           <h1 class="display-md">Log in</h1>
           <p class="muted">
-            Log in to keep your monthly quota, view history, or upgrade to Pro. You can still preview and complete a useful Free export without signing in.
+            Log in to keep your monthly quota or upgrade to Pro.
           </p>
         </div>
       </main>`);

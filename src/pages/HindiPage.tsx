@@ -55,7 +55,7 @@ export function HindiPage() {
         <section className="section desk-well">
           <h2>Export PDF or PNG</h2>
           <p className="prose-muted">
-            When the preview looks right, download PDF or PNG. Free exports include a visible brand watermark. Pro removes the watermark and uses higher export quality. [待确认]
+            When the preview looks right, download PDF or PNG. Free exports include a visible brand watermark. Pro removes the watermark and uses higher export quality. 【PENDING CONFIRMATION】
           </p>
         </section>
 
