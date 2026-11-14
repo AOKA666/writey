@@ -209,7 +209,7 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
                         {locked ? <IconLock /> : <span className={`dot${settings.styleId === style.id ? " is-on" : ""}`} />}
                         {style.name}
                       </span>
-                      <span className="licence-tag">[Pending commercial licence]</span>
+                      <span className="licence-tag">{style.licenceLabel}</span>
                     </button>
                   );
                 })}

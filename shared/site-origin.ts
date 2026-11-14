@@ -5,10 +5,47 @@
 
 const PLACEHOLDER_RE = /\[DOMAIN\]/i;
 
+export const OFFICIAL_PRODUCTION_ORIGIN = "https://text2handwriting.site";
+export const OFFICIAL_APEX_HOST = "text2handwriting.site";
+export const OFFICIAL_WWW_HOST = "www.text2handwriting.site";
+export const SUPPORT_EMAIL = "support@text2handwriting.site";
+export const PRIVACY_EMAIL = "privacy@text2handwriting.site";
+
 export function normalizeOrigin(raw: unknown): string | null {
   if (typeof raw !== "string") return null;
   const trimmed = raw.trim().replace(/\/+$/, "");
   return trimmed || null;
+}
+
+/** Lowercase hostname without a trailing dot or :port (IPv6 literals kept intact). */
+export function hostnameOf(raw: unknown): string {
+  if (typeof raw !== "string") return "";
+  const trimmed = raw.trim().toLowerCase();
+  if (!trimmed) return "";
+  let host = trimmed;
+  if (host.startsWith("[")) {
+    const end = host.indexOf("]");
+    if (end !== -1) host = host.slice(0, end + 1);
+  } else {
+    host = host.split(":")[0] ?? host;
+  }
+  return host.replace(/\.$/, "");
+}
+
+/** Apex or www of the confirmed official domain only — not workers.dev or any other host. */
+export function isOfficialPublicHost(raw: unknown): boolean {
+  const host = hostnameOf(raw);
+  return host === OFFICIAL_APEX_HOST || host === OFFICIAL_WWW_HOST;
+}
+
+export function hostnameFromRequest(request: Request): string {
+  const header = request.headers.get("host") ?? "";
+  if (header) return hostnameOf(header);
+  try {
+    return hostnameOf(new URL(request.url).hostname);
+  } catch {
+    return "";
+  }
 }
 
 /**
@@ -63,7 +100,7 @@ export function absoluteUrl(origin: string | null | undefined, pathname: string)
 
 /**
  * Replace literal https://[DOMAIN] so rendered HTML never emits a placeholder host URL.
- * Contact mailboxes such as support@[DOMAIN] are left unchanged.
+ * Contact mailboxes should use the official domain, not the placeholder.
  */
 export function scrubPlaceholderHostUrls(html: string): string {
   return html.replace(/https:\/\/\[DOMAIN\]/g, "[DOMAIN]");

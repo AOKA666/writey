@@ -3,14 +3,14 @@
 **Draft for review. This page is a product policy draft, not a legal opinion.**
 
 - Service: Writey
-- Website: `https://[DOMAIN]` 【PENDING CONFIRMATION】
+- Website: `https://text2handwriting.site`
 - Related policy: [Privacy Policy](/privacy)
 - Last updated: 14 November 2026 (draft; first-party essential cookie inventory updated)
 - Effective date: 【PENDING CONFIRMATION】
 
 ## 1. What this policy covers
 
-This page explains how Writey uses cookies and similar technologies (such as local storage or a signed session token) on `https://[DOMAIN]`. It should be read with the Privacy Policy.
+This page explains how Writey uses cookies and similar technologies (such as local storage or a signed session token) on `https://text2handwriting.site`. It should be read with the Privacy Policy.
 
 The first-party essential cookies named in section 3 (`writey_guest` and `writey_session`) match the current implementation. Names, lifetimes, and vendors for any additional cookies — including analytics, payment-return, and CAPTCHA or other security cookies, if any — remain 【PENDING CONFIRMATION】 because the final stack and vendors are not all chosen. Do not describe analytics, payment, or third-party security cookies as already in use until a provider is confirmed.
 
@@ -63,7 +63,7 @@ Third-party vendors may set their own cookies on their checkout, authentication,
 - Browser settings: you can delete or block cookies. Blocking essential cookies may break login, quota, or export.
 - Analytics choice: once analytics is enabled, use the on-site control described above, if shown, or the provider’s own opt-out where available.
 - “Do Not Track” and similar signals: how we honour them is 【PENDING CONFIRMATION】 pending the final analytics setup.
-- For other privacy requests, see the Privacy Policy or write to `privacy@[DOMAIN]` 【PENDING CONFIRMATION】.
+- For other privacy requests, see the Privacy Policy or write to `privacy@text2handwriting.site`.
 
 ## 5. Changes
 
@@ -71,5 +71,5 @@ We will update this page when cookie names, vendors, or purposes change. The “
 
 ## 6. Contact
 
-- Privacy: `privacy@[DOMAIN]` 【PENDING CONFIRMATION】
+- Privacy: `privacy@text2handwriting.site`
 - Operator: `[LEGAL_ENTITY]` 【PENDING CONFIRMATION】

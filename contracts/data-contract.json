@@ -1,12 +1,12 @@
 {
-  "$id": "https://[DOMAIN]/contracts/data-contract.json",
+  "$id": "https://text2handwriting.site/contracts/data-contract.json",
   "title": "writey Data Contract (preview-grade)",
   "version": "0.1.0",
   "updated": "2026-11-14",
   "timezone_note": "Internal timestamps are ISO-8601 UTC. Display conversion to Asia/Shanghai is [待确认].",
   "domain": {
-    "placeholder": "https://[DOMAIN]",
-    "status": "[待确认]",
+    "origin": "https://text2handwriting.site",
+    "status": "confirmed",
     "do_not_invent": ["writey.app"]
   },
   "storage_rules": {
@@ -158,7 +158,7 @@
           "ok": true,
           "state": "payments_closed",
           "payments_open": false,
-          "message": "Payments are not open yet. We will not charge your account. You can keep using the Free plan or ask to be notified at support@[DOMAIN]."
+          "message": "Payments are not open yet. We will not charge your account. You can keep using the Free plan or ask to be notified at support@text2handwriting.site."
         }
       },
       {

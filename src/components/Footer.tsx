@@ -29,7 +29,7 @@ export function Footer() {
           {" · "}
           Privacy: <a href={`mailto:${PRIVACY_EMAIL}`}>{PRIVACY_EMAIL}</a>
           <br />
-          © {footerYear()} Writey. Operator and domain are {PENDING_MARK}.
+          © {footerYear()} Writey. Operator is {PENDING_MARK}.
         </p>
       </div>
     </footer>

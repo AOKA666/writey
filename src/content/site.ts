@@ -1,14 +1,18 @@
 /** Site origin and placeholders. Never invent a real hostname. */
 
-import { absoluteUrl, confirmedProductionOrigin } from "../../shared/site-origin.ts";
+import {
+  absoluteUrl,
+  confirmedProductionOrigin,
+  PRIVACY_EMAIL as OFFICIAL_PRIVACY_EMAIL,
+  SUPPORT_EMAIL as OFFICIAL_SUPPORT_EMAIL,
+} from "../../shared/site-origin.ts";
 
 export const BRAND_NAME = "Writey";
 export const BRAND_PENDING_NOTE = "Writey (brand display name is Pending confirmation)";
-export const DOMAIN_PLACEHOLDER = "[DOMAIN]";
 export const PENDING_MARK = "【PENDING CONFIRMATION】";
 
-export const SUPPORT_EMAIL = "support@[DOMAIN]";
-export const PRIVACY_EMAIL = "privacy@[DOMAIN]";
+export const SUPPORT_EMAIL = OFFICIAL_SUPPORT_EMAIL;
+export const PRIVACY_EMAIL = OFFICIAL_PRIVACY_EMAIL;
 
 export const TAX_LINE = "Applicable taxes will be shown at checkout.";
 

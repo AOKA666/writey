@@ -1,7 +1,10 @@
-# writey preview Worker + static assets.
+# writey Workers: preview (default) and production ([env.production]).
 # Tech stack is Cloudflare-first but still [待确认].
-# Do not bind a custom domain in this file. Do not put secrets here.
+# Do not put secrets here. Do not bind a custom domain in this file.
 
+# Default / preview Worker. Keep SITE_URL empty so preview stays noindex
+# and does not invent canonicals. Do not set SITE_URL to the production
+# domain or to a workers.dev / pages.dev host.
 name = "writey-preview"
 main = "worker/index.ts"
 compatibility_date = "2025-10-11"
@@ -17,15 +20,39 @@ run_worker_first = true
 # produced an empty 200 when the worker rewrote the path.
 html_handling = "none"
 
-# Public, non-secret config. Leave SITE_URL empty until a confirmed production
-# https origin is set. Do not set SITE_URL to a workers.dev or pages.dev preview host.
+# Public, non-secret config.
 [vars]
 SITE_URL = ""
 
-# Replace database_id with a real D1 id before a remote preview deploy.
-# `wrangler dev` uses a local D1 from this binding regardless.
+# Preview D1 only. Never point the preview Worker at the production database.
 [[d1_databases]]
 binding = "DB"
 database_name = "writey-preview"
 database_id = "4c3a2341-993a-4ed5-9e4e-67c48d9c912f"
+migrations_dir = "migrations"
+
+# Production Worker (separate name + D1). Deploy with:
+#   npm run build:production
+#   npx wrangler deploy --env production
+# Environments do not always inherit, so assets, compatibility, vars, and D1
+# are restated here. Do not deploy from this repository without operator action.
+[env.production]
+name = "writey"
+main = "worker/index.ts"
+compatibility_date = "2025-10-11"
+compatibility_flags = ["nodejs_compat"]
+
+[env.production.assets]
+directory = "./dist"
+binding = "ASSETS"
+run_worker_first = true
+html_handling = "none"
+
+[env.production.vars]
+SITE_URL = "https://text2handwriting.site"
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "writey"
+database_id = "10ef8a67-714f-4e6a-8037-9193085be4c4"
 migrations_dir = "migrations"

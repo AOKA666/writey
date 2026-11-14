@@ -1,5 +1,5 @@
 import { useSession } from "@/hooks/useSession";
-import { qaSearch, readQaState, shouldShowQaControls } from "@/lib/qa";
+import { isQaBuildEnabled, qaSearch, readQaState, shouldShowQaControls } from "@/lib/qa";
 import type { PlanId } from "@/lib/quota";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -10,7 +10,7 @@ export function QaControls() {
   const location = useLocation();
   const qaFromUrl = readQaState(location.search, location.hash);
 
-  if (!shouldShowQaControls(qaFromUrl)) return null;
+  if (!isQaBuildEnabled() || !shouldShowQaControls(qaFromUrl)) return null;
 
   function go(partial: Parameters<typeof qaSearch>[0]) {
     const search = qaSearch({ enabled: true, ...partial });

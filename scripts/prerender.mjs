@@ -168,6 +168,57 @@ const pages = [
   },
 ];
 
+
+const QA_PANEL_STRINGS = ["Preview only — QA controls", "Reset quota", "Plan: pro"];
+
+function assertPrerendered(page, html, { origin, confirmed }) {
+  if (html.includes("https://[DOMAIN]") || /writey\.app/i.test(html) || html.includes("[DOMAIN]")) {
+    console.error("Prerender emitted a forbidden placeholder or invented host for", page.path);
+    process.exit(1);
+  }
+  if (/Pending commercial licence/i.test(html)) {
+    console.error("Prerender still contains Pending commercial licence for", page.path);
+    process.exit(1);
+  }
+  if (QA_PANEL_STRINGS.some((s) => html.includes(s))) {
+    console.error("Prerender includes QA panel strings for", page.path);
+    process.exit(1);
+  }
+  const metaRobots = (html.match(/<meta\s+name="robots"\s+content="([^"]*)"/i) || [])[1] || "";
+  if (confirmed && page.indexable) {
+    if (metaRobots !== "index, follow") {
+      console.error("Production prerender expected index, follow for", page.path, "got", metaRobots);
+      process.exit(1);
+    }
+    const canon = `${origin}${page.path === "/" ? "/" : page.path}`;
+    if (!html.includes(`rel="canonical" href="${canon}"`)) {
+      console.error("Production prerender missing canonical", canon, "for", page.path);
+      process.exit(1);
+    }
+    if (!html.includes(`property="og:url" content="${canon}"`)) {
+      console.error("Production prerender missing og:url", canon, "for", page.path);
+      process.exit(1);
+    }
+    if (!html.includes("support@text2handwriting.site") || !html.includes("privacy@text2handwriting.site")) {
+      console.error("Production prerender missing official contact emails for", page.path);
+      process.exit(1);
+    }
+  } else if (!confirmed) {
+    if (!/noindex/i.test(metaRobots) || !/nofollow/i.test(metaRobots)) {
+      console.error("Preview prerender expected noindex, nofollow for", page.path, "got", metaRobots);
+      process.exit(1);
+    }
+    if (/rel="canonical"/i.test(html) || /property="og:url"/i.test(html)) {
+      console.error("Preview prerender must not emit canonical or og:url for", page.path);
+      process.exit(1);
+    }
+  }
+  if (page.omitCanonical && (/rel="canonical"/i.test(html) || /property="og:url"/i.test(html))) {
+    console.error("404 prerender must not emit canonical or og:url");
+    process.exit(1);
+  }
+}
+
 const source = readFileSync(indexPath, "utf8");
 
 function set(html, tagRe, replacement, insertAfter = "</title>") {
@@ -250,10 +301,7 @@ for (const page of pages) {
   html = html.replace(/<div id="root"><\/div>/, `<div id="root">\n      ${body}\n    </div>`);
 
   html = scrubPlaceholderHostUrls(html);
-  if (html.includes("https://[DOMAIN]") || /writey\.app/i.test(html)) {
-    console.error("Prerender emitted a forbidden host for", page.path);
-    process.exit(1);
-  }
+  assertPrerendered(page, html, { origin, confirmed });
 
   const dest = join(dist, page.file);
   mkdirSync(dirname(dest), { recursive: true });

@@ -3,10 +3,10 @@
 **Draft commercial policy for review. This page is not a legal opinion, not tax advice, and not a statement that any particular refund window is required or excluded by Indian law.**
 
 - Service: Writey
-- Website: `https://[DOMAIN]` 【PENDING CONFIRMATION】
+- Website: `https://text2handwriting.site`
 - Operator: `[LEGAL_ENTITY]` 【PENDING CONFIRMATION】
 - GSTIN: `[GSTIN]` 【PENDING CONFIRMATION】
-- Billing support: `support@[DOMAIN]` 【PENDING CONFIRMATION】
+- Billing support: `support@text2handwriting.site`
 - Last updated: 13 November 2026 (draft; display currency revised to USD)
 - Effective date: 【PENDING CONFIRMATION】
 
@@ -57,7 +57,7 @@ This section is a **recommended starting point for Owner review**. It is not in 
 4. **Renewals.** The same unused-window idea may or may not apply to renewals. That choice is 【PENDING CONFIRMATION】. In all cases, you can cancel before the next renewal to avoid a further charge.
 5. **Yearly plans.** The same proposed window would be counted from the charge date, not spread across the whole year, unless Owner and counsel decide otherwise 【PENDING CONFIRMATION】.
 6. **Cancellation without refund.** You may cancel at any time. Access continues until the end of the paid period, then returns to Free, unless a confirmed refund is completed earlier.
-7. **How to ask.** Email `support@[DOMAIN]` 【PENDING CONFIRMATION】 from the account email, with the approximate date of the charge and, if you have it, the payment-processor reference. Do not send full card numbers, UPI PINs, or one-time passwords.
+7. **How to ask.** Email `support@text2handwriting.site` from the account email, with the approximate date of the charge and, if you have it, the payment-processor reference. Do not send full card numbers, UPI PINs, or one-time passwords.
 8. **Timing of payout.** Processor timelines are 【PENDING CONFIRMATION】. We will not invent a “refund in 24 hours” promise.
 9. **Taxes.** How GST is reversed or adjusted on a refund is 【PENDING CONFIRMATION】.
 
@@ -88,5 +88,5 @@ We may update this Policy. Material changes will be shown on this page and, wher
 
 ## 7. Contact
 
-- Billing and refunds: `support@[DOMAIN]` 【PENDING CONFIRMATION】
+- Billing and refunds: `support@text2handwriting.site`
 - Operator: `[LEGAL_ENTITY]`, `[REGISTERED_ADDRESS]`, GSTIN `[GSTIN]` 【PENDING CONFIRMATION】

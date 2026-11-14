@@ -23,7 +23,7 @@ import {
   type Entitlement,
   type PlanId,
 } from "@/lib/quota";
-import { readQaState, type QaState } from "@/lib/qa";
+import { isQaBuildEnabled, readQaState, type QaState } from "@/lib/qa";
 
 type SessionCtx = {
   entitlement: Entitlement;
@@ -44,6 +44,7 @@ type SessionCtx = {
 const Ctx = createContext<SessionCtx | null>(null);
 
 function applyQa(ent: Entitlement, qa: QaState): Entitlement {
+  if (!isQaBuildEnabled()) return ent;
   let next = ent;
   if (qa.plan) {
     next = defaultEntitlement({ ...next, plan_id: qa.plan });
@@ -110,11 +111,13 @@ export function SessionProvider({ children }: { children: ReactNode }) {
   );
 
   const setPlanForQa = useCallback((plan: PlanId) => {
+    if (!isQaBuildEnabled()) return;
     setEntitlement((cur) => applyPlanOverride(cur, plan));
     setQa((q) => ({ ...q, enabled: true, plan }));
   }, []);
 
   const forceQuotaExhausted = useCallback((on: boolean) => {
+    if (!isQaBuildEnabled()) return;
     setQa((q) => ({ ...q, enabled: true, quota: on ? "exhausted" : "ok" }));
     setEntitlement((cur) =>
       on ? { ...cur, pages_used: cur.pages_limit } : { ...cur, pages_used: 0 },

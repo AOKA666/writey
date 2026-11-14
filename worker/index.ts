@@ -9,7 +9,16 @@ import {
   SPA_PATHS,
   normalizePath,
 } from "./routes";
-import { absoluteUrl, confirmedProductionOrigin } from "../shared/site-origin.ts";
+import {
+  absoluteUrl,
+  confirmedProductionOrigin,
+  hostnameFromRequest,
+  hostnameOf,
+  isOfficialPublicHost,
+  OFFICIAL_APEX_HOST,
+  OFFICIAL_WWW_HOST,
+  SUPPORT_EMAIL,
+} from "../shared/site-origin.ts";
 
 export interface Env {
   ASSETS: Fetcher;
@@ -30,9 +39,45 @@ function productionOrigin(env: Env): string | null {
   return confirmedProductionOrigin(env.SITE_URL);
 }
 
-function htmlShouldNoindex(env: Env, path: string, status: number): boolean {
+function htmlShouldNoindex(env: Env, path: string, status: number, host: string): boolean {
   if (status === 404 || path === "/login" || path === "/register" || path === "/404") return true;
-  return !productionOrigin(env);
+  if (!productionOrigin(env)) return true;
+  // Even when SITE_URL is set, non-official hosts (including *.workers.dev) stay noindex.
+  return !isOfficialPublicHost(host);
+}
+
+function isLoopbackHost(host: string): boolean {
+  return host === "localhost" || host === "127.0.0.1" || host === "::1" || host === "[::1]";
+}
+
+function officialCanonicalRedirect(request: Request): string | null {
+  const host = hostnameFromRequest(request);
+  if (!isOfficialPublicHost(host)) return null;
+  const url = new URL(request.url);
+  const urlHost = hostnameOf(url.hostname);
+  const loopback = isLoopbackHost(urlHost);
+  const needsApex = host === OFFICIAL_WWW_HOST;
+  // HTTP→HTTPS only when the request URL itself is on the official host.
+  // Skip when wrangler dev is reached via 127.0.0.1 / localhost so local smoke can set Host.
+  const needsHttps = url.protocol === "http:" && !loopback;
+  if (!needsHttps && !needsApex) return null;
+  const dest = new URL(url.toString());
+  dest.protocol = "https:";
+  dest.hostname = OFFICIAL_APEX_HOST;
+  dest.port = "";
+  return dest.toString();
+}
+
+async function rewriteHtmlRobotsNoindex(res: Response): Promise<Response> {
+  const type = res.headers.get("content-type") || "";
+  if (!type.toLowerCase().includes("text/html")) return res;
+  const html = await res.text();
+  const next = /<meta\s+name="robots"\s+content="[^"]*"\s*\/?>/i.test(html)
+    ? html.replace(/<meta\s+name="robots"\s+content="[^"]*"\s*\/?>/i, '<meta name="robots" content="noindex, nofollow" />')
+    : html.replace(/<head([^>]*)>/i, '<head$1>\n    <meta name="robots" content="noindex, nofollow" />');
+  const headers = new Headers(res.headers);
+  headers.delete("content-length");
+  return new Response(next, { status: res.status, headers });
 }
 
 function jsonError(c: { json: (d: unknown, s?: number) => Response }, code: string, message: string, status = 400) {
@@ -206,6 +251,12 @@ app.all("/api/*", async (c, next) => {
   await next();
 });
 
+app.use("*", async (c, next) => {
+  const dest = officialCanonicalRedirect(c.req.raw);
+  if (dest) return c.redirect(dest, 301);
+  return next();
+});
+
 app.get("/api/session", async (c) => {
   let guestId = getCookie(c, GUEST);
   if (!guestId) {
@@ -351,7 +402,7 @@ app.post("/api/payments/checkout", async (c) => {
     state: "payments_closed",
     payments_open: false,
     message:
-      "Payments are not open yet. We will not charge your account. You can keep using the Free plan or ask to be notified at support@[DOMAIN].",
+      `Payments are not open yet. We will not charge your account. You can keep using the Free plan or ask to be notified at ${SUPPORT_EMAIL}.`,
   });
 });
 
@@ -430,13 +481,17 @@ async function asset(c: { req: Request | { url: string; raw?: Request }; env: En
   const res = await c.env.ASSETS.fetch(new Request(url.toString(), raw));
   const headers = new Headers(res.headers);
   const logicalPath = requestPath ?? (status === 404 ? "/404" : path);
-  if (htmlShouldNoindex(c.env, logicalPath, status)) {
+  const host = hostnameFromRequest(raw);
+  const noindex = htmlShouldNoindex(c.env, logicalPath, status, host);
+  if (noindex) {
     headers.set("X-Robots-Tag", "noindex, nofollow");
   }
   if (status === 404) {
     headers.set("Cache-Control", "no-store");
   }
-  return new Response(res.body, { status, headers });
+  const outgoing = new Response(res.body, { status, headers });
+  if (noindex) return rewriteHtmlRobotsNoindex(outgoing);
+  return outgoing;
 }
 
 app.all("*", async (c) => {

@@ -111,7 +111,7 @@ export async function checkout(): Promise<{
       ok: true,
       state: "payments_closed",
       message:
-        "Payments are not open yet. We will not charge your account. You can keep using the Free plan or ask to be notified at support@[DOMAIN].",
+        "Payments are not open yet. We will not charge your account. You can keep using the Free plan or ask to be notified at support@text2handwriting.site.",
     };
   }
 }

@@ -3,14 +3,14 @@
 **Draft for review. This page is a product policy draft, not a legal opinion and not a certification of compliance with any law.**
 
 - Service: Writey, a text-to-handwriting page tool
-- Website: `https://[DOMAIN]` 【PENDING CONFIRMATION】
+- Website: `https://text2handwriting.site`
 - Operator (legal entity): `[LEGAL_ENTITY]` 【PENDING CONFIRMATION】
 - Registered address: `[REGISTERED_ADDRESS]` 【PENDING CONFIRMATION】
-- Privacy contact: `privacy@[DOMAIN]` 【PENDING CONFIRMATION】 (this is a domain mailbox placeholder; it is not an active inbox until the domain and entity are confirmed)
+- Privacy contact: `privacy@text2handwriting.site`
 - Last updated: 14 November 2026 (draft; export history wording revised so it is not described as a live feature)
 - Effective date: 【PENDING CONFIRMATION】
 
-Do not treat Gmail or other consumer mailboxes as a substitute for `privacy@[DOMAIN]`.
+Do not treat Gmail or other consumer mailboxes as a substitute for `privacy@text2handwriting.site`.
 
 ## 1. Scope
 
@@ -133,7 +133,7 @@ When a vendor is confirmed, this table must be updated with the vendor name, loc
 - You can use the core Free preview and export without creating an account.
 - You can refuse non-essential cookies, once an analytics product is enabled, as described in the Cookie Policy. Essential cookies are needed for quota and login.
 - You can cancel a Pro subscription as described in the Refund & Cancellation Policy. Cancellation stops future charges; it does not by itself delete your account.
-- You can ask us to access, correct, or delete account information, or to close the account, by writing to `privacy@[DOMAIN]` 【PENDING CONFIRMATION】. We may need to verify the request and retain certain records if the law requires it.
+- You can ask us to access, correct, or delete account information, or to close the account, by writing to `privacy@text2handwriting.site`. We may need to verify the request and retain certain records if the law requires it.
 - Indian law (including the Digital Personal Data Protection Act, 2023, and any rules that are in force) may give you additional rights. Which rights apply to Writey, how they are exercised, and any required notices or consent flows are 【PENDING CONFIRMATION】 and will be aligned once the operator and counsel have reviewed them. This Policy does not claim that Writey is “DPDP certified” or “fully compliant”.
 
 ## 10. Children and students
@@ -142,7 +142,7 @@ Writey is a general tool for handwriting-style pages. It is not directed at chil
 
 The minimum age and any parental-consent flow are 【PENDING CONFIRMATION】. As a draft operating rule: a paid Pro subscription should only be purchased by a person who has legal capacity to contract, or by a parent or guardian on behalf of a student. If you are not old enough to use an online paid service on your own, please use Writey only with a parent or guardian.
 
-If you believe we have collected personal data from a child in a way that should be deleted, contact `privacy@[DOMAIN]` 【PENDING CONFIRMATION】.
+If you believe we have collected personal data from a child in a way that should be deleted, contact `privacy@text2handwriting.site`.
 
 ## 11. International processing
 
@@ -162,8 +162,8 @@ We may update this Policy. The “Last updated” date will change, and material
 
 ## 15. Contact
 
-- Privacy: `privacy@[DOMAIN]` 【PENDING CONFIRMATION】
-- Support: `support@[DOMAIN]` 【PENDING CONFIRMATION】
+- Privacy: `privacy@text2handwriting.site`
+- Support: `support@text2handwriting.site`
 - Operator: `[LEGAL_ENTITY]`, `[REGISTERED_ADDRESS]` 【PENDING CONFIRMATION】
 
 If a statutory grievance or Data Protection Officer contact is required for the confirmed entity, those details will be added here. They are not invented in this draft.

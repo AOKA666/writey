@@ -2,6 +2,7 @@
 
 interface ImportMetaEnv {
   readonly VITE_SITE_URL?: string;
+  readonly VITE_ENABLE_QA?: string;
   readonly VITE_ANALYTICS_MEASUREMENT_ID?: string;
 }
 

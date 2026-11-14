@@ -3,7 +3,7 @@
 **Draft for review. This page is part of the Terms of Use. It is not a legal opinion and not an academic-integrity ruling by a school or board.**
 
 - Service: Writey
-- Website: `https://[DOMAIN]` 【PENDING CONFIRMATION】
+- Website: `https://text2handwriting.site`
 - Related: [Terms of Use](/terms)
 - Last updated: 13 November 2026 (draft)
 - Effective date: 【PENDING CONFIRMATION】
@@ -58,7 +58,7 @@ You also may not:
 
 If we reasonably believe these rules are being broken, we may limit previews or exports, request a verification challenge, suspend an account, or refuse a discretionary refund associated with abuse. We do not review every page, and enforcement does not make us a party to your academic record.
 
-To report misuse, write to `support@[DOMAIN]` 【PENDING CONFIRMATION】.
+To report misuse, write to `support@text2handwriting.site`.
 
 ## 6. How this sits with the rest of the site
 

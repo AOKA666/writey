@@ -1,6 +1,7 @@
 import type { PlanId } from "@/lib/quota";
 
-/** Preview-only QA overrides. Not a product feature. */
+/** Preview-only QA overrides. Not a product feature. Disabled in production builds. */
+
 export type QaState = {
   enabled: boolean;
   plan?: PlanId;
@@ -9,12 +10,49 @@ export type QaState = {
   export?: "ok" | "fail";
 };
 
+function viteQaFlag(): string | undefined {
+  try {
+    const env = import.meta.env;
+    if (env && typeof env === "object" && "VITE_ENABLE_QA" in env) {
+      const value = env.VITE_ENABLE_QA;
+      return typeof value === "string" ? value : undefined;
+    }
+  } catch {
+    // import.meta.env is absent when this module is loaded from Node smoke tests.
+  }
+  return undefined;
+}
+
+/**
+ * QA helpers are compiled in only when VITE_ENABLE_QA=1 (preview / dev builds).
+ * Production `build:production` leaves the flag unset, so this returns false
+ * in the Vite client bundle. Node smoke tests honor process.env.VITE_ENABLE_QA
+ * and default to enabled when the env var is unset (preview-path unit checks).
+ */
+export function isQaBuildEnabled(): boolean {
+  const viteFlag = viteQaFlag();
+  if (viteFlag !== undefined) return viteFlag === "1";
+  const isViteBundle =
+    typeof import.meta.env === "object" &&
+    import.meta.env !== null &&
+    "MODE" in import.meta.env;
+  if (isViteBundle) return false;
+  const proc = (globalThis as { process?: { env?: Record<string, string | undefined> } }).process;
+  if (proc?.env && "VITE_ENABLE_QA" in proc.env) {
+    return proc.env.VITE_ENABLE_QA === "1";
+  }
+  return true;
+}
+
 function param(search: string, key: string): string | null {
   const q = new URLSearchParams(search);
   return q.get(key);
 }
 
 export function readQaState(search = window.location.search, hash = window.location.hash): QaState {
+  if (!isQaBuildEnabled()) {
+    return { enabled: false };
+  }
   const fromHash = hash.includes("?") ? hash.slice(hash.indexOf("?")) : "";
   const combined = `${search}${search && fromHash ? "&" : ""}${fromHash.replace(/^\?/, "")}`;
   const enabled =
@@ -36,12 +74,18 @@ export function readQaState(search = window.location.search, hash = window.locat
   };
 }
 
-/** Render the preview-only QA panel only when query flags enable it. */
+/** Render the preview-only QA panel only when the preview build flag and query flags enable it. */
 export function shouldShowQaControls(qa: Pick<QaState, "enabled">): boolean {
-  return qa.enabled === true;
+  return isQaBuildEnabled() && qa.enabled === true;
 }
 
 export function qaSearch(next: Partial<QaState> & { enabled?: boolean }): string {
+  if (!isQaBuildEnabled()) {
+    const params = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "");
+    ["qa", "qa_plan", "qa_quota", "qa_preview", "qa_export"].forEach((k) => params.delete(k));
+    const s = params.toString();
+    return s ? `?${s}` : "";
+  }
   const params = new URLSearchParams(window.location.search);
   if (next.enabled === false) {
     ["qa", "qa_plan", "qa_quota", "qa_preview", "qa_export"].forEach((k) => params.delete(k));

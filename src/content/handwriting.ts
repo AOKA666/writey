@@ -1,4 +1,4 @@
-/** Handwriting specimen catalogue. All faces are Pending commercial licence. */
+/** Handwriting specimen catalogue. Faces are licensed under SIL OFL 1.1. Dancing Script is shown as Studio Loop (Reserved Font Name). */
 
 export type ScriptSupport = "latin" | "devanagari" | "both";
 
@@ -8,7 +8,7 @@ export type HandwritingStyle = {
   fontFamily: string;
   script: ScriptSupport;
   plan: "free" | "pro";
-  licenceLabel: "Pending commercial licence";
+  licenceLabel: "SIL OFL 1.1";
 };
 
 export const HANDWRITING_STYLES: HandwritingStyle[] = [
@@ -18,7 +18,7 @@ export const HANDWRITING_STYLES: HandwritingStyle[] = [
     fontFamily: "Caveat, cursive",
     script: "latin",
     plan: "free",
-    licenceLabel: "Pending commercial licence",
+    licenceLabel: "SIL OFL 1.1",
   },
   {
     id: "drafting-script",
@@ -26,7 +26,7 @@ export const HANDWRITING_STYLES: HandwritingStyle[] = [
     fontFamily: "Patrick Hand, cursive",
     script: "latin",
     plan: "free",
-    licenceLabel: "Pending commercial licence",
+    licenceLabel: "SIL OFL 1.1",
   },
   {
     id: "kavya-devanagari",
@@ -34,7 +34,7 @@ export const HANDWRITING_STYLES: HandwritingStyle[] = [
     fontFamily: "Kalam, cursive",
     script: "devanagari",
     plan: "free",
-    licenceLabel: "Pending commercial licence",
+    licenceLabel: "SIL OFL 1.1",
   },
   {
     id: "studio-loop",
@@ -42,7 +42,7 @@ export const HANDWRITING_STYLES: HandwritingStyle[] = [
     fontFamily: "Dancing Script, cursive",
     script: "latin",
     plan: "pro",
-    licenceLabel: "Pending commercial licence",
+    licenceLabel: "SIL OFL 1.1",
   },
 ];
 

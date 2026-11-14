@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { canonicalUrl, configuredSiteUrl } from "@/content/site";
 import { SEO } from "@/content/routes";
+import { isOfficialPublicHost } from "../../shared/site-origin.ts";
 
 type Props = {
   path: string;
@@ -21,9 +22,16 @@ function removeHead(selector: string) {
   document.head.querySelector(selector)?.remove();
 }
 
+function requestHostIsOfficial(): boolean {
+  if (typeof window === "undefined") return false;
+  return isOfficialPublicHost(window.location.hostname);
+}
+
 function effectiveRobots(path: string, declared: string, originConfirmed: boolean): string {
-  if (!originConfirmed) return "noindex, nofollow";
   if (path === "/404" || path === "/login" || path === "/register") return "noindex, nofollow";
+  if (!originConfirmed) return "noindex, nofollow";
+  // Production workers.dev (or any non-official host) must stay noindex even when SITE_URL is set.
+  if (!requestHostIsOfficial()) return "noindex, nofollow";
   return declared;
 }
 

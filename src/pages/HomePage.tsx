@@ -22,7 +22,7 @@ export function HomePage() {
           </p>
         </div>
         <Editor />
-        <QaControls />
+        {import.meta.env.VITE_ENABLE_QA === "1" ? <QaControls /> : null}
 
         <section className="section desk-well">
           <h2>Preview before you download</h2>

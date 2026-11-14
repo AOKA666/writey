@@ -9,3 +9,4 @@ dist
 .env.production
 coverage
 preview-review/
+preview-review-r2/

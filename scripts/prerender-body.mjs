@@ -101,11 +101,11 @@ function siteFooter() {
           </ul>
         </div>
         <p class="footer-meta">
-          Contact: <a href="mailto:support@[DOMAIN]">support@[DOMAIN]</a>
+          Contact: <a href="mailto:support@text2handwriting.site">support@text2handwriting.site</a>
           ·
-          Privacy: <a href="mailto:privacy@[DOMAIN]">privacy@[DOMAIN]</a>
+          Privacy: <a href="mailto:privacy@text2handwriting.site">privacy@text2handwriting.site</a>
           <br />
-          © ${year} Writey. Operator and domain are 【PENDING CONFIRMATION】.
+          © ${year} Writey. Operator is 【PENDING CONFIRMATION】.
         </p>
       </div>
     </footer>`;
@@ -305,7 +305,7 @@ function hindiBody() {
             Writey can preview and export Hindi text written in Devanagari. The handwriting style should look handwritten, not like a plain print font dropped onto the page. English remains available in the same editor.
           </p>
           <p class="pending">
-            Specimen fonts are labeled Pending commercial licence. Do not treat Hindi first-class commercial fonts as already delivered.
+            Specimen fonts are licensed under SIL OFL 1.1. Devanagari quality is still a limitation of these specimens. Do not treat Hindi first-class commercial fonts as already delivered, and do not treat handwriting cloning as supported.
           </p>
         </section>
         <section class="section desk-well">

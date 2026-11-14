@@ -3,9 +3,9 @@
 **Draft for review. These Terms are a product contract draft. They are not a lawyer’s opinion, not a guarantee of any legal outcome, and not a claim that the service is certified under any statute.**
 
 - Service: Writey
-- Website: `https://[DOMAIN]` 【PENDING CONFIRMATION】
+- Website: `https://text2handwriting.site`
 - Operator: `[LEGAL_ENTITY]` 【PENDING CONFIRMATION】
-- Support: `support@[DOMAIN]` 【PENDING CONFIRMATION】
+- Support: `support@text2handwriting.site`
 - Last updated: 14 November 2026 (draft; export history wording revised so it is not described as a live feature)
 - Effective date: 【PENDING CONFIRMATION】
 
@@ -77,7 +77,7 @@ We may remove content, limit exports, or close accounts that reasonably appear t
 
 - You retain whatever rights you already have in the text you type or paste. You grant us a limited licence to process that text solely to provide the preview, export, quota, security, and support functions described in the Privacy Policy.
 - The Writey name, site, software, paper textures, and licensed fonts are owned by us or our licensors. We do not grant you a licence to download, extract, or redistribute font files, or to reuse our paper textures or brand assets outside the exported pages you create for your own use.
-- Font licences themselves are 【PENDING CONFIRMATION】. We will only ship typefaces we are allowed to use commercially. Until sources are confirmed, we do not claim a particular foundry or an open-source licence for the live site.
+- The typefaces shipped with this site (Newsreader, IBM Plex Sans, Caveat, Patrick Hand, Kalam, and Dancing Script) are licensed under the SIL Open Font License, Version 1.1. Copies of those licences are kept with the font files. Dancing Script has a Reserved Font Name; the product displays that style as “Studio Loop”.
 - You are responsible for the text you enter (including that you have the right to use it, and that it is lawful).
 - Exported pages are provided for your personal or internal use as described in these Terms. They are not official records.
 
@@ -85,7 +85,7 @@ We may remove content, limit exports, or close accounts that reasonably appear t
 
 - Pro is a recurring subscription (monthly or yearly) once payments are enabled. The payment provider and methods (for example UPI, card, or net banking) are 【PENDING CONFIRMATION】.
 - Renewals, invoices, and GST-inclusive or GST-exclusive display are 【PENDING CONFIRMATION】.
-- You can cancel future renewals through the account or payment-provider flow once that flow exists, or by contacting `support@[DOMAIN]` 【PENDING CONFIRMATION】.
+- You can cancel future renewals through the account or payment-provider flow once that flow exists, or by contacting `support@text2handwriting.site`.
 - After cancellation, Pro usually remains available until the end of the paid period, then reverts to Free. Whether any unused time is refunded is described in the [Refund & Cancellation Policy](/refund) and is not finally confirmed in this draft.
 - Taxes, GSTIN, and tax invoices are 【PENDING CONFIRMATION】.
 
@@ -118,6 +118,6 @@ Governing law and venue are 【PENDING CONFIRMATION】, because the legal entity
 
 ## 12. Contact
 
-- Support: `support@[DOMAIN]` 【PENDING CONFIRMATION】
-- Privacy: `privacy@[DOMAIN]` 【PENDING CONFIRMATION】
+- Support: `support@text2handwriting.site`
+- Privacy: `privacy@text2handwriting.site`
 - Operator: `[LEGAL_ENTITY]`, `[REGISTERED_ADDRESS]` 【PENDING CONFIRMATION】
