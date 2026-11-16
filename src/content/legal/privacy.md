@@ -18,11 +18,11 @@ This Policy describes how we handle information when you use the Writey website 
 
 Writey is intended for users in India, with an English-language interface and support for English and Hindi (Devanagari) text. Some infrastructure may process data outside India. That architecture is 【PENDING CONFIRMATION】.
 
-This Policy is written to match the current MVP design in the product and pricing documents. If a feature is marked as not in MVP (for example, handwriting cloning, file uploads, or an Android app), we do not collect data for that feature unless and until it is launched and this Policy is updated.
+This Policy is written to match the current product and pricing documents. If a feature is not offered (for example, handwriting cloning, file uploads, or an Android app), we do not collect data for that feature unless and until it is launched and this Policy is updated.
 
 ## 2. Who we are
 
-Writey converts typed or pasted text into handwriting-style pages that you can preview and export as PDF or PNG. It is a typographic and layout tool. It does not clone a person’s real handwriting in the MVP, and it is not a government, school, or examination-board service.
+Writey converts typed or pasted text into handwriting-style pages that you can preview and export as PDF or PNG. It is a typographic and layout tool. It does not clone a person’s real handwriting, and it is not a government, school, or examination-board service.
 
 The legal person who operates the site, the country of establishment, and any GST registration are 【PENDING CONFIRMATION】. Until those details are confirmed, this draft uses the placeholders above. They must be replaced before a paid public launch.
 
@@ -38,9 +38,9 @@ The legal person who operates the site, the country of establishment, and any GS
 | Account password or sign-in credentials | If we offer email/password or a third-party sign-in | Authentication. The authentication provider is 【PENDING CONFIRMATION】 |
 | Payment details | When you buy Pro | Collected by the payment processor, not stored by us as full card or UPI secrets. The processor is 【PENDING CONFIRMATION】 |
 | Support or waitlist messages | When you write to us or submit Contact / Waitlist | To reply and keep a record of the request |
-| Teams / Education waitlist fields | If you join the waitlist | To contact you. This is not a paid plan in MVP |
+| Teams / Education waitlist fields | If you join the waitlist | To contact you. This is not a paid plan |
 
-We do not ask you, in MVP, to upload PDFs, DOCX files, custom font files, handwriting samples, or voice recordings.
+We do not ask you to upload PDFs, DOCX files, custom font files, handwriting samples, or voice recordings.
 
 ### 3.2 Information collected automatically
 
@@ -61,7 +61,7 @@ We do not use this tooling to build detection-avoidance features.
 
 - **Source text:** Your typed or pasted text is used to generate the preview or export. We do not keep it as a long-term archive. If rendering happens only in your browser, the text need not be sent to our servers for layout. If a server must process an export, the text is handled only as needed to complete that task, is not written into analytics events, and is deleted when no longer needed. The current service generates exports in the browser and does not keep a stored export library or re-download history for later retrieval. If a later version stores short-lived export files, they will be kept only for a confirmed download window, and this Policy will be updated first 【PENDING CONFIRMATION】.
 - **Analytics events** (`preview_generated`, `export_pdf`, `export_png`, `language_switched`, `quota_hit`, `acceptable_use_clicked`) must not include full source text. The analytics provider is 【PENDING CONFIRMATION】.
-- We do not sell a handwriting-clone feature in MVP, so we do not collect handwriting samples for that purpose.
+- We do not sell a handwriting-clone feature, so we do not collect handwriting samples for that purpose.
 
 ### 3.4 Cookies and similar technologies
 
@@ -79,7 +79,7 @@ We use the information above to:
 6. Understand aggregated product usage, if analytics is enabled.
 7. Meet legal, tax, accounting, or dispute-resolution obligations when they apply.
 
-We do not use your source text to publicly display your content, and we do not use it to train a public model, unless we first update this Policy and obtain any consent or other lawful basis then required. No such training use is in the current MVP design.
+We do not use your source text to publicly display your content, and we do not use it to train a public model, unless we first update this Policy and obtain any consent or other lawful basis then required. No such training use is part of the current product design.
 
 ## 5. Guest use, accounts, and export retention
 

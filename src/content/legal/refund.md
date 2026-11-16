@@ -21,8 +21,8 @@ The following matches the approved product and pricing design. It is a descripti
 - Writey sells only **Free** and **Pro**. Free is **$0**. Pro is a recurring subscription.
 - Display and list prices are in **USD** (confirmed by the Owner on 13 November 2026). This supersedes the earlier INR recommended prices, which are withdrawn and must not be shown.
 - Recommended amounts, still pending Owner confirmation of the final offer: **$3.99 per month** or **$39 per year**. The monthly price may be adjusted within **$2.99–$4.99**.
-- There is no Lifetime plan in this MVP. Business / Teams / Education, if shown, is Contact or Waitlist only and is not sold at checkout.
-- A paid period gives you Pro entitlements (including up to 150 export pages per month, no watermark, higher export quality, and licensed MVP styles). It is not unlimited.
+- There is no Lifetime plan. Business / Teams / Education, if shown, is Contact or Waitlist only and is not sold at checkout.
+- A paid period gives you Pro entitlements (including up to 150 export pages per month, no watermark, higher export quality, and licensed styles). It is not unlimited.
 - Cancelling a subscription stops **future** renewals. Unless a confirmed refund applies, Pro access is intended to continue until the end of the period already paid, then return to Free limits.
 - Pages already exported in the current period still count against the server-side quota.
 

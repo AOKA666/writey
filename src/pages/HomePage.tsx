@@ -31,7 +31,7 @@ export function HomePage() {
             You do not have to guess how the page will look. Paste your text, choose a style and paper, and preview the handwriting-style page in your browser. English and Hindi both preview in the same editor. You can start without creating an account.
           </p>
           <p className="prose-muted">
-            We do not publish user counts, star ratings, or testimonials in this MVP, because those facts are not in the upstream evidence.
+            The preview shows your chosen handwriting style, paper, margins, line spacing, and ink colour before you download. When the page looks right, export a PDF or PNG. Free exports include a visible brand watermark that does not cover your text.
           </p>
           </div>
         </section>
@@ -52,7 +52,10 @@ export function HomePage() {
           <h2>What text to handwriting ai means on Writey</h2>
           <div className="desk-prose">
           <p className="prose-muted">
-            People search for text to handwriting ai when they want to convert typed text into a handwritten look. Writey does that job with typography: you type or paste text, choose a handwriting-style font and paper, preview the page, and export PDF or PNG. The output is typographic, not a scan of anyone’s real handwriting, and not a generative model that writes like a real person. The MVP does not clone your own handwriting. Writey is not an official school, board, or government service.
+            People search for text to handwriting ai when they want to convert typed text into a handwritten look. Writey does that job with typography: you type or paste text, choose a handwriting-style font and paper, preview the page, and export PDF or PNG.
+          </p>
+          <p className="prose-muted">
+            The output is typographic, not a scan of anyone’s real handwriting, and not a generative model that writes like a real person. Writey does not clone your own handwriting, and you do not upload a handwriting sample. Writey is not an official school, board, or government service.
           </p>
           </div>
         </section>
@@ -78,14 +81,14 @@ export function HomePage() {
         <section className="section desk-well desk-split">
           <h2>Choose a handwriting style</h2>
           <p className="prose-muted">
-            Free includes 8 basic styles, including usable Latin and Devanagari handwriting styles. Pro unlocks all 11 licensed MVP styles (the 8 Free styles plus 3 Pro styles). The MVP does not include cloning your own handwriting.
+            Free includes 8 basic styles, including usable Latin and Devanagari handwriting styles. Pro unlocks all 11 licensed styles (the 8 Free styles plus 3 Pro styles). Writey does not clone your own handwriting.
           </p>
         </section>
 
         <section className="section desk-well desk-split" id="hindi-support">
           <h2>English and Hindi</h2>
           <p className="prose-muted">
-            The interface is English in the MVP. The editor can preview and export both English and Hindi (Devanagari). Hindi is a first-class input and rendering capability, not a leftover print font. For a focused walkthrough, see the{" "}
+            The interface is in English. The editor can preview and export both English and Hindi (Devanagari). Hindi is a first-class input and rendering capability, not a leftover print font. For a focused walkthrough, see the{" "}
             <Link to="/hindi">Hindi support page</Link>.
           </p>
         </section>
@@ -116,9 +119,9 @@ export function HomePage() {
           <h2>What Writey does not do</h2>
           <ul className="list-plain">
             <li>We do not build or sell features whose purpose is to evade teachers, OCR, or detection tools.</li>
-            <li>We do not offer a Lifetime plan in this MVP.</li>
+            <li>We do not offer a Lifetime plan.</li>
             <li>We do not promise unlimited pages or unlimited previews. Every plan has caps.</li>
-            <li>Maths, tables, extra Indian languages beyond Hindi, and handwriting cloning are not in the MVP.</li>
+            <li>Maths, tables, and languages beyond Hindi are not included. Writey does not clone your handwriting.</li>
           </ul>
         </section>
 
@@ -155,7 +158,7 @@ export function HomePage() {
               <ul className="list-plain">
                 <li><IconCheck /> No watermark</li>
                 <li><IconCheck /> Higher export quality <span className="pending">【PENDING CONFIRMATION】</span></li>
-                <li><IconCheck /> All 11 licensed MVP styles (the 8 Free styles plus 3 Pro styles; does not include handwriting cloning)</li>
+                <li><IconCheck /> All 11 licensed styles (the 8 Free styles plus 3 Pro styles; does not include handwriting cloning)</li>
                 <li><IconCheck /> Higher daily caps — still not unlimited</li>
               </ul>
             </article>

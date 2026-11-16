@@ -65,7 +65,7 @@ export function PricingPage() {
               <li>{PRICES.proPagesPerMonth} export pages per calendar month <span className="pending">【PENDING CONFIRMATION】</span></li>
               <li>No watermark</li>
               <li>Higher export quality <span className="pending">【PENDING CONFIRMATION】</span></li>
-              <li>All 11 licensed MVP styles (the 8 Free styles plus 3 Pro styles; does not include handwriting cloning)</li>
+              <li>All 11 licensed styles (the 8 Free styles plus 3 Pro styles; does not include handwriting cloning)</li>
               <li>PDF and PNG export</li>
               <li>Up to {PRICES.proPreviewPerDay} preview refreshes per day, and up to {PRICES.proPagesPerPreview} pages per preview <span className="pending">【PENDING CONFIRMATION】</span></li>
               <li>Up to {PRICES.proJobsPerDay} export jobs per day, still limited by the monthly page cap <span className="pending">【PENDING CONFIRMATION】</span></li>
@@ -134,7 +134,7 @@ export function PricingPage() {
                 <tr>
                   <td>Styles</td>
                   <td>8 basic styles, including usable Latin and Devanagari handwriting styles</td>
-                  <td>All 11 licensed MVP styles (the 8 Free styles plus 3 Pro styles; does not include handwriting cloning)</td>
+                  <td>All 11 licensed styles (the 8 Free styles plus 3 Pro styles; does not include handwriting cloning)</td>
                 </tr>
                 <tr>
                   <td>Preview</td>
@@ -164,10 +164,10 @@ export function PricingPage() {
         <section className="section desk-well">
           <h2>What is not included</h2>
           <ul className="list-plain">
-            <li>No Lifetime plan in this MVP</li>
+            <li>No Lifetime plan</li>
             <li>No immediate purchase of Business, Teams, or Education</li>
             <li>No detection-avoidance features</li>
-            <li>No handwriting cloning, high-quality maths or tables, or extra Indian languages beyond Hindi in the MVP</li>
+            <li>No handwriting cloning, high-quality maths or tables, or languages beyond Hindi</li>
             <li>No unlimited preview or unlimited export promise</li>
           </ul>
           <p className="prose-muted">We do not sell detection-avoidance features, exam-season passes, or a Lifetime plan.</p>
@@ -191,7 +191,7 @@ export function PricingPage() {
         <section className="section desk-well">
           <h2>Teams and Education</h2>
           <p className="prose-muted">
-            If you need Teams or Education access, join the waitlist or contact us. This is not a paid plan in the MVP and has no public price.
+            If you need Teams or Education access, join the waitlist or contact us. This is not a paid plan and has no public price.
           </p>
           <button type="button" className="btn btn-secondary" onClick={() => { setWaitlistOk(false); setWaitlistOpen(true); }}>
             Join the waitlist
@@ -266,7 +266,7 @@ export function PricingPage() {
             }}
           >
             <p className="muted">
-              Teams and Education access is not a paid plan in this MVP and has no public price. Join the waitlist and we will contact you.
+              Teams and Education access is not a paid plan and has no public price. Join the waitlist and we will contact you.
             </p>
             <div className="field">
               <label htmlFor="wl-name">Name</label>

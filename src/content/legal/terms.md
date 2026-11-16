@@ -17,7 +17,7 @@ Writey is an online tool that turns typed or pasted English or Hindi (Devanagari
 
 Please read this description carefully:
 
-- The output is a typographic, handwriting-style rendering. It is not a scan of anyone’s real handwriting, and the MVP does not clone “your own” handwriting.
+- The output is a typographic, handwriting-style rendering. It is not a scan of anyone’s real handwriting, and it does not clone “your own” handwriting.
 - Aesthetic variation (such as tilt, ink pressure, or slight drift) is provided so pages look more natural. It is **not** a tool for evading teachers, OCR, or detection systems, and we do not offer features for that purpose.
 - Writey is not an official, government, school, or examination-board service. It does not produce official documents, certificates, or guaranteed academic results.
 - We do not claim that results are 100% accurate, identical to human handwriting, or fit for any particular official use.
@@ -46,7 +46,7 @@ Current recommended plan structure (Owner confirmation still required before pri
 | Plan | Price (display) | Main commercial limits |
 |---|---|---|
 | Free | $0, USD | Up to 8 export pages per calendar month, visible watermark, standard export quality, 8 handwriting styles, daily preview cap. No stored re-download library is currently provided. |
-| Pro | Recommended $3.99 / month or $39 / year, USD display and list price (monthly price may be adjusted within $2.99–$4.99) | Up to 150 export pages per calendar month, no watermark, higher export quality, all licensed MVP styles. A 30-day stored export history is not currently provided. |
+| Pro | Recommended $3.99 / month or $39 / year, USD display and list price (monthly price may be adjusted within $2.99–$4.99) | Up to 150 export pages per calendar month, no watermark, higher export quality, all licensed styles. A 30-day stored export history is not currently provided. |
 
 Exports are generated in the browser for you to save at the time of export. The current service does not offer in-account history viewing or later re-download of past exports. A Free short re-download window or a Pro 30-day export history, if later offered, is 【PENDING CONFIRMATION】 and must not be described as available until it is implemented.
 
@@ -55,9 +55,9 @@ The display and list currency is USD, as confirmed by the Owner on 13 November 2
 Additional rules that will not be softened:
 
 - Neither plan is unlimited. Pro has a monthly page cap. Previews also have daily and per-job caps.
-- We do not sell a Lifetime plan in this MVP.
+- We do not sell a Lifetime plan.
 - Business, Teams, or Education access, if shown, is Contact / Waitlist only. It is not available for immediate purchase and has no public price.
-- We do not sell detection-avoidance features, “exam season” or “assignment” passes, or handwriting-clone, high-quality maths/tables, or extra Indian languages as MVP paid add-ons.
+- We do not sell detection-avoidance features, “exam season” or “assignment” passes, or handwriting-clone, high-quality maths/tables, or extra Indian languages as paid add-ons.
 
 If a payment fails, is cancelled, or a subscription expires, access returns to Free limits. Pages already used in the period still count against the server-side record.
 

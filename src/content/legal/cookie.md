@@ -42,7 +42,7 @@ If analytics is enabled:
 
 ### 2.3 What we do not currently plan to use
 
-We do not currently plan advertising, retargeting, or social-pixel cookies for the MVP. If that changes, this Policy and the Privacy Policy will be updated first. We will not silently add a marketing pixel.
+We do not currently plan advertising, retargeting, or social-pixel cookies. If that changes, this Policy and the Privacy Policy will be updated first. We will not silently add a marketing pixel.
 
 ## 3. Cookie inventory
 

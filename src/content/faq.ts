@@ -47,12 +47,12 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         "id": 6,
         "question": "Is the website available in Hindi?",
-        "answer": "No. The MVP interface is English. Hindi is supported for input, preview, and export, not as a full Hindi interface."
+        "answer": "No. The interface is in English. Hindi is supported for input, preview, and export, not as a full Hindi interface."
       },
       {
         "id": 7,
         "question": "Does Writey support other Indian languages?",
-        "answer": "No. Languages beyond English and Hindi are not in the MVP. They may be considered later and are not sold as a current add-on."
+        "answer": "No. Languages beyond English and Hindi are not included. They may be considered later and are not sold as a current add-on."
       }
     ]
   },
@@ -92,12 +92,12 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         "id": 13,
         "question": "What are the Pro plan limits?",
-        "answer": "Pro includes all 11 licensed MVP styles (the 8 Free styles plus 3 Pro styles). The recommended Pro plan is $3.99 per month or $39 per year, in USD, and allows up to 150 export pages per calendar month, with no watermark and higher export quality. 【PENDING CONFIRMATION】 These amounts are not a live offer until confirmed. Daily preview and per-job caps still apply."
+        "answer": "Pro includes all 11 licensed styles (the 8 Free styles plus 3 Pro styles). The recommended Pro plan is $3.99 per month or $39 per year, in USD, and allows up to 150 export pages per calendar month, with no watermark and higher export quality. 【PENDING CONFIRMATION】 These amounts are not a live offer until confirmed. Daily preview and per-job caps still apply."
       },
       {
         "id": 14,
         "question": "What happens when I reach my page cap?",
-        "answer": "You can still open the editor and edit your text, but a new export that would exceed the cap is refused. You can wait for the quota to reset, or upgrade to Pro if you are on Free. We do not sell an add-on pack in this MVP."
+        "answer": "You can still open the editor and edit your text, but a new export that would exceed the cap is refused. You can wait for the quota to reset, or upgrade to Pro if you are on Free. We do not sell an add-on pack."
       },
       {
         "id": 15,
@@ -127,7 +127,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         "id": 19,
         "question": "Does Writey clone my handwriting?",
-        "answer": "No. The MVP does not clone your own handwriting. It uses licensed handwriting-style fonts. Handwriting cloning is not an MVP feature or paid add-on."
+        "answer": "No. Writey does not clone your own handwriting. It uses licensed handwriting-style fonts. Handwriting cloning is not a feature or a paid add-on."
       }
     ]
   },
@@ -147,7 +147,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         "id": 22,
         "question": "Can I buy a Lifetime plan or a Business plan?",
-        "answer": "No. We do not sell a Lifetime plan in this MVP. Business, Teams, or Education access, if shown, is waitlist or contact only and has no public price."
+        "answer": "No. We do not sell a Lifetime plan. Business, Teams, or Education access, if shown, is waitlist or contact only and has no public price."
       },
       {
         "id": 23,
@@ -219,7 +219,7 @@ export const HINDI_FAQ: FaqItem[] = [
     id: 102,
     question: "Is the whole website in Hindi?",
     answer:
-      "No. The MVP interface is English. Hindi is supported for input, preview, and export.",
+      "No. The interface is in English. Hindi is supported for input, preview, and export.",
   },
   {
     id: 103,
@@ -245,6 +245,6 @@ export const PRICING_FAQ: FaqItem[] = [
   {
     id: 203,
     question: "Can I buy a Lifetime plan?",
-    answer: "No. We do not sell a Lifetime plan in this MVP.",
+    answer: "No. We do not sell a Lifetime plan.",
   },
 ];
