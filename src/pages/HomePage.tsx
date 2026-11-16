@@ -78,7 +78,7 @@ export function HomePage() {
         <section className="section desk-well desk-split">
           <h2>Choose a handwriting style</h2>
           <p className="prose-muted">
-            Free includes [FREE_STYLE_COUNT] basic styles, including usable Latin and Devanagari handwriting styles. 【PENDING CONFIRMATION】 Pro unlocks all licensed MVP styles. The exact number of Pro styles depends on font licensing and is 【PENDING CONFIRMATION】. The MVP does not include cloning your own handwriting.
+            Free includes 8 basic styles, including usable Latin and Devanagari handwriting styles. Pro unlocks all 11 licensed MVP styles (the 8 Free styles plus 3 Pro styles). The MVP does not include cloning your own handwriting.
           </p>
         </section>
 
@@ -140,7 +140,7 @@ export function HomePage() {
               <ul className="list-plain">
                 <li><IconCheck /> Visible brand watermark</li>
                 <li><IconCheck /> PDF and PNG</li>
-                <li><IconCheck /> [FREE_STYLE_COUNT] basic styles, including usable Latin and Devanagari handwriting styles. <span className="pending">【PENDING CONFIRMATION】</span></li>
+                <li><IconCheck /> 8 basic styles, including usable Latin and Devanagari handwriting styles</li>
                 <li><IconCheck /> Start without an account</li>
               </ul>
             </article>
@@ -155,7 +155,7 @@ export function HomePage() {
               <ul className="list-plain">
                 <li><IconCheck /> No watermark</li>
                 <li><IconCheck /> Higher export quality <span className="pending">【PENDING CONFIRMATION】</span></li>
-                <li><IconCheck /> All licensed MVP styles (total count <span className="pending">【PENDING CONFIRMATION】</span>; does not include handwriting cloning)</li>
+                <li><IconCheck /> All 11 licensed MVP styles (the 8 Free styles plus 3 Pro styles; does not include handwriting cloning)</li>
                 <li><IconCheck /> Higher daily caps — still not unlimited</li>
               </ul>
             </article>

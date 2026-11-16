@@ -226,7 +226,7 @@ function homeBody() {
         <section class="section desk-well desk-split">
           <h2>Choose a handwriting style</h2>
           <p class="prose-muted">
-            Free includes [FREE_STYLE_COUNT] basic styles, including usable Latin and Devanagari handwriting styles. 【PENDING CONFIRMATION】 Pro unlocks all licensed MVP styles. The exact number of Pro styles depends on font licensing and is 【PENDING CONFIRMATION】. The MVP does not include cloning your own handwriting.
+            Free includes 8 basic styles, including usable Latin and Devanagari handwriting styles. Pro unlocks all 11 licensed MVP styles (the 8 Free styles plus 3 Pro styles). The MVP does not include cloning your own handwriting.
           </p>
         </section>
         <section class="section desk-well desk-split">
@@ -376,7 +376,7 @@ function pricingBody() {
               <li>8 export pages per calendar month <span class="pending">【PENDING CONFIRMATION】</span></li>
               <li>Visible brand watermark that does not cover your text</li>
               <li>Standard export quality <span class="pending">【PENDING CONFIRMATION】</span></li>
-              <li>[FREE_STYLE_COUNT] basic styles, including usable Latin and Devanagari handwriting styles. 【PENDING CONFIRMATION】</li>
+              <li>8 basic styles, including usable Latin and Devanagari handwriting styles</li>
               <li>PDF and PNG export</li>
               <li>Up to 10 preview refreshes per day, and up to 8 pages per preview <span class="pending">【PENDING CONFIRMATION】</span></li>
               <li>Up to 2 export jobs per day, still limited by the monthly page cap <span class="pending">【PENDING CONFIRMATION】</span></li>
@@ -393,7 +393,7 @@ function pricingBody() {
               <li>150 export pages per calendar month <span class="pending">【PENDING CONFIRMATION】</span></li>
               <li>No watermark</li>
               <li>Higher export quality <span class="pending">【PENDING CONFIRMATION】</span></li>
-              <li>All licensed MVP styles (total count 【PENDING CONFIRMATION】; does not include handwriting cloning)</li>
+              <li>All 11 licensed MVP styles (the 8 Free styles plus 3 Pro styles; does not include handwriting cloning)</li>
               <li>PDF and PNG export</li>
               <li>Up to 50 preview refreshes per day, and up to 20 pages per preview <span class="pending">【PENDING CONFIRMATION】</span></li>
               <li>Up to 10 export jobs per day, still limited by the monthly page cap <span class="pending">【PENDING CONFIRMATION】</span></li>

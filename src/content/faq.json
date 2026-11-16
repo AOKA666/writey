@@ -76,12 +76,12 @@
         {
           "id": 12,
           "question": "What are the Free plan limits?",
-          "answer": "Free is $0 and allows up to 8 export pages per calendar month, with a watermark, standard quality, and [FREE_STYLE_COUNT] basic styles, including usable Latin and Devanagari handwriting styles. 【PENDING CONFIRMATION】 Daily preview and per-job caps also apply. The core path works without an account."
+          "answer": "Free includes 8 basic styles, including usable Latin and Devanagari handwriting styles. The recommended Free plan is $0 and allows up to 8 export pages per calendar month, with a watermark and standard quality. 【PENDING CONFIRMATION】 Daily preview and per-job caps also apply. The core path works without an account."
         },
         {
           "id": 13,
           "question": "What are the Pro plan limits?",
-          "answer": "Pro is a recommended $3.99 per month or $39 per year, in USD, and allows up to 150 export pages per calendar month, with no watermark, higher export quality, and all licensed MVP styles. 【PENDING CONFIRMATION】 These amounts are not a live offer until confirmed. Daily preview and per-job caps still apply."
+          "answer": "Pro includes all 11 licensed MVP styles (the 8 Free styles plus 3 Pro styles). The recommended Pro plan is $3.99 per month or $39 per year, in USD, and allows up to 150 export pages per calendar month, with no watermark and higher export quality. 【PENDING CONFIRMATION】 These amounts are not a live offer until confirmed. Daily preview and per-job caps still apply."
         },
         {
           "id": 14,
