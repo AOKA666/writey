@@ -1,9 +1,9 @@
-import { ALL_FAQ_ITEMS, HINDI_FAQ } from "@/content/faq";
+import { ALL_FAQ_ITEMS, HINDI_FAQ, HOME_FAQ } from "@/content/faq";
 import { canonicalOrigin, BRAND_NAME } from "@/content/site";
 import { buildHomeJsonLd, buildWebPageJsonLd } from "../../shared/jsonld.ts";
 
 export function homeJsonLd() {
-  return buildHomeJsonLd({ brand: BRAND_NAME, origin: canonicalOrigin() });
+  return buildHomeJsonLd({ brand: BRAND_NAME, origin: canonicalOrigin(), faq: HOME_FAQ });
 }
 
 export function webPageJsonLd(

@@ -31,8 +31,8 @@ export const FAQ_GROUPS: FaqGroup[] = [
       },
       {
         "id": 4,
-        "question": "Is Writey an AI handwriting generator?",
-        "answer": "No. Writey is a typographic tool that lays out typed or pasted text in handwriting-style fonts. We do not describe the MVP as “powered by AI”. Some people search for “AI handwriting generator” when they want a text-to-handwriting converter; that phrase is not our product name."
+        "question": "Is Writey a text to handwriting ai model that writes like a person?",
+        "answer": "No. Writey is a typography tool: you type or paste text, choose a handwriting-style font and paper, preview the page, and export PDF or PNG. People often search for text to handwriting ai for this job. Writey does not clone a person’s handwriting and does not use a generative model that writes like a human. “AI handwriting generator” may appear in similar searches; it is a secondary synonym, not our product name, and we do not call Writey an AI handwriting generator."
       }
     ]
   },
@@ -87,7 +87,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         "id": 12,
         "question": "What are the Free plan limits?",
-        "answer": "Free is $0 and allows up to 8 export pages per calendar month, with a watermark, standard quality, and 8 handwriting styles. 【PENDING CONFIRMATION】 Daily preview and per-job caps also apply. The core path works without an account."
+        "answer": "Free is $0 and allows up to 8 export pages per calendar month, with a watermark, standard quality, and [FREE_STYLE_COUNT] basic styles, including usable Latin and Devanagari handwriting styles. 【PENDING CONFIRMATION】 Daily preview and per-job caps also apply. The core path works without an account."
       },
       {
         "id": 13,
@@ -170,12 +170,10 @@ export const FAQ_GROUPS: FaqGroup[] = [
 
 export const ALL_FAQ_ITEMS: FaqItem[] = FAQ_GROUPS.flatMap((group) => group.items);
 
-export const HOME_FAQ_IDS = [1, 5, 8, 17] as const;
+export const HOME_FAQ_IDS = [1, 4, 5, 8, 17] as const;
 
-/** Homepage excerpt uses the same four questions listed in seo-copy-freeze §1.4.
- *  Q17 in the full FAQ is the academic-integrity question; the homepage wording
- *  for “Is it okay to submit these pages as handwritten school work?” is frozen
- *  separately in landing-copy and must not be replaced by a paraphrase.
+/** Homepage excerpt uses Q1, Q4, Q5, Q8, Q17 from seo-copy-freeze §1.4 / landing-copy §8.13.
+ *  Homepage wording is frozen separately in landing-copy and must not be replaced by a paraphrase.
  */
 export const HOME_FAQ: FaqItem[] = [
   {
@@ -183,6 +181,12 @@ export const HOME_FAQ: FaqItem[] = [
     question: "Do I need an account to convert text to handwriting?",
     answer:
       "No. You can paste text, preview a page, and complete a useful Free export without signing in. An account is needed to keep quota across days or subscribe to Pro. Saved export history is not currently provided. 【PENDING CONFIRMATION】",
+  },
+  {
+    id: 4,
+    question: "Is Writey a text to handwriting ai model that writes like a person?",
+    answer:
+      "No. Writey is a typography tool: you type or paste text, choose a handwriting-style font and paper, preview the page, and export PDF or PNG. People often search for text to handwriting ai for this job. Writey does not clone a person’s handwriting and does not use a generative model that writes like a human.",
   },
   {
     id: 5,
@@ -221,7 +225,7 @@ export const HINDI_FAQ: FaqItem[] = [
     id: 103,
     question: "Is Hindi the main keyword for the whole site?",
     answer:
-      "No. This page explains a supported language in the converter. The homepage keyword is text to handwriting.",
+      "No. This page explains a supported language in the converter. The homepage keyword is text to handwriting ai.",
   },
 ];
 

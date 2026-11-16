@@ -73,10 +73,10 @@ export type SeoMeta = {
 export const SEO: Record<string, SeoMeta> = {
   "/": {
     path: "/",
-    title: "Text to Handwriting Converter | Writey",
+    title: "Text to Handwriting AI Converter | Writey",
     description:
-      "Convert typed English or Hindi text into handwriting-style pages. Preview in your browser, then download PDF or PNG. No account needed to start.",
-    h1: "Text to Handwriting Converter",
+      "Use text to handwriting ai to turn typed English or Hindi into handwriting-style pages. Preview, then download PDF or PNG. No account needed to start.",
+    h1: "Text to Handwriting AI Converter",
     robots: "index, follow",
     inSitemap: true,
   },

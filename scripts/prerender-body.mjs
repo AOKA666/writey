@@ -46,7 +46,7 @@ const HINDI_FAQ = [
   {
     question: "Is Hindi the main keyword for the whole site?",
     answer:
-      "No. This page explains a supported language in the converter. The homepage keyword is text to handwriting.",
+      "No. This page explains a supported language in the converter. The homepage keyword is text to handwriting ai.",
   },
 ];
 
@@ -55,6 +55,11 @@ const HOME_FAQ = [
     question: "Do I need an account to convert text to handwriting?",
     answer:
       "No. You can paste text, preview a page, and complete a useful Free export without signing in. An account is needed to keep quota across days or subscribe to Pro. Saved export history is not currently provided. 【PENDING CONFIRMATION】",
+  },
+  {
+    question: "Is Writey a text to handwriting ai model that writes like a person?",
+    answer:
+      "No. Writey is a typography tool: you type or paste text, choose a handwriting-style font and paper, preview the page, and export PDF or PNG. People often search for text to handwriting ai for this job. Writey does not clone a person’s handwriting and does not use a generative model that writes like a human.",
   },
   {
     question: "Can I convert Hindi text as well as English?",
@@ -166,9 +171,9 @@ function renderLegal(id, h1) {
 function homeBody() {
   return `<main id="main" class="page-wrap">
         <div class="hero-block">
-          <h1 class="display-md">Text to Handwriting Converter</h1>
+          <h1 class="display-md">Text to Handwriting AI Converter</h1>
           <p class="lede">
-            Paste your text, choose a handwriting style and paper, preview the page, and export a PDF or PNG. English and Hindi are both supported.
+            This text to handwriting ai tool turns typed or pasted text into handwriting-style pages. Choose a style and paper, preview the page, and export a PDF or PNG. English and Hindi are both supported.
           </p>
         </div>
         <section class="section desk-well">
@@ -194,13 +199,10 @@ function homeBody() {
           </div>
         </section>
         <section class="section desk-well">
-          <h2>A text to handwriting converter, in the browser</h2>
+          <h2>What text to handwriting ai means on Writey</h2>
                     <div class="desk-prose">
 <p class="prose-muted">
-            Writey turns typed or pasted text into handwriting-style pages. Choose a style, a paper type, margins, line spacing, and ink colour. Add optional natural variation for appearance. Then preview and download.
-          </p>
-          <p class="prose-muted">
-            The output is typographic. It is not a scan of anyone’s real handwriting, and the MVP does not clone your own handwriting. Writey is not an official school, board, or government service.
+            People search for text to handwriting ai when they want to convert typed text into a handwritten look. Writey does that job with typography: you type or paste text, choose a handwriting-style font and paper, preview the page, and export PDF or PNG. The output is typographic, not a scan of anyone’s real handwriting, and not a generative model that writes like a real person. The MVP does not clone your own handwriting. Writey is not an official school, board, or government service.
           </p>
           </div>
         </section>
@@ -224,7 +226,7 @@ function homeBody() {
         <section class="section desk-well desk-split">
           <h2>Choose a handwriting style</h2>
           <p class="prose-muted">
-            Free includes 8 handwriting styles: six Latin styles and two usable Devanagari handwriting styles. Pro unlocks all 11 licensed MVP styles. The MVP does not include cloning your own handwriting.
+            Free includes [FREE_STYLE_COUNT] basic styles, including usable Latin and Devanagari handwriting styles. 【PENDING CONFIRMATION】 Pro unlocks all licensed MVP styles. The exact number of Pro styles depends on font licensing and is 【PENDING CONFIRMATION】. The MVP does not include cloning your own handwriting.
           </p>
         </section>
         <section class="section desk-well desk-split">
@@ -236,7 +238,7 @@ function homeBody() {
         <section class="section desk-well desk-split">
           <h2>Download PDF or PNG</h2>
           <p class="prose-muted">
-            Both Free and Pro can export PDF and PNG. Free uses standard export quality and a visible watermark. Pro removes the watermark and uses higher export quality. Exact DPI values are 【PENDING CONFIRMATION】. Multi-page PNG exports download as a ZIP of one image per page.
+            Both Free and Pro can export PDF and PNG. Free uses standard export quality and a visible watermark. Pro removes the watermark and uses higher export quality. Exact DPI values are 【PENDING CONFIRMATION】.
           </p>
         </section>
         <section class="section desk-well desk-split">
@@ -290,7 +292,7 @@ function homeBody() {
         <section class="section desk-well cta-band">
           <h2>Convert your text now</h2>
           <p class="prose-muted">
-            Open the editor, paste your text, and preview a handwriting-style page. You can start without an account.
+            Open this text to handwriting ai converter, paste your text, and preview a handwriting-style page. You can start without an account.
           </p>
         </section>
       </main>`;
@@ -374,7 +376,7 @@ function pricingBody() {
               <li>8 export pages per calendar month <span class="pending">【PENDING CONFIRMATION】</span></li>
               <li>Visible brand watermark that does not cover your text</li>
               <li>Standard export quality <span class="pending">【PENDING CONFIRMATION】</span></li>
-              <li>8 handwriting styles, including usable Devanagari support</li>
+              <li>[FREE_STYLE_COUNT] basic styles, including usable Latin and Devanagari handwriting styles. 【PENDING CONFIRMATION】</li>
               <li>PDF and PNG export</li>
               <li>Up to 10 preview refreshes per day, and up to 8 pages per preview <span class="pending">【PENDING CONFIRMATION】</span></li>
               <li>Up to 2 export jobs per day, still limited by the monthly page cap <span class="pending">【PENDING CONFIRMATION】</span></li>
@@ -391,7 +393,7 @@ function pricingBody() {
               <li>150 export pages per calendar month <span class="pending">【PENDING CONFIRMATION】</span></li>
               <li>No watermark</li>
               <li>Higher export quality <span class="pending">【PENDING CONFIRMATION】</span></li>
-              <li>All 11 licensed MVP styles (does not include handwriting cloning)</li>
+              <li>All licensed MVP styles (total count 【PENDING CONFIRMATION】; does not include handwriting cloning)</li>
               <li>PDF and PNG export</li>
               <li>Up to 50 preview refreshes per day, and up to 20 pages per preview <span class="pending">【PENDING CONFIRMATION】</span></li>
               <li>Up to 10 export jobs per day, still limited by the monthly page cap <span class="pending">【PENDING CONFIRMATION】</span></li>
@@ -479,6 +481,7 @@ export function pageBody(path) {
 }
 
 export function faqItemsFor(path) {
+  if (path === "/") return HOME_FAQ;
   if (path === "/faq") return faqData.groups.flatMap((g) => g.items);
   if (path === "/hindi") return HINDI_FAQ;
   return undefined;

@@ -5,7 +5,6 @@ import { Header } from "@/components/Header";
 import { QaControls } from "@/components/QaControls";
 import { Seo } from "@/components/Seo";
 import { HOME_FAQ } from "@/content/faq";
-import { FREE_STYLE_COUNT } from "@/content/handwriting";
 import { PRICE_STATUS_SENTENCE, PRICES, TAX_LINE } from "@/content/site";
 import { IconCheck } from "@/components/Icons";
 import { homeJsonLd } from "@/lib/schema";
@@ -17,9 +16,9 @@ export function HomePage() {
       <Header />
       <main id="main" className="page-wrap">
         <div className="hero-block">
-          <h1 className="display-md">Text to Handwriting Converter</h1>
+          <h1 className="display-md">Text to Handwriting AI Converter</h1>
           <p className="lede">
-            Paste your text, choose a handwriting style and paper, preview the page, and export a PDF or PNG. English and Hindi are both supported.
+            This text to handwriting ai tool turns typed or pasted text into handwriting-style pages. Choose a style and paper, preview the page, and export a PDF or PNG. English and Hindi are both supported.
           </p>
         </div>
         <Editor />
@@ -50,13 +49,10 @@ export function HomePage() {
         </section>
 
         <section className="section desk-well">
-          <h2>A text to handwriting converter, in the browser</h2>
+          <h2>What text to handwriting ai means on Writey</h2>
           <div className="desk-prose">
           <p className="prose-muted">
-            Writey turns typed or pasted text into handwriting-style pages. Choose a style, a paper type, margins, line spacing, and ink colour. Add optional natural variation for appearance. Then preview and download.
-          </p>
-          <p className="prose-muted">
-            The output is typographic. It is not a scan of anyone’s real handwriting, and the MVP does not clone your own handwriting. Writey is not an official school, board, or government service.
+            People search for text to handwriting ai when they want to convert typed text into a handwritten look. Writey does that job with typography: you type or paste text, choose a handwriting-style font and paper, preview the page, and export PDF or PNG. The output is typographic, not a scan of anyone’s real handwriting, and not a generative model that writes like a real person. The MVP does not clone your own handwriting. Writey is not an official school, board, or government service.
           </p>
           </div>
         </section>
@@ -82,7 +78,7 @@ export function HomePage() {
         <section className="section desk-well desk-split">
           <h2>Choose a handwriting style</h2>
           <p className="prose-muted">
-            Free includes 8 handwriting styles: six Latin styles and two usable Devanagari handwriting styles. Pro unlocks all 11 licensed MVP styles. The MVP does not include cloning your own handwriting.
+            Free includes [FREE_STYLE_COUNT] basic styles, including usable Latin and Devanagari handwriting styles. 【PENDING CONFIRMATION】 Pro unlocks all licensed MVP styles. The exact number of Pro styles depends on font licensing and is 【PENDING CONFIRMATION】. The MVP does not include cloning your own handwriting.
           </p>
         </section>
 
@@ -97,7 +93,7 @@ export function HomePage() {
         <section className="section desk-well desk-split">
           <h2>Download PDF or PNG</h2>
           <p className="prose-muted">
-            Both Free and Pro can export PDF and PNG. Free uses standard export quality and a visible watermark. Pro removes the watermark and uses higher export quality. Exact DPI values are 【PENDING CONFIRMATION】. Multi-page PNG exports download as a ZIP of one image per page.
+            Both Free and Pro can export PDF and PNG. Free uses standard export quality and a visible watermark. Pro removes the watermark and uses higher export quality. Exact DPI values are 【PENDING CONFIRMATION】.
           </p>
         </section>
 
@@ -144,7 +140,7 @@ export function HomePage() {
               <ul className="list-plain">
                 <li><IconCheck /> Visible brand watermark</li>
                 <li><IconCheck /> PDF and PNG</li>
-                <li><IconCheck /> {FREE_STYLE_COUNT} handwriting styles, including Devanagari</li>
+                <li><IconCheck /> [FREE_STYLE_COUNT] basic styles, including usable Latin and Devanagari handwriting styles. <span className="pending">【PENDING CONFIRMATION】</span></li>
                 <li><IconCheck /> Start without an account</li>
               </ul>
             </article>
@@ -159,7 +155,7 @@ export function HomePage() {
               <ul className="list-plain">
                 <li><IconCheck /> No watermark</li>
                 <li><IconCheck /> Higher export quality <span className="pending">【PENDING CONFIRMATION】</span></li>
-                <li><IconCheck /> All licensed MVP styles</li>
+                <li><IconCheck /> All licensed MVP styles (total count <span className="pending">【PENDING CONFIRMATION】</span>; does not include handwriting cloning)</li>
                 <li><IconCheck /> Higher daily caps — still not unlimited</li>
               </ul>
             </article>
@@ -189,7 +185,7 @@ export function HomePage() {
         <section className="section desk-well cta-band">
           <h2>Convert your text now</h2>
           <p className="prose-muted">
-            Open the editor, paste your text, and preview a handwriting-style page. You can start without an account.
+            Open this text to handwriting ai converter, paste your text, and preview a handwriting-style page. You can start without an account.
           </p>
           <div className="btn-row" style={{ justifyContent: "center" }}>
             <a className="btn btn-primary" href="/#editor">Start converting</a>

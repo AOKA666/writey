@@ -90,7 +90,7 @@ const marketing = [
 ];
 
 const pageH1 = {
-  "/": "Text to Handwriting Converter",
+  "/": "Text to Handwriting AI Converter",
   "/hindi": "Convert Hindi text to handwriting",
   "/pricing": "Pricing",
   "/faq": "Frequently asked questions",

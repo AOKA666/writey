@@ -30,9 +30,9 @@ const pages = [
   {
     path: "/",
     file: "index.html",
-    title: "Text to Handwriting Converter | Writey",
+    title: "Text to Handwriting AI Converter | Writey",
     description:
-      "Convert typed English or Hindi text into handwriting-style pages. Preview in your browser, then download PDF or PNG. No account needed to start.",
+      "Use text to handwriting ai to turn typed English or Hindi into handwriting-style pages. Preview, then download PDF or PNG. No account needed to start.",
     indexable: true,
     crumbs: [{ name: "Home", path: "/" }],
     jsonLd: "home",
@@ -231,7 +231,7 @@ function remove(html, tagRe) {
 }
 
 function jsonLdFor(page) {
-  if (page.jsonLd === "home") return buildHomeJsonLd({ brand: BRAND, origin });
+  if (page.jsonLd === "home") return buildHomeJsonLd({ brand: BRAND, origin, faq: faqItemsFor("/") });
   return buildWebPageJsonLd({
     brand: BRAND,
     origin,
