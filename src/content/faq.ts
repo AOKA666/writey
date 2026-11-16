@@ -87,7 +87,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         "id": 12,
         "question": "What are the Free plan limits?",
-        "answer": "Free is $0 and allows up to 8 export pages per calendar month, with a watermark, standard quality, and 3 basic styles. 【PENDING CONFIRMATION】 Daily preview and per-job caps also apply. The core path works without an account."
+        "answer": "Free is $0 and allows up to 8 export pages per calendar month, with a watermark, standard quality, and 8 handwriting styles. 【PENDING CONFIRMATION】 Daily preview and per-job caps also apply. The core path works without an account."
       },
       {
         "id": 13,

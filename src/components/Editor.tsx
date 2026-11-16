@@ -194,7 +194,7 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
               <div className="style-list-label" id="style-label">
                 Handwriting style
               </div>
-              <div role="listbox" aria-labelledby="style-label">
+              <div className="style-list" role="listbox" aria-labelledby="style-label">
                 {HANDWRITING_STYLES.map((style) => {
                   const locked = style.plan === "pro" && entitlement.plan_id !== "pro";
                   return (
@@ -274,8 +274,8 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
               <input
                 id="spacing"
                 type="range"
-                min={22}
-                max={40}
+                min={26}
+                max={48}
                 value={settings.lineSpacing}
                 onChange={(e) => setSettings((s) => ({ ...s, lineSpacing: Number(e.target.value) }))}
               />

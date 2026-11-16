@@ -45,7 +45,7 @@ Current recommended plan structure (Owner confirmation still required before pri
 
 | Plan | Price (display) | Main commercial limits |
 |---|---|---|
-| Free | $0, USD | Up to 8 export pages per calendar month, visible watermark, standard export quality, 3 basic styles, daily preview cap. No stored re-download library is currently provided. |
+| Free | $0, USD | Up to 8 export pages per calendar month, visible watermark, standard export quality, 8 handwriting styles, daily preview cap. No stored re-download library is currently provided. |
 | Pro | Recommended $3.99 / month or $39 / year, USD display and list price (monthly price may be adjusted within $2.99–$4.99) | Up to 150 export pages per calendar month, no watermark, higher export quality, all licensed MVP styles. A 30-day stored export history is not currently provided. |
 
 Exports are generated in the browser for you to save at the time of export. The current service does not offer in-account history viewing or later re-download of past exports. A Free short re-download window or a Pro 30-day export history, if later offered, is 【PENDING CONFIRMATION】 and must not be described as available until it is implemented.
@@ -77,7 +77,7 @@ We may remove content, limit exports, or close accounts that reasonably appear t
 
 - You retain whatever rights you already have in the text you type or paste. You grant us a limited licence to process that text solely to provide the preview, export, quota, security, and support functions described in the Privacy Policy.
 - The Writey name, site, software, paper textures, and licensed fonts are owned by us or our licensors. We do not grant you a licence to download, extract, or redistribute font files, or to reuse our paper textures or brand assets outside the exported pages you create for your own use.
-- The typefaces shipped with this site (Newsreader, IBM Plex Sans, Caveat, Patrick Hand, Kalam, and Dancing Script) are licensed under the SIL Open Font License, Version 1.1. Copies of those licences are kept with the font files. Dancing Script has a Reserved Font Name; the product displays that style as “Studio Loop”.
+- The typefaces shipped with this site are Newsreader, IBM Plex Sans, Caveat, Patrick Hand, Kalam, Indie Flower, Shadows Into Light, Architects Daughter, Covered By Your Grace, Dekko, and Amita, each licensed under the SIL Open Font License, Version 1.1; Dancing Script, also SIL OFL 1.1, which has a Reserved Font Name and is displayed in the product as “Studio Loop”; and Homemade Apple, licensed under the Apache License, Version 2.0, displayed in the product as “Orchard Script”. Copies of those licences are kept with the font files.
 - You are responsible for the text you enter (including that you have the right to use it, and that it is lawful).
 - Exported pages are provided for your personal or internal use as described in these Terms. They are not official records.
 

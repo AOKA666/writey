@@ -7,6 +7,7 @@ import {
   A4_WIDTH_MM,
   DEFAULT_SETTINGS,
   MM_TO_PX,
+  PREVIEW_FONT_PX,
   wrapAndPaginate,
 } from "../src/lib/layout.ts";
 
@@ -25,7 +26,7 @@ function layoutWithMeasure(measure, widthMm = A4_WIDTH_MM) {
       left: DEFAULT_SETTINGS.marginLeft,
     },
     lineSpacingPx: DEFAULT_SETTINGS.lineSpacing,
-    fontSizePx: 22,
+    fontSizePx: PREVIEW_FONT_PX,
     measure,
     variation: DEFAULT_SETTINGS.variation,
     variationEnabled: false,
@@ -46,7 +47,7 @@ function assert(cond, message) {
 }
 
 // Fixed advance so wrap is deterministic without canvas/fonts.
-const CHAR_PX = 11;
+const CHAR_PX = PREVIEW_FONT_PX / 2;
 const measure = (s) => s.length * CHAR_PX;
 const lines = layoutWithMeasure(measure);
 const text = joined(lines);

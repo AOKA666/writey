@@ -7,6 +7,9 @@ export const MM_TO_PX = 3.7795;
 export const A4_WIDTH_PX = A4_WIDTH_MM * MM_TO_PX;
 export const A4_HEIGHT_PX = A4_HEIGHT_MM * MM_TO_PX;
 
+/** Canonical preview/export layout size. Export paints this layout at a DPI scale. */
+export const PREVIEW_FONT_PX = 26;
+
 export type EditorSettings = {
   language: "en" | "hi";
   styleId: string;
@@ -30,7 +33,7 @@ export const DEFAULT_SETTINGS: EditorSettings = {
   marginRight: 16,
   marginBottom: 18,
   marginLeft: 20,
-  lineSpacing: 28,
+  lineSpacing: 34,
   variation: { tilt: 0.45, ink_pressure: 0.5, drift: 0.4 },
   variationEnabled: true,
 };

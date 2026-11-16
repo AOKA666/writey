@@ -37,36 +37,38 @@ export function HindiPage() {
 
         <section className="section desk-well">
           <h2>Devanagari support</h2>
-          <p className="prose-muted">
-            Writey can preview and export Hindi text written in Devanagari. The handwriting style should look handwritten, not like a plain print font dropped onto the page. English remains available in the same editor.
-          </p>
-          <p className="pending">
-            Specimen fonts are licensed under SIL OFL 1.1. Devanagari quality is still a limitation of these specimens. Do not treat Hindi first-class commercial fonts as already delivered, and do not treat handwriting cloning as supported.
-          </p>
+          <div className="desk-prose">
+            <p className="prose-muted">
+              Writey can preview and export Hindi text written in Devanagari. The handwriting style should look handwritten, not like a plain print font dropped onto the page. English remains available in the same editor.
+            </p>
+            <p className="pending">
+              Specimen fonts are licensed under SIL OFL 1.1. Devanagari quality is still a limitation of these specimens. Do not treat Hindi first-class commercial fonts as already delivered, and do not treat handwriting cloning as supported.
+            </p>
+          </div>
         </section>
 
-        <section className="section desk-well">
+        <section className="section desk-well desk-split">
           <h2>Preview Hindi pages</h2>
           <p className="prose-muted">
             Paste or type Hindi, choose a handwriting style and paper, and preview the page before you download. You can start without an account, within Free limits.
           </p>
         </section>
 
-        <section className="section desk-well">
+        <section className="section desk-well desk-split">
           <h2>Export PDF or PNG</h2>
           <p className="prose-muted">
             When the preview looks right, download PDF or PNG. Free exports include a visible brand watermark. Pro removes the watermark and uses higher export quality. 【PENDING CONFIRMATION】
           </p>
         </section>
 
-        <section className="section desk-well">
+        <section className="section desk-well desk-split">
           <h2>Use the same editor for English</h2>
           <p className="prose-muted">
             You do not need a separate product for English. Switch the language control in the editor to move between English and Hindi.
           </p>
         </section>
 
-        <section className="section desk-well">
+        <section className="section desk-well desk-split">
           <h2>Appropriate uses</h2>
           <p className="prose-muted">
             Use Hindi or English pages for personal notes, revision, letters, journals, accessibility needs, and classroom examples. Do not use exports for academic dishonesty. Read{" "}

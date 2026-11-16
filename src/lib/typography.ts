@@ -3,21 +3,23 @@ import {
   A4_HEIGHT_MM,
   A4_WIDTH_MM,
   MM_TO_PX,
+  PREVIEW_FONT_PX,
   wrapAndPaginate,
   type EditorSettings,
   type LaidOutLine,
 } from "@/lib/layout";
 
-export { A4_HEIGHT_PX, A4_WIDTH_PX, MM_TO_PX } from "@/lib/layout";
-
-/** Canonical preview/export layout size. Export paints this layout at a DPI scale. */
-export const PREVIEW_FONT_PX = 22;
+export { A4_HEIGHT_PX, A4_WIDTH_PX, MM_TO_PX, PREVIEW_FONT_PX } from "@/lib/layout";
 
 export type FontRun = { font: string; text: string };
 
 export function fontFamilyForChar(ch: string, styleId: string): string {
-  if (/[\u0900-\u097F]/.test(ch)) return DEVANAGARI_FONT;
-  return HANDWRITING_STYLES.find((s) => s.id === styleId)?.fontFamily ?? "Caveat, cursive";
+  const style = HANDWRITING_STYLES.find((s) => s.id === styleId);
+  if (/[\u0900-\u097F]/.test(ch)) {
+    if (style && (style.script === "devanagari" || style.script === "both")) return style.fontFamily;
+    return DEVANAGARI_FONT;
+  }
+  return style?.fontFamily ?? "Caveat, cursive";
 }
 
 export function fontRuns(text: string, styleId: string): FontRun[] {

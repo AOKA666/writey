@@ -1,6 +1,8 @@
-/** Handwriting specimen catalogue. Faces are licensed under SIL OFL 1.1. Dancing Script is shown as Studio Loop (Reserved Font Name). */
+/** Handwriting specimen catalogue. Faces are SIL OFL 1.1 unless noted. Dancing Script is shown as Studio Loop (Reserved Font Name). Homemade Apple is Apache License 2.0 and is shown as Orchard Script. */
 
 export type ScriptSupport = "latin" | "devanagari" | "both";
+
+export type LicenceLabel = "SIL OFL 1.1" | "Apache License 2.0";
 
 export type HandwritingStyle = {
   id: string;
@@ -8,7 +10,7 @@ export type HandwritingStyle = {
   fontFamily: string;
   script: ScriptSupport;
   plan: "free" | "pro";
-  licenceLabel: "SIL OFL 1.1";
+  licenceLabel: LicenceLabel;
 };
 
 export const HANDWRITING_STYLES: HandwritingStyle[] = [
@@ -29,9 +31,49 @@ export const HANDWRITING_STYLES: HandwritingStyle[] = [
     licenceLabel: "SIL OFL 1.1",
   },
   {
+    id: "margin-flower",
+    name: "Margin Flower",
+    fontFamily: "Indie Flower, cursive",
+    script: "latin",
+    plan: "free",
+    licenceLabel: "SIL OFL 1.1",
+  },
+  {
+    id: "window-light",
+    name: "Window Light",
+    fontFamily: "Shadows Into Light, cursive",
+    script: "latin",
+    plan: "free",
+    licenceLabel: "SIL OFL 1.1",
+  },
+  {
+    id: "sketch-notes",
+    name: "Sketch Notes",
+    fontFamily: "Architects Daughter, cursive",
+    script: "latin",
+    plan: "free",
+    licenceLabel: "SIL OFL 1.1",
+  },
+  {
+    id: "grace-ink",
+    name: "Grace Ink",
+    fontFamily: "Covered By Your Grace, cursive",
+    script: "latin",
+    plan: "free",
+    licenceLabel: "SIL OFL 1.1",
+  },
+  {
     id: "kavya-devanagari",
     name: "Kavya Devanagari",
     fontFamily: "Kalam, cursive",
+    script: "devanagari",
+    plan: "free",
+    licenceLabel: "SIL OFL 1.1",
+  },
+  {
+    id: "patra-devanagari",
+    name: "Patra Devanagari",
+    fontFamily: "Dekko, cursive",
     script: "devanagari",
     plan: "free",
     licenceLabel: "SIL OFL 1.1",
@@ -44,7 +86,28 @@ export const HANDWRITING_STYLES: HandwritingStyle[] = [
     plan: "pro",
     licenceLabel: "SIL OFL 1.1",
   },
+  {
+    id: "orchard-script",
+    name: "Orchard Script",
+    fontFamily: "Homemade Apple, cursive",
+    script: "latin",
+    plan: "pro",
+    licenceLabel: "Apache License 2.0",
+  },
+  {
+    id: "mela-script",
+    name: "Mela Script",
+    fontFamily: "Amita, cursive",
+    script: "devanagari",
+    plan: "pro",
+    licenceLabel: "SIL OFL 1.1",
+  },
 ];
+
+export const FREE_STYLE_COUNT = HANDWRITING_STYLES.filter((s) => s.plan === "free").length;
+export const TOTAL_STYLE_COUNT = HANDWRITING_STYLES.length;
+export const FREE_LATIN_COUNT = HANDWRITING_STYLES.filter((s) => s.plan === "free" && s.script === "latin").length;
+export const FREE_DEVANAGARI_COUNT = HANDWRITING_STYLES.filter((s) => s.plan === "free" && s.script === "devanagari").length;
 
 export const DEVANAGARI_FONT = "Kalam, cursive";
 export const LATIN_FALLBACK_FONT = "Caveat, cursive";
