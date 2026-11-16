@@ -41,7 +41,7 @@ export function HindiPage() {
             <p className="prose-muted">
               Writey can preview and export Hindi text written in Devanagari. The handwriting style should look handwritten, not like a plain print font dropped onto the page. English remains available in the same editor.
             </p>
-            <p className="pending">
+            <p className="prose-muted">
               Specimen fonts are licensed under SIL OFL 1.1. Devanagari quality is still a limitation of these specimens. Do not treat Hindi first-class commercial fonts as already delivered, and do not treat handwriting cloning as supported.
             </p>
           </div>
@@ -57,7 +57,7 @@ export function HindiPage() {
         <section className="section desk-well desk-split">
           <h2>Export PDF or PNG</h2>
           <p className="prose-muted">
-            When the preview looks right, download PDF or PNG. Free exports include a visible brand watermark. Pro removes the watermark and uses higher export quality. 【PENDING CONFIRMATION】
+            When the preview looks right, download PDF or PNG. Free exports include a visible brand watermark. Pro removes the watermark and uses higher export quality.
           </p>
         </section>
 

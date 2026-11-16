@@ -93,7 +93,7 @@ export const SEO: Record<string, SeoMeta> = {
     path: "/pricing",
     title: "Pricing — Free and Pro Plans | Writey",
     description:
-      "Compare Free and Pro plans for handwriting-style page export. USD prices are pending confirmation. Applicable taxes will be shown at checkout.",
+      "Compare Free and Pro plans for handwriting-style page export. Prices are shown in USD. Payments are not open yet. Applicable taxes will be shown at checkout.",
     h1: "Pricing",
     robots: "index, follow",
     inSitemap: true,

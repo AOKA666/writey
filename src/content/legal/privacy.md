@@ -4,11 +4,11 @@
 
 - Service: Writey, a text-to-handwriting page tool
 - Website: `https://text2handwriting.site`
-- Operator (legal entity): `[LEGAL_ENTITY]` 【PENDING CONFIRMATION】
-- Registered address: `[REGISTERED_ADDRESS]` 【PENDING CONFIRMATION】
+- Operator (legal entity): The legal person that operates Writey will be named on this page once it is confirmed.
+- Registered address: The registered address will be named on this page once it is confirmed.
 - Privacy contact: `privacy@text2handwriting.site`
 - Last updated: 14 November 2026 (draft; export history wording revised so it is not described as a live feature)
-- Effective date: 【PENDING CONFIRMATION】
+- Effective date: This policy is a draft for review and does not yet have a confirmed effective date.
 
 Do not treat Gmail or other consumer mailboxes as a substitute for `privacy@text2handwriting.site`.
 
@@ -16,7 +16,7 @@ Do not treat Gmail or other consumer mailboxes as a substitute for `privacy@text
 
 This Policy describes how we handle information when you use the Writey website and editor, including guest (not signed-in) preview and export, optional accounts, billing for Pro, and related support.
 
-Writey is intended for users in India, with an English-language interface and support for English and Hindi (Devanagari) text. Some infrastructure may process data outside India. That architecture is 【PENDING CONFIRMATION】.
+Writey is intended for users in India, with an English-language interface and support for English and Hindi (Devanagari) text. Some infrastructure may process data outside India. That architecture has not been confirmed.
 
 This Policy is written to match the current product and pricing documents. If a feature is not offered (for example, handwriting cloning, file uploads, or an Android app), we do not collect data for that feature unless and until it is launched and this Policy is updated.
 
@@ -24,7 +24,7 @@ This Policy is written to match the current product and pricing documents. If a 
 
 Writey converts typed or pasted text into handwriting-style pages that you can preview and export as PDF or PNG. It is a typographic and layout tool. It does not clone a person’s real handwriting, and it is not a government, school, or examination-board service.
 
-The legal person who operates the site, the country of establishment, and any GST registration are 【PENDING CONFIRMATION】. Until those details are confirmed, this draft uses the placeholders above. They must be replaced before a paid public launch.
+The legal person who operates the site, the country of establishment, and any GST registration have not been confirmed. They will be named on this page once they are confirmed, and must be in place before a paid public launch.
 
 ## 3. Information we collect
 
@@ -35,8 +35,8 @@ The legal person who operates the site, the country of establishment, and any GS
 | Source text you type or paste | When you preview or export | To render handwriting-style pages you requested |
 | Editor choices (language `en` / `hi`, style, paper type, margins, line spacing, ink colour, aesthetic variation, output format, page count) | When you use the editor | To produce the preview or export and enforce plan limits |
 | Email address | When you create an account, upgrade to Pro, join a waitlist, or contact us | Account login, receipts, service messages, support |
-| Account password or sign-in credentials | If we offer email/password or a third-party sign-in | Authentication. The authentication provider is 【PENDING CONFIRMATION】 |
-| Payment details | When you buy Pro | Collected by the payment processor, not stored by us as full card or UPI secrets. The processor is 【PENDING CONFIRMATION】 |
+| Account password or sign-in credentials | If we offer email/password or a third-party sign-in | Authentication. The authentication provider has not been named |
+| Payment details | When you buy Pro | Collected by the payment processor, not stored by us as full card or UPI secrets. The processor has not been named |
 | Support or waitlist messages | When you write to us or submit Contact / Waitlist | To reply and keep a record of the request |
 | Teams / Education waitlist fields | If you join the waitlist | To contact you. This is not a paid plan |
 
@@ -53,14 +53,14 @@ We do not ask you to upload PDFs, DOCX files, custom font files, handwriting sam
 | Export job metadata (`job_id`, timestamps, language, style, paper, format, page count, status) | When an export is created | To complete the download and apply retention rules |
 | Server logs | Ongoing | Security, debugging, uptime. Logs should not contain full source text |
 
-We may, on a best-effort basis, associate guest usage with a cookie and/or IP address so that Free quota cannot be reset simply by refreshing the page. If you later sign in, we may merge that guest usage into your account so that limits remain accurate. Rules for linking the same payment instrument or device are 【PENDING CONFIRMATION】.
+We may, on a best-effort basis, associate guest usage with a cookie and/or IP address so that Free quota cannot be reset simply by refreshing the page. If you later sign in, we may merge that guest usage into your account so that limits remain accurate. Rules for linking the same payment instrument or device have not been set.
 
 We do not use this tooling to build detection-avoidance features.
 
 ### 3.3 Information we do not intend to collect as a long-term archive
 
-- **Source text:** Your typed or pasted text is used to generate the preview or export. We do not keep it as a long-term archive. If rendering happens only in your browser, the text need not be sent to our servers for layout. If a server must process an export, the text is handled only as needed to complete that task, is not written into analytics events, and is deleted when no longer needed. The current service generates exports in the browser and does not keep a stored export library or re-download history for later retrieval. If a later version stores short-lived export files, they will be kept only for a confirmed download window, and this Policy will be updated first 【PENDING CONFIRMATION】.
-- **Analytics events** (`preview_generated`, `export_pdf`, `export_png`, `language_switched`, `quota_hit`, `acceptable_use_clicked`) must not include full source text. The analytics provider is 【PENDING CONFIRMATION】.
+- **Source text:** Your typed or pasted text is used to generate the preview or export. We do not keep it as a long-term archive. If rendering happens only in your browser, the text need not be sent to our servers for layout. If a server must process an export, the text is handled only as needed to complete that task, is not written into analytics events, and is deleted when no longer needed. The current service generates exports in the browser and does not keep a stored export library or re-download history for later retrieval. If a later version stores short-lived export files, they will be kept only for a confirmed download window, and this Policy will be updated first. That later storage window has not been set.
+- **Analytics events** (`preview_generated`, `export_pdf`, `export_png`, `language_switched`, `quota_hit`, `acceptable_use_clicked`) must not include full source text. The analytics provider has not been named.
 - We do not sell a handwriting-clone feature, so we do not collect handwriting samples for that purpose.
 
 ### 3.4 Cookies and similar technologies
@@ -86,14 +86,14 @@ We do not use your source text to publicly display your content, and we do not u
 - You can preview and complete a useful Free export without an account, subject to Free limits.
 - Keeping quota across days and buying Pro require an account.
 - **Export files (current service):** not stored for later retrieval. PDF and PNG exports are generated in the browser for you to save at the time of export. We do not currently provide an in-account export history, a re-download library, or signed links to past exports.
-- A Free short re-download window (recommended: up to 24 hours) or a Pro 30-day account history, if later offered, is 【PENDING CONFIRMATION】 and must not be described as available until it is implemented. If that feature is added, files would then be deleted or made inaccessible after the confirmed window, and any signed download links would stop working when a file is deleted.
-- We keep account, entitlement, and payment records for as long as the account is open and for a further period needed for security, bookkeeping, tax, or disputes. The exact accounting retention period is 【PENDING CONFIRMATION】.
+- A Free short re-download window or a Pro 30-day account history, if later offered, has not been set and must not be described as available until it is implemented. If that feature is added, files would then be deleted or made inaccessible after the confirmed window, and any signed download links would stop working when a file is deleted.
+- We keep account, entitlement, and payment records for as long as the account is open and for a further period needed for security, bookkeeping, tax, or disputes. The exact accounting retention period has not been set.
 
 ## 6. Payments and tax records
 
 If you subscribe to Pro, a third-party payment processor will handle the payment. We may receive a processor customer or subscription identifier, payment status, and limited billing metadata (for example, the last few digits of a payment method if the processor provides them). We do not ask you to paste card numbers, UPI PINs, or one-time passwords into Writey chat or support forms.
 
-The processor, available methods (UPI, card, net banking, or others), invoices, GSTIN, and whether displayed prices include GST are all 【PENDING CONFIRMATION】. See the [Refund & Cancellation Policy](/refund) for the current draft commercial terms.
+The processor, available methods (UPI, card, net banking, or others), invoices, any GSTIN, and whether displayed prices include GST have not been confirmed. This page does not state whether prices are inclusive or exclusive of GST, and does not name a payment vendor. See the [Refund & Cancellation Policy](/refund) for the current draft commercial terms.
 
 ## 7. How we share information
 
@@ -103,12 +103,12 @@ We share information only with:
 
 | Recipient | Role | Status |
 |---|---|---|
-| Hosting and application infrastructure | To operate the website, APIs, database, and file storage. The default technical proposal is Cloudflare (for example Pages, Workers, D1, and R2). The final stack is 【PENDING CONFIRMATION】 | Proposed, not confirmed |
-| Payment processor | To charge, refund, and send payment receipts | Provider 【PENDING CONFIRMATION】. Do not assume a named vendor is already chosen |
-| Authentication provider | To sign you in, if we use a third-party auth service | 【PENDING CONFIRMATION】 |
-| Analytics provider | To measure product events listed in this Policy | 【PENDING CONFIRMATION】. Not enabled in this draft as a named live integration |
-| Email / transactional message provider | To send login, receipt, or support mail | 【PENDING CONFIRMATION】 |
-| Abuse-prevention or CAPTCHA provider | If a challenge is enabled | 【PENDING CONFIRMATION】 |
+| Hosting and application infrastructure | To operate the website, APIs, database, and file storage. The default technical proposal is Cloudflare (for example Pages, Workers, D1, and R2). The final stack has not been confirmed | Not yet confirmed |
+| Payment processor | To charge, refund, and send payment receipts | The provider has not been named. Do not assume a named vendor is already chosen |
+| Authentication provider | To sign you in, if we use a third-party auth service | Not yet confirmed |
+| Analytics provider | To measure product events listed in this Policy | Not yet confirmed. Not enabled in this draft as a named live integration |
+| Email / transactional message provider | To send login, receipt, or support mail | Not yet confirmed |
+| Abuse-prevention or CAPTCHA provider | If a challenge is enabled | Not yet confirmed |
 | Professional advisers, or authorities | If required by law, or to protect rights, safety, and the service | Only when reasonably necessary |
 | A successor | If the operator transfers the service, subject to this Policy or a notice of change | Only if such a transaction happens |
 
@@ -119,14 +119,14 @@ When a vendor is confirmed, this table must be updated with the vendor name, loc
 | Data | Planned retention |
 |---|---|
 | Source text | Not kept as a long-term archive; deleted when no longer needed for the current task |
-| Free export files | Not currently stored for re-download. A short window (recommended ≤ 24 hours), if later offered, is 【PENDING CONFIRMATION】 |
-| Pro export files / history | Not currently provided. A 30-day history, if later offered, is 【PENDING CONFIRMATION】 |
+| Free export files | Not currently stored for re-download. A short window, if later offered, has not been set |
+| Pro export files / history | Not currently provided. A 30-day history, if later offered, has not been set |
 | Guest quota identifiers | As long as needed to enforce the current quota period and abuse rules |
-| Account profile and entitlements | For the life of the account, then a limited period for security and records 【PENDING CONFIRMATION】 |
-| Payment and tax records | For the period required by applicable tax and accounting rules 【PENDING CONFIRMATION】 |
+| Account profile and entitlements | For the life of the account, then a limited period for security and records has not been set |
+| Payment and tax records | For the period required by applicable tax and accounting rules has not been set |
 | Support messages | For as long as needed to resolve the request and maintain a reasonable service record |
-| Server logs | A short operational period unless needed for security investigations 【PENDING CONFIRMATION】 |
-| Analytics events | Per the analytics provider’s settings, once a provider is chosen 【PENDING CONFIRMATION】 |
+| Server logs | A short operational period unless needed for security investigations has not been set |
+| Analytics events | Per the analytics provider’s settings, once a provider is chosen has not been set |
 
 ## 9. Your choices
 
@@ -134,19 +134,19 @@ When a vendor is confirmed, this table must be updated with the vendor name, loc
 - You can refuse non-essential cookies, once an analytics product is enabled, as described in the Cookie Policy. Essential cookies are needed for quota and login.
 - You can cancel a Pro subscription as described in the Refund & Cancellation Policy. Cancellation stops future charges; it does not by itself delete your account.
 - You can ask us to access, correct, or delete account information, or to close the account, by writing to `privacy@text2handwriting.site`. We may need to verify the request and retain certain records if the law requires it.
-- Indian law (including the Digital Personal Data Protection Act, 2023, and any rules that are in force) may give you additional rights. Which rights apply to Writey, how they are exercised, and any required notices or consent flows are 【PENDING CONFIRMATION】 and will be aligned once the operator and counsel have reviewed them. This Policy does not claim that Writey is “DPDP certified” or “fully compliant”.
+- Indian law (including the Digital Personal Data Protection Act, 2023, and any rules that are in force) may give you additional rights. Which rights apply to Writey, how they are exercised, and any required notices or consent flows have not been settled and will be aligned once the operator and counsel have reviewed them. This Policy does not claim that Writey is “DPDP certified” or “fully compliant”.
 
 ## 10. Children and students
 
 Writey is a general tool for handwriting-style pages. It is not directed at children as an educational social network, and it is not designed to help anyone submit schoolwork dishonestly.
 
-The minimum age and any parental-consent flow are 【PENDING CONFIRMATION】. As a draft operating rule: a paid Pro subscription should only be purchased by a person who has legal capacity to contract, or by a parent or guardian on behalf of a student. If you are not old enough to use an online paid service on your own, please use Writey only with a parent or guardian.
+The minimum age and any parental-consent flow have not been set. As a draft operating rule: a paid Pro subscription should only be purchased by a person who has legal capacity to contract, or by a parent or guardian on behalf of a student. If you are not old enough to use an online paid service on your own, please use Writey only with a parent or guardian.
 
 If you believe we have collected personal data from a child in a way that should be deleted, contact `privacy@text2handwriting.site`.
 
 ## 11. International processing
 
-If we use a global infrastructure provider, information may be processed in data centres outside India. The locations, transfer safeguards, and whether a specific sub-processor list will be published are 【PENDING CONFIRMATION】.
+If we use a global infrastructure provider, information may be processed in data centres outside India. The locations, transfer safeguards, and whether a specific sub-processor list will be published have not been confirmed.
 
 ## 12. Security
 
@@ -158,12 +158,12 @@ Links to other websites, and the payment or authentication screens of vendors, a
 
 ## 14. Changes
 
-We may update this Policy. The “Last updated” date will change, and material changes will be indicated on this page or by a reasonable notice (for example, an email to account holders). Continued use after the effective date means you accept the updated Policy, except where a law requires a different approach 【PENDING CONFIRMATION】.
+We may update this Policy. The “Last updated” date will change, and material changes will be indicated on this page or by a reasonable notice (for example, an email to account holders). Continued use after the effective date means you accept the updated Policy, except where a law requires a different approach. Whether a different legal approach is required has not been settled.
 
 ## 15. Contact
 
 - Privacy: `privacy@text2handwriting.site`
 - Support: `support@text2handwriting.site`
-- Operator: `[LEGAL_ENTITY]`, `[REGISTERED_ADDRESS]` 【PENDING CONFIRMATION】
+- Operator: The legal person that operates Writey, and its registered address, will be named on this page once they are confirmed.
 
 If a statutory grievance or Data Protection Officer contact is required for the confirmed entity, those details will be added here. They are not invented in this draft.

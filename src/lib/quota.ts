@@ -89,7 +89,7 @@ export function evaluateExport(
       kind: "pages_per_export",
       code: "export_page_limit",
       title: "This document is over the per-export page limit",
-      body: `Free exports can include up to ${PRICES.freePagesPerPreview} pages at a time. Pro exports can include up to ${PRICES.proPagesPerPreview} pages at a time. 【PENDING CONFIRMATION】 Shorten the text, or split it into more than one export.`,
+      body: `Free exports can include up to ${PRICES.freePagesPerPreview} pages at a time. Pro exports can include up to ${PRICES.proPagesPerPreview} pages at a time. Shorten the text, or split it into more than one export.`,
     };
   }
   if (ent.pages_used >= ent.pages_limit || pageCount > remaining) {
@@ -99,7 +99,7 @@ export function evaluateExport(
         kind: "pages",
         code: "quota_pages_pro",
         title: "You’ve reached this month’s export limit",
-        body: `You’ve used this month’s Pro export pages (${PRICES.proPagesPerMonth}). 【PENDING CONFIRMATION】 You can keep editing and wait until your quota resets, or contact support. Pro is not unlimited.`,
+        body: `You’ve used this month’s Pro export pages (${PRICES.proPagesPerMonth}). You can keep editing and wait until your quota resets, or contact support. Pro is not unlimited.`,
       };
     }
     return {
@@ -107,7 +107,7 @@ export function evaluateExport(
       kind: "pages",
       code: "quota_pages_free",
       title: "You’ve reached this month’s export limit",
-      body: `You’ve used this month’s Free export pages (${PRICES.freePagesPerMonth}). 【PENDING CONFIRMATION】 You can keep editing. Upgrade to Pro for a higher monthly cap, or wait until your quota resets.`,
+      body: `You’ve used this month’s Free export pages (${PRICES.freePagesPerMonth}). You can keep editing. Upgrade to Pro for a higher monthly cap, or wait until your quota resets.`,
     };
   }
   if (ent.jobs_used_today >= ent.jobs_limit) {
@@ -116,7 +116,7 @@ export function evaluateExport(
       kind: "jobs",
       code: "quota_jobs",
       title: "You’ve reached today’s export-job limit",
-      body: `Free allows up to ${PRICES.freeJobsPerDay} export jobs per day. Pro allows up to ${PRICES.proJobsPerDay}. 【PENDING CONFIRMATION】 Monthly page caps still apply. You can wait until tomorrow, or upgrade if you are on Free.`,
+      body: `Free allows up to ${PRICES.freeJobsPerDay} export jobs per day. Pro allows up to ${PRICES.proJobsPerDay}. Monthly page caps still apply. You can wait until tomorrow, or upgrade if you are on Free.`,
     };
   }
   return { ok: true };
@@ -129,7 +129,7 @@ export function evaluatePreview(ent: Entitlement): QuotaDecision {
       kind: "previews",
       code: "quota_previews",
       title: "You’ve reached today’s preview limit",
-      body: "You can keep editing your text, but new preview refreshes are paused until tomorrow. Pro has a higher daily preview cap; it is not unlimited. 【PENDING CONFIRMATION】",
+      body: "You can keep editing your text, but new preview refreshes are paused until tomorrow. Pro has a higher daily preview cap; it is not unlimited.",
     };
   }
   return { ok: true };

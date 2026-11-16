@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FOOTER_LINKS, FOOTER_OPTIONAL } from "@/content/routes";
-import { SUPPORT_EMAIL, PRIVACY_EMAIL, footerYear, PENDING_MARK } from "@/content/site";
+import { SUPPORT_EMAIL, PRIVACY_EMAIL, footerYear } from "@/content/site";
 
 export function Footer() {
   return (
@@ -29,7 +29,7 @@ export function Footer() {
           {" · "}
           Privacy: <a href={`mailto:${PRIVACY_EMAIL}`}>{PRIVACY_EMAIL}</a>
           <br />
-          © {footerYear()} Writey. Operator is {PENDING_MARK}.
+          © {footerYear()} Writey.
         </p>
       </div>
     </footer>

@@ -8,9 +8,6 @@ import {
 } from "../../shared/site-origin.ts";
 
 export const BRAND_NAME = "Writey";
-export const BRAND_PENDING_NOTE = "Writey (brand display name is Pending confirmation)";
-export const PENDING_MARK = "【PENDING CONFIRMATION】";
-
 export const SUPPORT_EMAIL = OFFICIAL_SUPPORT_EMAIL;
 export const PRIVACY_EMAIL = OFFICIAL_PRIVACY_EMAIL;
 
@@ -21,7 +18,7 @@ export const PRICES = {
   free: "$0",
   proMonthly: "$3.99",
   proYearly: "$39",
-  pending: true,
+  pending: false,
   freePagesPerMonth: 8,
   proPagesPerMonth: 150,
   freePreviewPerDay: 10,
@@ -33,7 +30,7 @@ export const PRICES = {
 };
 
 export const PRICE_STATUS_SENTENCE =
-  "Recommended plan structure. Prices are shown in USD and are not a live offer until confirmed. Applicable taxes will be shown at checkout.";
+  "Prices are shown in USD. Payments are not open yet.";
 
 /**
  * Build-time public origin. Only a confirmed production https origin is used.

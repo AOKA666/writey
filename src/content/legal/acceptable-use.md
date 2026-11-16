@@ -6,7 +6,7 @@
 - Website: `https://text2handwriting.site`
 - Related: [Terms of Use](/terms)
 - Last updated: 13 November 2026 (draft)
-- Effective date: 【PENDING CONFIRMATION】
+- Effective date: This policy is a draft for review and does not yet have a confirmed effective date.
 
 Writey turns typed or pasted text into handwriting-style pages for preview and PDF/PNG export. This page explains how you may use that tool, and what we will not build.
 

@@ -343,7 +343,7 @@ async function check() {
           text.includes("writey_session") && text.includes("Max-Age=2592000"),
           "/cookie initial HTML names writey_session (30 days / Max-Age=2592000)",
         );
-        record(/PENDING CONFIRMATION/.test(text), "/cookie keeps pending rows for analytics/payment/security vendors");
+        record(!/PENDING CONFIRMATION|Pending confirmation|pending confirmation/.test(text), "/cookie has no user-facing pending confirmation tag");
       }
       if (path === "/terms") {
         record(/SIL Open Font License/i.test(text) || /SIL OFL 1\.1/i.test(text), "/terms states SIL OFL 1.1 for shipped fonts");

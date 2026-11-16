@@ -6,7 +6,7 @@ import {
   styleForLanguage,
   type PaperType,
 } from "@/content/handwriting";
-import { PENDING_MARK, PRICES, SUPPORT_EMAIL, TAX_LINE } from "@/content/site";
+import { PRICES, SUPPORT_EMAIL, TAX_LINE } from "@/content/site";
 import { track } from "@/lib/analytics";
 import { exportPdf, exportPng } from "@/lib/export";
 import { layoutDocument } from "@/lib/typography";
@@ -394,8 +394,7 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
             {" "}
             {Math.max(0, entitlement.jobs_limit - entitlement.jobs_used_today)} of {entitlement.jobs_limit} export jobs left today.
             {" "}
-            Limits depend on your plan.{" "}
-            <span className="pending">{PENDING_MARK}</span>
+            Limits depend on your plan.
           </p>
         </div>
         <div>
@@ -424,7 +423,7 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
           Payments are not open yet. We will not charge your account. You can keep using the Free plan or ask to be notified at {SUPPORT_EMAIL}.
         </p>
         <p>
-          Recommended price: {PRICES.proMonthly} / month or {PRICES.proYearly} / year, USD. 【PENDING CONFIRMATION】 {TAX_LINE}
+          Pro is {PRICES.proMonthly} / month or {PRICES.proYearly} / year, USD. Payments are not open yet. {TAX_LINE}
         </p>
         <p>
           See <Link to="/terms">Terms of Use</Link>, <Link to="/refund">Refund &amp; Cancellation</Link>, and{" "}
@@ -443,7 +442,7 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
         }
       >
         <p>
-          You’ve used this month’s Free export pages ({PRICES.freePagesPerMonth}). 【PENDING CONFIRMATION】 You can keep editing. Upgrade to Pro for a higher monthly cap, or wait until your quota resets.
+          You’ve used this month’s Free export pages ({PRICES.freePagesPerMonth}). You can keep editing. Upgrade to Pro for a higher monthly cap, or wait until your quota resets.
         </p>
       </StateDialog>
 
@@ -458,7 +457,7 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
         }
       >
         <p>
-          You’ve used this month’s Pro export pages ({PRICES.proPagesPerMonth}). 【PENDING CONFIRMATION】 You can keep editing and wait until your quota resets, or contact support. Pro is not unlimited.
+          You’ve used this month’s Pro export pages ({PRICES.proPagesPerMonth}). You can keep editing and wait until your quota resets, or contact support. Pro is not unlimited.
         </p>
       </StateDialog>
 
@@ -475,7 +474,7 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
         }
       >
         <p>
-          Free allows up to {PRICES.freeJobsPerDay} export jobs per day. Pro allows up to {PRICES.proJobsPerDay}. 【PENDING CONFIRMATION】 Monthly page caps still apply. You can wait until tomorrow, or upgrade if you are on Free.
+          Free allows up to {PRICES.freeJobsPerDay} export jobs per day. Pro allows up to {PRICES.proJobsPerDay}. Monthly page caps still apply. You can wait until tomorrow, or upgrade if you are on Free.
         </p>
       </StateDialog>
 
@@ -492,7 +491,7 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
         }
       >
         <p>
-          You can keep editing your text, but new preview refreshes are paused until tomorrow. Pro has a higher daily preview cap; it is not unlimited. 【PENDING CONFIRMATION】
+          You can keep editing your text, but new preview refreshes are paused until tomorrow. Pro has a higher daily preview cap; it is not unlimited.
         </p>
       </StateDialog>
 
@@ -507,7 +506,7 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
         }
       >
         <p>
-          Free exports can include up to {PRICES.freePagesPerPreview} pages at a time. Pro exports can include up to {PRICES.proPagesPerPreview} pages at a time. 【PENDING CONFIRMATION】 Shorten the text, or split it into more than one export.
+          Free exports can include up to {PRICES.freePagesPerPreview} pages at a time. Pro exports can include up to {PRICES.proPagesPerPreview} pages at a time. Shorten the text, or split it into more than one export.
         </p>
       </StateDialog>
 
@@ -522,7 +521,7 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
         }
       >
         <p>
-          Pro adds more licensed handwriting styles, higher export quality, and no watermark. Recommended price: {PRICES.proMonthly} / month or {PRICES.proYearly} / year, USD. 【PENDING CONFIRMATION】 {TAX_LINE}
+          Pro adds more licensed handwriting styles, higher export quality, and no watermark. Pro is {PRICES.proMonthly} / month or {PRICES.proYearly} / year, USD. Payments are not open yet. {TAX_LINE}
         </p>
         <button type="button" className="btn btn-secondary" onClick={() => setDialog(null)}>
           Keep Free settings

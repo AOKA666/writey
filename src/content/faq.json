@@ -6,7 +6,7 @@
         {
           "id": 1,
           "question": "Do I need an account to convert text to handwriting?",
-          "answer": "No. You can paste text, preview a page, and complete a useful Free export without signing in. An account is needed to keep your monthly quota across days or subscribe to Pro. Saved export history is not currently provided. 【PENDING CONFIRMATION】"
+          "answer": "No. You can paste text, preview a page, and complete a useful Free export without signing in. An account is needed to keep your monthly quota across days or subscribe to Pro. Saved export history is not currently provided."
         },
         {
           "id": 2,
@@ -66,7 +66,7 @@
         {
           "id": 11,
           "question": "How long can I re-download a file?",
-          "answer": "Saved export history is not currently provided. 【PENDING CONFIRMATION】 In the current product, PDF and PNG files download in your browser and are not kept in an account history you can reopen later. Download again from the editor if you still have the text open."
+          "answer": "Saved export history is not currently provided. In the current product, PDF and PNG files download in your browser and are not kept in an account history you can reopen later. Download again from the editor if you still have the text open."
         }
       ]
     },
@@ -76,12 +76,12 @@
         {
           "id": 12,
           "question": "What are the Free plan limits?",
-          "answer": "Free includes 8 basic styles, including usable Latin and Devanagari handwriting styles. The recommended Free plan is $0 and allows up to 8 export pages per calendar month, with a watermark and standard quality. 【PENDING CONFIRMATION】 Daily preview and per-job caps also apply. The core path works without an account."
+          "answer": "Free includes 8 basic styles, including usable Latin and Devanagari handwriting styles. Free is $0 and allows up to 8 export pages per calendar month, with a watermark and standard quality. Daily preview and per-job caps also apply. The core path works without an account."
         },
         {
           "id": 13,
           "question": "What are the Pro plan limits?",
-          "answer": "Pro includes all 11 licensed styles (the 8 Free styles plus 3 Pro styles). The recommended Pro plan is $3.99 per month or $39 per year, in USD, and allows up to 150 export pages per calendar month, with no watermark and higher export quality. 【PENDING CONFIRMATION】 These amounts are not a live offer until confirmed. Daily preview and per-job caps still apply."
+          "answer": "Pro includes all 11 licensed styles (the 8 Free styles plus 3 Pro styles). Pro is $3.99 per month or $39 per year, in USD, and allows up to 150 export pages per calendar month, with no watermark and higher export quality. Daily preview and per-job caps still apply. Payments are not open yet."
         },
         {
           "id": 14,
@@ -96,7 +96,7 @@
         {
           "id": 16,
           "question": "Why do I need an account for Pro?",
-          "answer": "An account is required so we can bill the subscription and apply your quota. Guest use remains available on Free for the first useful preview and export. Saved export history is not currently provided. 【PENDING CONFIRMATION】"
+          "answer": "An account is required so we can bill the subscription and apply your quota. Guest use remains available on Free for the first useful preview and export. Saved export history is not currently provided."
         }
       ]
     },
@@ -126,12 +126,12 @@
         {
           "id": 20,
           "question": "How much does Pro cost?",
-          "answer": "The recommended display prices are $3.99 per month or $39 per year, in USD. 【PENDING CONFIRMATION】 These figures are a proposed structure, not a confirmed live offer. Applicable taxes will be shown at checkout."
+          "answer": "Pro is $3.99 per month or $39 per year, in USD. Applicable taxes will be shown at checkout. Payments are not open yet."
         },
         {
           "id": 21,
           "question": "Is Pro unlimited?",
-          "answer": "No. Pro has a monthly cap of 150 export pages, and previews have daily and per-job caps. 【PENDING CONFIRMATION】 Neither plan is unlimited."
+          "answer": "No. Pro has a monthly cap of 150 export pages, and previews have daily and per-job caps. Neither plan is unlimited."
         },
         {
           "id": 22,

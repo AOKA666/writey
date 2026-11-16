@@ -7,9 +7,9 @@ export function LegalLayout({ id }: { id: LegalDocId }) {
   return (
     <>
       <div className="draft-banner">
-        <strong>Draft for review — Draft v2026-11-13 [pending confirmation]</strong>
+        <strong>Draft for review — Draft v2026-11-13</strong>
         <p style={{ margin: 0 }}>
-          This page is a product policy draft, not a legal opinion and not a certification of compliance with any law. Operator entity, domain, and effective dates remain pending confirmation.
+          This page is a product policy draft, not a legal opinion and not a certification of compliance with any law. The legal person that operates Writey, and the effective date of this policy, will be named once they are confirmed.
         </p>
       </div>
       <div className="legal-layout">

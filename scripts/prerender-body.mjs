@@ -10,7 +10,8 @@ import { scrubPlaceholderHostUrls } from "../shared/site-origin.ts";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
 const PRICE_STATUS_SENTENCE =
-  "Recommended plan structure. Prices are shown in USD and are not a live offer until confirmed. Applicable taxes will be shown at checkout.";
+  "Prices are shown in USD. Payments are not open yet.";
+const TAX_LINE = "Applicable taxes will be shown at checkout.";
 
 function esc(s) {
   return String(s)
@@ -54,7 +55,7 @@ const HOME_FAQ = [
   {
     question: "Do I need an account to convert text to handwriting?",
     answer:
-      "No. You can paste text, preview a page, and complete a useful Free export without signing in. An account is needed to keep quota across days or subscribe to Pro. Saved export history is not currently provided. 【PENDING CONFIRMATION】",
+      "No. You can paste text, preview a page, and complete a useful Free export without signing in. An account is needed to keep quota across days or subscribe to Pro. Saved export history is not currently provided.",
   },
   {
     question: "Is Writey a text to handwriting ai model that writes like a person?",
@@ -110,7 +111,7 @@ function siteFooter() {
           ·
           Privacy: <a href="mailto:privacy@text2handwriting.site">privacy@text2handwriting.site</a>
           <br />
-          © ${year} Writey. Operator is 【PENDING CONFIRMATION】.
+          © ${year} Writey.
         </p>
       </div>
     </footer>`;
@@ -157,9 +158,9 @@ function renderLegal(id, h1) {
           <h1 class="display-md">${esc(h1)}</h1>
         </div>
         <div class="draft-banner">
-          <strong>Draft for review — Draft v2026-11-13 [pending confirmation]</strong>
+          <strong>Draft for review — Draft v2026-11-13</strong>
           <p style="margin: 0">
-            This page is a product policy draft, not a legal opinion and not a certification of compliance with any law. Operator entity, domain, and effective dates remain pending confirmation.
+            This page is a product policy draft, not a legal opinion and not a certification of compliance with any law. The legal person that operates Writey, and the effective date of this policy, will be named once they are confirmed.
           </p>
         </div>
         <div class="legal-layout">
@@ -241,7 +242,7 @@ function homeBody() {
         <section class="section desk-well desk-split">
           <h2>Download PDF or PNG</h2>
           <p class="prose-muted">
-            Both Free and Pro can export PDF and PNG. Free uses standard export quality and a visible watermark. Pro removes the watermark and uses higher export quality. Exact DPI values are 【PENDING CONFIRMATION】.
+            Both Free and Pro can export PDF and PNG. Free uses standard export quality and a visible watermark. Pro removes the watermark and uses higher export quality.
           </p>
         </section>
         <section class="section desk-well desk-split">
@@ -255,7 +256,7 @@ function homeBody() {
             <li>Accessibility needs, when writing at length is difficult and you still want a handwritten look</li>
             <li>Teacher or classroom examples, where that is allowed</li>
           </ul>
-          <p class="pending">These are the uses we show on the site. Read Acceptable Use before you export.</p>
+          <p class="prose-muted">These are the uses we show on the site. Read Acceptable Use before you export.</p>
           </div>
         </section>
         <section class="section desk-well desk-split">
@@ -279,14 +280,15 @@ function homeBody() {
             <article class="desk-well">
               <h3>Free</h3>
               <p class="plan-price">$0</p>
-              <p class="muted">8 export pages per month, with a watermark. <span class="pending">【PENDING CONFIRMATION】</span></p>
+              <p class="muted">8 export pages per month, with a watermark.</p>
             </article>
             <article class="desk-well">
               <h3>Pro</h3>
               <p class="plan-price">$3.99 / month or $39 / year</p>
-              <p class="muted">150 export pages per month, no watermark. <span class="pending">【PENDING CONFIRMATION】</span></p>
+              <p class="muted">150 export pages per month, no watermark.</p>
             </article>
           </div>
+          <p class="prose-muted">Neither plan is unlimited. ${esc(TAX_LINE)}</p>
         </section>
         <section class="section desk-well">
           <h2>Frequently asked questions</h2>
@@ -320,7 +322,7 @@ function hindiBody() {
 <p class="prose-muted">
             Writey can preview and export Hindi text written in Devanagari. The handwriting style should look handwritten, not like a plain print font dropped onto the page. English remains available in the same editor.
           </p>
-          <p class="pending">
+          <p class="prose-muted">
             Specimen fonts are licensed under SIL OFL 1.1. Devanagari quality is still a limitation of these specimens. Do not treat Hindi first-class commercial fonts as already delivered, and do not treat handwriting cloning as supported.
           </p>
           </div>
@@ -334,7 +336,7 @@ function hindiBody() {
         <section class="section desk-well desk-split">
           <h2>Export PDF or PNG</h2>
           <p class="prose-muted">
-            When the preview looks right, download PDF or PNG. Free exports include a visible brand watermark. Pro removes the watermark and uses higher export quality. 【PENDING CONFIRMATION】
+            When the preview looks right, download PDF or PNG. Free exports include a visible brand watermark. Pro removes the watermark and uses higher export quality.
           </p>
         </section>
         <section class="section desk-well desk-split">
@@ -363,7 +365,7 @@ function pricingBody() {
           <p class="lede">
             Start with a useful Free allowance. Upgrade to Pro for more pages, more handwriting styles, higher export quality, and no watermark.
           </p>
-          <p class="pending">${esc(PRICE_STATUS_SENTENCE)}</p>
+          <p class="prose-muted">${esc(PRICE_STATUS_SENTENCE)} ${esc(TAX_LINE)}</p>
         </div>
         <section class="section desk-well">
           <h2>Who these plans are for</h2>
@@ -376,31 +378,31 @@ function pricingBody() {
             <h2>Free plan</h2>
             <p class="plan-price">$0, USD</p>
             <ul class="list-plain">
-              <li>8 export pages per calendar month <span class="pending">【PENDING CONFIRMATION】</span></li>
+              <li>8 export pages per calendar month</li>
               <li>Visible brand watermark that does not cover your text</li>
-              <li>Standard export quality <span class="pending">【PENDING CONFIRMATION】</span></li>
+              <li>Standard export quality</li>
               <li>8 basic styles, including usable Latin and Devanagari handwriting styles</li>
               <li>PDF and PNG export</li>
-              <li>Up to 10 preview refreshes per day, and up to 8 pages per preview <span class="pending">【PENDING CONFIRMATION】</span></li>
-              <li>Up to 2 export jobs per day, still limited by the monthly page cap <span class="pending">【PENDING CONFIRMATION】</span></li>
-              <li>Saved export history is not currently provided. 【PENDING CONFIRMATION】</li>
+              <li>Up to 10 preview refreshes per day, and up to 8 pages per preview</li>
+              <li>Up to 2 export jobs per day, still limited by the monthly page cap</li>
+              <li>Saved export history is not currently provided.</li>
               <li>Core path works without an account; sign in to keep quota across days</li>
             </ul>
           </article>
           <article class="desk-well">
             <h2>Pro plan</h2>
             <p class="plan-price">
-              $3.99 / month or $39 / year, USD <span class="pending">【PENDING CONFIRMATION】</span>
+              $3.99 / month or $39 / year, USD
             </p>
             <ul class="list-plain">
-              <li>150 export pages per calendar month <span class="pending">【PENDING CONFIRMATION】</span></li>
+              <li>150 export pages per calendar month</li>
               <li>No watermark</li>
-              <li>Higher export quality <span class="pending">【PENDING CONFIRMATION】</span></li>
+              <li>Higher export quality</li>
               <li>All 11 licensed styles (the 8 Free styles plus 3 Pro styles; does not include handwriting cloning)</li>
               <li>PDF and PNG export</li>
-              <li>Up to 50 preview refreshes per day, and up to 20 pages per preview <span class="pending">【PENDING CONFIRMATION】</span></li>
-              <li>Up to 10 export jobs per day, still limited by the monthly page cap <span class="pending">【PENDING CONFIRMATION】</span></li>
-              <li>Saved export history is not currently provided. 【PENDING CONFIRMATION】</li>
+              <li>Up to 50 preview refreshes per day, and up to 20 pages per preview</li>
+              <li>Up to 10 export jobs per day, still limited by the monthly page cap</li>
+              <li>Saved export history is not currently provided.</li>
               <li>Account required for billing and quota</li>
             </ul>
             <p class="prose-muted">

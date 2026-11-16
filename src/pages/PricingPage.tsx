@@ -27,7 +27,7 @@ export function PricingPage() {
           <p className="lede">
             Start with a useful Free allowance. Upgrade to Pro for more pages, more handwriting styles, higher export quality, and no watermark.
           </p>
-          <p className="pending">{PRICE_STATUS_SENTENCE}</p>
+          <p className="prose-muted">{PRICE_STATUS_SENTENCE} {TAX_LINE}</p>
         </div>
 
         <section className="section desk-well">
@@ -42,14 +42,14 @@ export function PricingPage() {
             <h2>Free plan</h2>
             <p className="plan-price">{PRICES.free}, USD</p>
             <ul className="list-plain">
-              <li>{PRICES.freePagesPerMonth} export pages per calendar month <span className="pending">【PENDING CONFIRMATION】</span></li>
+              <li>{PRICES.freePagesPerMonth} export pages per calendar month</li>
               <li>Visible brand watermark that does not cover your text</li>
-              <li>Standard export quality <span className="pending">【PENDING CONFIRMATION】</span></li>
+              <li>Standard export quality</li>
               <li>8 basic styles, including usable Latin and Devanagari handwriting styles</li>
               <li>PDF and PNG export</li>
-              <li>Up to {PRICES.freePreviewPerDay} preview refreshes per day, and up to {PRICES.freePagesPerPreview} pages per preview <span className="pending">【PENDING CONFIRMATION】</span></li>
-              <li>Up to {PRICES.freeJobsPerDay} export jobs per day, still limited by the monthly page cap <span className="pending">【PENDING CONFIRMATION】</span></li>
-              <li>Saved export history is not currently provided. 【PENDING CONFIRMATION】</li>
+              <li>Up to {PRICES.freePreviewPerDay} preview refreshes per day, and up to {PRICES.freePagesPerPreview} pages per preview</li>
+              <li>Up to {PRICES.freeJobsPerDay} export jobs per day, still limited by the monthly page cap</li>
+              <li>Saved export history is not currently provided.</li>
               <li>Core path works without an account; sign in to keep quota across days</li>
             </ul>
             <Link className="btn btn-primary" to="/#editor" style={{ marginTop: "1rem" }}>
@@ -59,17 +59,17 @@ export function PricingPage() {
           <article className="desk-well">
             <h2>Pro plan</h2>
             <p className="plan-price">
-              {PRICES.proMonthly} / month or {PRICES.proYearly} / year, USD <span className="pending">【PENDING CONFIRMATION】</span>
+              {PRICES.proMonthly} / month or {PRICES.proYearly} / year, USD
             </p>
             <ul className="list-plain">
-              <li>{PRICES.proPagesPerMonth} export pages per calendar month <span className="pending">【PENDING CONFIRMATION】</span></li>
+              <li>{PRICES.proPagesPerMonth} export pages per calendar month</li>
               <li>No watermark</li>
-              <li>Higher export quality <span className="pending">【PENDING CONFIRMATION】</span></li>
+              <li>Higher export quality</li>
               <li>All 11 licensed styles (the 8 Free styles plus 3 Pro styles; does not include handwriting cloning)</li>
               <li>PDF and PNG export</li>
-              <li>Up to {PRICES.proPreviewPerDay} preview refreshes per day, and up to {PRICES.proPagesPerPreview} pages per preview <span className="pending">【PENDING CONFIRMATION】</span></li>
-              <li>Up to {PRICES.proJobsPerDay} export jobs per day, still limited by the monthly page cap <span className="pending">【PENDING CONFIRMATION】</span></li>
-              <li>Saved export history is not currently provided. 【PENDING CONFIRMATION】</li>
+              <li>Up to {PRICES.proPreviewPerDay} preview refreshes per day, and up to {PRICES.proPagesPerPreview} pages per preview</li>
+              <li>Up to {PRICES.proJobsPerDay} export jobs per day, still limited by the monthly page cap</li>
+              <li>Saved export history is not currently provided.</li>
               <li>Account required for billing and quota</li>
             </ul>
             <p className="prose-muted">
@@ -104,17 +104,17 @@ export function PricingPage() {
                 <tr>
                   <td>Display price</td>
                   <td>{PRICES.free}</td>
-                  <td>{PRICES.proMonthly} / month or {PRICES.proYearly} / year <span className="pending">【PENDING CONFIRMATION】</span></td>
+                  <td>{PRICES.proMonthly} / month or {PRICES.proYearly} / year</td>
                 </tr>
                 <tr>
                   <td>Currency</td>
                   <td>USD</td>
-                  <td>USD; payment rail <span className="pending">【PENDING CONFIRMATION】</span></td>
+                  <td>USD</td>
                 </tr>
                 <tr>
                   <td>Export pages / month</td>
-                  <td>{PRICES.freePagesPerMonth} <span className="pending">【PENDING CONFIRMATION】</span></td>
-                  <td>{PRICES.proPagesPerMonth} <span className="pending">【PENDING CONFIRMATION】</span></td>
+                  <td>{PRICES.freePagesPerMonth}</td>
+                  <td>{PRICES.proPagesPerMonth}</td>
                 </tr>
                 <tr>
                   <td>Watermark</td>
@@ -128,8 +128,8 @@ export function PricingPage() {
                 </tr>
                 <tr>
                   <td>Export quality</td>
-                  <td>Standard <span className="pending">【PENDING CONFIRMATION】</span></td>
-                  <td>Higher export quality <span className="pending">【PENDING CONFIRMATION】</span></td>
+                  <td>Standard</td>
+                  <td>Higher export quality</td>
                 </tr>
                 <tr>
                   <td>Styles</td>
@@ -138,18 +138,18 @@ export function PricingPage() {
                 </tr>
                 <tr>
                   <td>Preview</td>
-                  <td>Up to {PRICES.freePreviewPerDay} refreshes / day; up to {PRICES.freePagesPerPreview} pages per preview <span className="pending">【PENDING CONFIRMATION】</span></td>
-                  <td>Up to {PRICES.proPreviewPerDay} refreshes / day; up to {PRICES.proPagesPerPreview} pages per preview <span className="pending">【PENDING CONFIRMATION】</span></td>
+                  <td>Up to {PRICES.freePreviewPerDay} refreshes / day; up to {PRICES.freePagesPerPreview} pages per preview</td>
+                  <td>Up to {PRICES.proPreviewPerDay} refreshes / day; up to {PRICES.proPagesPerPreview} pages per preview</td>
                 </tr>
                 <tr>
                   <td>Daily export jobs</td>
-                  <td>Up to {PRICES.freeJobsPerDay}, still limited by the monthly page cap <span className="pending">【PENDING CONFIRMATION】</span></td>
-                  <td>Up to {PRICES.proJobsPerDay}, still limited by the monthly page cap <span className="pending">【PENDING CONFIRMATION】</span></td>
+                  <td>Up to {PRICES.freeJobsPerDay}, still limited by the monthly page cap</td>
+                  <td>Up to {PRICES.proJobsPerDay}, still limited by the monthly page cap</td>
                 </tr>
                 <tr>
                   <td>History</td>
-                  <td>Saved export history is not currently provided. 【PENDING CONFIRMATION】</td>
-                  <td>Saved export history is not currently provided. 【PENDING CONFIRMATION】</td>
+                  <td>Saved export history is not currently provided.</td>
+                  <td>Saved export history is not currently provided.</td>
                 </tr>
                 <tr>
                   <td>Login</td>
@@ -237,7 +237,7 @@ export function PricingPage() {
         <p>
           Payments are not open yet. We will not charge your account. You can keep using the Free plan or ask to be notified at {SUPPORT_EMAIL}.
         </p>
-        <p>Recommended price: {PRICES.proMonthly} / month or {PRICES.proYearly} / year, USD. 【PENDING CONFIRMATION】 {TAX_LINE}</p>
+        <p>Pro is {PRICES.proMonthly} / month or {PRICES.proYearly} / year, USD. Payments are not open yet. {TAX_LINE}</p>
         <p>
           See <Link to="/terms">Terms of Use</Link>, <Link to="/refund">Refund &amp; Cancellation</Link>, and{" "}
           <Link to="/acceptable-use">Acceptable Use</Link>.

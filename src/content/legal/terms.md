@@ -4,10 +4,10 @@
 
 - Service: Writey
 - Website: `https://text2handwriting.site`
-- Operator: `[LEGAL_ENTITY]` 【PENDING CONFIRMATION】
+- Operator: The legal person that operates Writey will be named on this page once it is confirmed.
 - Support: `support@text2handwriting.site`
 - Last updated: 14 November 2026 (draft; export history wording revised so it is not described as a live feature)
-- Effective date: 【PENDING CONFIRMATION】
+- Effective date: This policy is a draft for review and does not yet have a confirmed effective date.
 
 These Terms, together with the [Privacy Policy](/privacy), [Cookie Policy](/cookie), [Refund & Cancellation Policy](/refund), and [Acceptable Use](/acceptable-use) pages, govern your use of Writey. If you do not agree, do not use the service.
 
@@ -26,7 +26,7 @@ The core editor can be used without an account, subject to Free limits. An accou
 
 ## 2. Eligibility
 
-The exact minimum age is 【PENDING CONFIRMATION】. As a draft rule:
+The exact minimum age has not been set. As a draft rule:
 
 - You may use the Free tool if you can understand these Terms and use the site lawfully.
 - A paid Pro subscription may only be purchased by a person with legal capacity to contract, or by a parent or guardian paying on a student’s behalf.
@@ -37,20 +37,20 @@ The exact minimum age is 【PENDING CONFIRMATION】. As a draft rule:
 - You are responsible for the activity on your account and for keeping login details confidential.
 - Guest quota may be tracked with essential cookies and/or IP address on a best-effort basis. Signing in may merge recent guest usage into your account so that limits stay accurate.
 - We may refuse, suspend, or rate-limit access to protect the service from abuse, automation, or security risk.
-- The authentication provider, if any, is 【PENDING CONFIRMATION】.
+- The authentication provider, if any, has not been named.
 
 ## 4. Plans, quotas, and prices
 
-Current recommended plan structure (Owner confirmation still required before prices become a live offer):
+Current list prices (Owner-confirmed, in USD). Payments are not open yet:
 
 | Plan | Price (display) | Main commercial limits |
 |---|---|---|
 | Free | $0, USD | Up to 8 export pages per calendar month, visible watermark, standard export quality, 8 handwriting styles, daily preview cap. No stored re-download library is currently provided. |
-| Pro | Recommended $3.99 / month or $39 / year, USD display and list price (monthly price may be adjusted within $2.99–$4.99) | Up to 150 export pages per calendar month, no watermark, higher export quality, all licensed styles. A 30-day stored export history is not currently provided. |
+| Pro | $3.99 / month or $39 / year, USD | Up to 150 export pages per calendar month, no watermark, higher export quality, all licensed styles. A 30-day stored export history is not currently provided. |
 
-Exports are generated in the browser for you to save at the time of export. The current service does not offer in-account history viewing or later re-download of past exports. A Free short re-download window or a Pro 30-day export history, if later offered, is 【PENDING CONFIRMATION】 and must not be described as available until it is implemented.
+Exports are generated in the browser for you to save at the time of export. The current service does not offer in-account history viewing or later re-download of past exports. A Free short re-download window or a Pro 30-day export history, if later offered, has not been set and must not be described as available until it is implemented.
 
-The display and list currency is USD, as confirmed by the Owner on 13 November 2026. This supersedes the earlier INR recommended prices (₹299 / month or ₹2,499 / year), which must not be used. The recommended Pro amounts, the billing timezone, GST or other tax treatment, and the payment provider remain 【PENDING CONFIRMATION】. Until the operator confirms the final prices, they are a proposed structure, not a binding public price list. Do not show an unregulated INR price alongside USD, and do not treat an exchange-rate snapshot as a fixed front-end conversion.
+The display and list currency is USD, as confirmed by the Owner on 13 November 2026. This supersedes the earlier INR recommended prices (₹299 / month or ₹2,499 / year), which must not be used. The Owner-confirmed list prices are Free $0 and Pro $3.99 / month or $39 / year, in USD. The billing timezone, GST or other tax treatment, and the payment provider have not been confirmed. Payments are not open yet. Do not show an unregulated INR price alongside USD, and do not treat an exchange-rate snapshot as a fixed front-end conversion.
 
 Additional rules that will not be softened:
 
@@ -83,11 +83,11 @@ We may remove content, limit exports, or close accounts that reasonably appear t
 
 ## 7. Payments, renewal, and cancellation
 
-- Pro is a recurring subscription (monthly or yearly) once payments are enabled. The payment provider and methods (for example UPI, card, or net banking) are 【PENDING CONFIRMATION】.
-- Renewals, invoices, and GST-inclusive or GST-exclusive display are 【PENDING CONFIRMATION】.
+- Pro is a recurring subscription (monthly or yearly) once payments are enabled. The payment provider and methods (for example UPI, card, or net banking) have not been named.
+- How renewals and invoices will be handled, and whether prices are shown inclusive or exclusive of GST, has not been confirmed. This page does not state that prices are inclusive or exclusive of GST.
 - You can cancel future renewals through the account or payment-provider flow once that flow exists, or by contacting `support@text2handwriting.site`.
 - After cancellation, Pro usually remains available until the end of the paid period, then reverts to Free. Whether any unused time is refunded is described in the [Refund & Cancellation Policy](/refund) and is not finally confirmed in this draft.
-- Taxes, GSTIN, and tax invoices are 【PENDING CONFIRMATION】.
+- Taxes, any GSTIN, and how tax invoices will be issued have not been confirmed.
 
 ## 8. Disclaimers
 
@@ -98,11 +98,11 @@ To the fullest extent permitted by applicable law:
 - We do not guarantee grades, marks, academic outcomes, or that use of the service will be undetectable.
 - Nothing on the site is legal, tax, or academic advice.
 
-Some rights under Indian consumer or other law may not be excluded. Those mandatory rights are not limited by this section. The exact effect of this disclaimer is 【PENDING CONFIRMATION】 and should be reviewed by qualified counsel before a paid launch.
+Some rights under Indian consumer or other law may not be excluded. Those mandatory rights are not limited by this section. The exact effect of this disclaimer has not been settled and should be reviewed by qualified counsel before a paid launch.
 
 ## 9. Liability
 
-Subject to any non-waivable rights that may apply, and once the operator is confirmed, we intend to limit our aggregate liability for a claim relating to the service to the amount you paid us for Pro in the three (3) months before the claim, or, if you used only the Free plan, to a modest fixed cap that counsel will confirm. This is a **draft commercial position**, not a legal conclusion, and the final cap, exceptions (for example fraud, death or personal injury caused by negligence, or other liabilities that cannot be limited), and enforceability are all 【PENDING CONFIRMATION】.
+Subject to any non-waivable rights that may apply, and once the operator is confirmed, we intend to limit our aggregate liability for a claim relating to the service to the amount you paid us for Pro in the three (3) months before the claim, or, if you used only the Free plan, to a modest fixed cap that counsel will confirm. This is a **draft commercial position**, not a legal conclusion, and the final cap, exceptions (for example fraud, death or personal injury caused by negligence, or other liabilities that cannot be limited), and enforceability have not been settled.
 
 We are not liable for losses caused by misuse, academic or professional consequences of how you use exports, matters outside our reasonable control, or payment-provider outages, except where a mandatory law says otherwise.
 
@@ -110,14 +110,14 @@ We are not liable for losses caused by misuse, academic or professional conseque
 
 We may change the service, these Terms, or plan limits. For material changes, we will update this page and, where reasonable, notify account holders. If you do not agree, you should stop using the service and cancel any subscription.
 
-We may suspend or end the service or an account if we reasonably believe these Terms have been broken, if we must do so for legal or security reasons, or if the service is discontinued. Prepaid refunds in a discontinuation scenario are 【PENDING CONFIRMATION】 and will follow the Refund Policy and any mandatory law.
+We may suspend or end the service or an account if we reasonably believe these Terms have been broken, if we must do so for legal or security reasons, or if the service is discontinued. Prepaid refunds in a discontinuation scenario have not been settled and will follow the Refund Policy and any mandatory law.
 
 ## 11. Governing law
 
-Governing law and venue are 【PENDING CONFIRMATION】, because the legal entity is not yet confirmed. The draft intention, given that the product is aimed at users in India, is that the laws of India will govern, and that courts in `[FORUM_CITY, INDIA]` 【PENDING CONFIRMATION】 will have jurisdiction, without limiting any mandatory consumer-forum rights you may have. This is not a concluded legal choice-of-law opinion.
+Governing law and venue have not been settled, because the legal entity is not yet confirmed. The draft intention, given that the product is aimed at users in India, is that the laws of India will govern, and that courts in a city in India (to be named once the operator is confirmed) will have jurisdiction, without limiting any mandatory consumer-forum rights you may have. This is not a concluded legal choice-of-law opinion.
 
 ## 12. Contact
 
 - Support: `support@text2handwriting.site`
 - Privacy: `privacy@text2handwriting.site`
-- Operator: `[LEGAL_ENTITY]`, `[REGISTERED_ADDRESS]` 【PENDING CONFIRMATION】
+- Operator: The legal person that operates Writey, and its registered address, will be named on this page once they are confirmed.

@@ -96,7 +96,7 @@ export function HomePage() {
         <section className="section desk-well desk-split">
           <h2>Download PDF or PNG</h2>
           <p className="prose-muted">
-            Both Free and Pro can export PDF and PNG. Free uses standard export quality and a visible watermark. Pro removes the watermark and uses higher export quality. Exact DPI values are 【PENDING CONFIRMATION】.
+            Both Free and Pro can export PDF and PNG. Free uses standard export quality and a visible watermark. Pro removes the watermark and uses higher export quality.
           </p>
         </section>
 
@@ -111,7 +111,7 @@ export function HomePage() {
               <li>Accessibility needs, when writing at length is difficult and you still want a handwritten look</li>
               <li>Teacher or classroom examples, where that is allowed</li>
             </ul>
-            <p className="pending">These are the uses we show on the site. Read Acceptable Use before you export.</p>
+            <p className="prose-muted">These are the uses we show on the site. Read Acceptable Use before you export.</p>
           </div>
         </section>
 
@@ -138,7 +138,7 @@ export function HomePage() {
               <h3>Free</h3>
               <p className="plan-price">{PRICES.free}</p>
               <p className="muted">
-                {PRICES.freePagesPerMonth} export pages per month, with a watermark. <span className="pending">【PENDING CONFIRMATION】</span>
+                {PRICES.freePagesPerMonth} export pages per month, with a watermark.
               </p>
               <ul className="list-plain">
                 <li><IconCheck /> Visible brand watermark</li>
@@ -153,11 +153,11 @@ export function HomePage() {
                 {PRICES.proMonthly} / month or {PRICES.proYearly} / year
               </p>
               <p className="muted">
-                {PRICES.proPagesPerMonth} export pages per month, no watermark. <span className="pending">【PENDING CONFIRMATION】</span>
+                {PRICES.proPagesPerMonth} export pages per month, no watermark.
               </p>
               <ul className="list-plain">
                 <li><IconCheck /> No watermark</li>
-                <li><IconCheck /> Higher export quality <span className="pending">【PENDING CONFIRMATION】</span></li>
+                <li><IconCheck /> Higher export quality</li>
                 <li><IconCheck /> All 11 licensed styles (the 8 Free styles plus 3 Pro styles; does not include handwriting cloning)</li>
                 <li><IconCheck /> Higher daily caps — still not unlimited</li>
               </ul>

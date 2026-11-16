@@ -59,7 +59,7 @@ export function LoginPage() {
             </div>
           </form>
           <p className="hint">
-            Reset your password. We will send a link to your account email. Provider 【PENDING CONFIRMATION】.
+            Reset your password. We will send a link to your account email.
           </p>
         </div>
       </main>
