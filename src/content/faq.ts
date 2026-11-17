@@ -17,12 +17,12 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         "id": 1,
         "question": "Do I need an account to convert text to handwriting?",
-        "answer": "No. You can paste text, preview a page, and complete a useful Free export without signing in. An account is needed to keep your monthly quota across days or subscribe to Pro. Saved export history is not currently provided."
+        "answer": "No. You can paste text in this free online editor, preview a page, and download a PDF or PNG without signing in. An account is needed to keep your monthly quota across days or subscribe to Pro. Saved export history is not currently provided."
       },
       {
         "id": 2,
         "question": "How does the text to handwriting converter work?",
-        "answer": "You paste or type text, choose a handwriting style and paper, preview the page, and download PDF or PNG. You can also set margins, line spacing, ink colour, and optional natural variation for appearance."
+        "answer": "You paste or type text, choose a handwriting style and paper, preview the page in this online editor, and download PDF or PNG. You can also set margins, line spacing, ink colour, and optional natural variation for appearance."
       },
       {
         "id": 3,
@@ -32,7 +32,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         "id": 4,
         "question": "Is Writey a text to handwriting ai model that writes like a person?",
-        "answer": "No. Writey is a typography tool: you type or paste text, choose a handwriting-style font and paper, preview the page, and export PDF or PNG. People often search for text to handwriting ai for this job. Writey does not clone a person’s handwriting and does not use a generative model that writes like a human. “AI handwriting generator” may appear in similar searches; it is a secondary synonym, not our product name, and we do not call Writey an AI handwriting generator."
+        "answer": "No. Writey is a typography tool: you type or paste text, choose a handwriting-style font and paper, preview the page in this free online editor, and export PDF or PNG. People often search for text to handwriting ai for this job. Writey does not clone a person’s handwriting and does not use a generative model that writes like a human. “AI handwriting generator” may appear in similar searches; it is a secondary synonym, not our product name, and we do not call Writey an AI handwriting generator."
       }
     ]
   },
@@ -62,7 +62,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         "id": 8,
         "question": "What file formats can I download?",
-        "answer": "You can download PDF or PNG. Both Free and Pro include these formats. Export quality and watermark rules depend on your plan."
+        "answer": "You can download PDF or PNG. This free online tool includes both formats on Free and Pro. Export quality and watermark rules depend on your plan."
       },
       {
         "id": 9,
@@ -87,12 +87,12 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         "id": 12,
         "question": "What are the Free plan limits?",
-        "answer": "Free includes 8 basic styles, including usable Latin and Devanagari handwriting styles. Free is $0 and allows up to 8 export pages per calendar month, with a watermark and standard quality. Daily preview and per-job caps also apply. The core path works without an account."
+        "answer": "Free includes 11 basic styles, including usable Latin and Devanagari handwriting styles. Free is $0 and allows up to 8 export pages per calendar month, with a watermark and standard quality. Daily preview and per-job caps also apply. The core path works without an account."
       },
       {
         "id": 13,
         "question": "What are the Pro plan limits?",
-        "answer": "Pro includes all 11 licensed styles (the 8 Free styles plus 3 Pro styles). Pro is $3.99 per month or $39 per year, in USD, and allows up to 150 export pages per calendar month, with no watermark and higher export quality. Daily preview and per-job caps still apply. Payments are not open yet."
+        "answer": "Pro includes all 15 licensed styles (the 11 Free styles plus 4 Pro styles). Pro is $3.99 per month or $39 per year, in USD, and allows up to 150 export pages per calendar month, with no watermark and higher export quality. Daily preview and per-job caps still apply. Payments are not open yet."
       },
       {
         "id": 14,
@@ -180,13 +180,13 @@ export const HOME_FAQ: FaqItem[] = [
     id: 1,
     question: "Do I need an account to convert text to handwriting?",
     answer:
-      "No. You can paste text, preview a page, and complete a useful Free export without signing in. An account is needed to keep quota across days or subscribe to Pro. Saved export history is not currently provided.",
+      "No. You can paste text in this free online editor, preview a page, and download a PDF or PNG without signing in. An account is needed to keep quota across days or subscribe to Pro. Saved export history is not currently provided.",
   },
   {
     id: 4,
     question: "Is Writey a text to handwriting ai model that writes like a person?",
     answer:
-      "No. Writey is a typography tool: you type or paste text, choose a handwriting-style font and paper, preview the page, and export PDF or PNG. People often search for text to handwriting ai for this job. Writey does not clone a person’s handwriting and does not use a generative model that writes like a human.",
+      "No. Writey is a typography tool: you type or paste text, choose a handwriting-style font and paper, preview the page in this free online editor, and export PDF or PNG. People often search for text to handwriting ai for this job. Writey does not clone a person’s handwriting and does not use a generative model that writes like a human.",
   },
   {
     id: 5,
@@ -198,7 +198,7 @@ export const HOME_FAQ: FaqItem[] = [
     id: 8,
     question: "What file formats can I download?",
     answer:
-      "You can download PDF or PNG. Both plans include these formats. Quality and watermark rules depend on your plan.",
+      "You can download PDF or PNG. This free online tool includes both formats on Free and Pro. Quality and watermark rules depend on your plan.",
   },
   {
     id: 17,
@@ -213,7 +213,7 @@ export const HINDI_FAQ: FaqItem[] = [
     id: 101,
     question: "Can I export Hindi pages without an account?",
     answer:
-      "Yes. Guest users can preview and complete a useful Free export, including Hindi text, within plan limits.",
+      "Yes. Guest users can preview and complete a useful Free export online, including Hindi text, and download PDF or PNG within plan limits.",
   },
   {
     id: 102,

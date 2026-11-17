@@ -406,6 +406,9 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
             error={previewError}
             languageLabel={settings.language === "hi" ? "Hindi" : "English"}
           />
+          <p className="diff-statement">
+            Preview and export without an account. The preview is what you get — your PDF or PNG follows this page. This is handwriting fonts and typographic layout, not a handwriting clone, and not a generative model that writes like a real person.
+          </p>
         </div>
       </div>
 

@@ -15,11 +15,15 @@ Free
 - Covered By Your Grace (SIL OFL 1.1) — “Grace Ink”
 - Kalam (SIL OFL 1.1), including Devanagari — “Kavya Devanagari”
 - Dekko (SIL OFL 1.1), including Devanagari — “Patra Devanagari”
+- Tillana (SIL OFL 1.1), including Devanagari — “Baithak Cursive”
+- Gloria Hallelujah (SIL OFL 1.1) — “Sunday Notes”
+- Shantell Sans (SIL OFL 1.1) — “Studio Print”
 
 Pro
 - Dancing Script (SIL OFL 1.1) — “Studio Loop” (Reserved Font Name; do not use “Dancing Script” in the product UI)
 - Homemade Apple (Apache License 2.0) — “Orchard Script”
 - Amita (SIL OFL 1.1), including Devanagari — “Mela Script”
+- Caveat Brush (SIL OFL 1.1) — “Oxford Brush”
 
 Licence texts are in `licenses/` and must be kept. The official site may use these files under the licences named above; do not claim that Hindi first-class commercial fonts have been delivered, and do not claim that handwriting cloning is supported.
 

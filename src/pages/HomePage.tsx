@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Editor } from "@/components/Editor";
+import { OutputComparison } from "@/components/OutputComparison";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { QaControls } from "@/components/QaControls";
@@ -23,6 +24,7 @@ export function HomePage() {
         </div>
         <Editor />
         {import.meta.env.VITE_ENABLE_QA === "1" ? <QaControls /> : null}
+        <OutputComparison />
 
         <section className="section desk-well">
           <h2>Preview before you download</h2>
@@ -73,7 +75,7 @@ export function HomePage() {
             </article>
             <article className="desk-well">
               <h3>3. Preview and export</h3>
-              <p className="muted">Check the page in the preview, then download PDF or PNG. The first useful export can be done without an account, within Free limits.</p>
+              <p className="muted">Check the page in the preview, then download PDF or PNG from this online editor. The first useful export can be done without an account, within Free limits.</p>
             </article>
           </div>
         </section>
@@ -81,7 +83,7 @@ export function HomePage() {
         <section className="section desk-well desk-split">
           <h2>Choose a handwriting style</h2>
           <p className="prose-muted">
-            Free includes 8 basic styles, including usable Latin and Devanagari handwriting styles. Pro unlocks all 11 licensed styles (the 8 Free styles plus 3 Pro styles). Writey does not clone your own handwriting.
+            Free includes 11 basic styles, including usable Latin and Devanagari handwriting styles. Pro unlocks all 15 licensed styles (the 11 Free styles plus 4 Pro styles). Writey does not clone your own handwriting.
           </p>
         </section>
 
@@ -96,7 +98,7 @@ export function HomePage() {
         <section className="section desk-well desk-split">
           <h2>Download PDF or PNG</h2>
           <p className="prose-muted">
-            Both Free and Pro can export PDF and PNG. Free uses standard export quality and a visible watermark. Pro removes the watermark and uses higher export quality.
+            Both Free and Pro can export PDF and PNG from this online editor. Start on the Free plan, preview the page, then download a PDF or PNG. Free uses standard export quality and a visible watermark. Pro removes the watermark and uses higher export quality.
           </p>
         </section>
 
@@ -143,7 +145,7 @@ export function HomePage() {
               <ul className="list-plain">
                 <li><IconCheck /> Visible brand watermark</li>
                 <li><IconCheck /> PDF and PNG</li>
-                <li><IconCheck /> 8 basic styles, including usable Latin and Devanagari handwriting styles</li>
+                <li><IconCheck /> 11 basic styles, including usable Latin and Devanagari handwriting styles</li>
                 <li><IconCheck /> Start without an account</li>
               </ul>
             </article>
@@ -158,7 +160,7 @@ export function HomePage() {
               <ul className="list-plain">
                 <li><IconCheck /> No watermark</li>
                 <li><IconCheck /> Higher export quality</li>
-                <li><IconCheck /> All 11 licensed styles (the 8 Free styles plus 3 Pro styles; does not include handwriting cloning)</li>
+                <li><IconCheck /> All 15 licensed styles (the 11 Free styles plus 4 Pro styles; does not include handwriting cloning)</li>
                 <li><IconCheck /> Higher daily caps — still not unlimited</li>
               </ul>
             </article>

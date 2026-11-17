@@ -45,7 +45,7 @@ export function PricingPage() {
               <li>{PRICES.freePagesPerMonth} export pages per calendar month</li>
               <li>Visible brand watermark that does not cover your text</li>
               <li>Standard export quality</li>
-              <li>8 basic styles, including usable Latin and Devanagari handwriting styles</li>
+              <li>11 basic styles, including usable Latin and Devanagari handwriting styles</li>
               <li>PDF and PNG export</li>
               <li>Up to {PRICES.freePreviewPerDay} preview refreshes per day, and up to {PRICES.freePagesPerPreview} pages per preview</li>
               <li>Up to {PRICES.freeJobsPerDay} export jobs per day, still limited by the monthly page cap</li>
@@ -65,7 +65,7 @@ export function PricingPage() {
               <li>{PRICES.proPagesPerMonth} export pages per calendar month</li>
               <li>No watermark</li>
               <li>Higher export quality</li>
-              <li>All 11 licensed styles (the 8 Free styles plus 3 Pro styles; does not include handwriting cloning)</li>
+              <li>All 15 licensed styles (the 11 Free styles plus 4 Pro styles; does not include handwriting cloning)</li>
               <li>PDF and PNG export</li>
               <li>Up to {PRICES.proPreviewPerDay} preview refreshes per day, and up to {PRICES.proPagesPerPreview} pages per preview</li>
               <li>Up to {PRICES.proJobsPerDay} export jobs per day, still limited by the monthly page cap</li>
@@ -133,8 +133,8 @@ export function PricingPage() {
                 </tr>
                 <tr>
                   <td>Styles</td>
-                  <td>8 basic styles, including usable Latin and Devanagari handwriting styles</td>
-                  <td>All 11 licensed styles (the 8 Free styles plus 3 Pro styles; does not include handwriting cloning)</td>
+                  <td>11 basic styles, including usable Latin and Devanagari handwriting styles</td>
+                  <td>All 15 licensed styles (the 11 Free styles plus 4 Pro styles; does not include handwriting cloning)</td>
                 </tr>
                 <tr>
                   <td>Preview</td>

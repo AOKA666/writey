@@ -50,14 +50,14 @@ export function HindiPage() {
         <section className="section desk-well desk-split">
           <h2>Preview Hindi pages</h2>
           <p className="prose-muted">
-            Paste or type Hindi, choose a handwriting style and paper, and preview the page before you download. You can start without an account, within Free limits.
+            Paste or type Hindi in this online editor, choose a handwriting style and paper, and preview the page before you download a PDF or PNG. You can start without an account, within Free limits.
           </p>
         </section>
 
         <section className="section desk-well desk-split">
           <h2>Export PDF or PNG</h2>
           <p className="prose-muted">
-            When the preview looks right, download PDF or PNG. Free exports include a visible brand watermark. Pro removes the watermark and uses higher export quality.
+            When the preview looks right, download PDF or PNG from this online editor. Free exports include a visible brand watermark. Pro removes the watermark and uses higher export quality.
           </p>
         </section>
 

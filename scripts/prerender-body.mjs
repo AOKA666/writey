@@ -38,7 +38,7 @@ const HINDI_FAQ = [
   {
     question: "Can I export Hindi pages without an account?",
     answer:
-      "Yes. Guest users can preview and complete a useful Free export, including Hindi text, within plan limits.",
+      "Yes. Guest users can preview and complete a useful Free export online, including Hindi text, and download PDF or PNG within plan limits.",
   },
   {
     question: "Is the whole website in Hindi?",
@@ -55,12 +55,12 @@ const HOME_FAQ = [
   {
     question: "Do I need an account to convert text to handwriting?",
     answer:
-      "No. You can paste text, preview a page, and complete a useful Free export without signing in. An account is needed to keep quota across days or subscribe to Pro. Saved export history is not currently provided.",
+      "No. You can paste text in this free online editor, preview a page, and download a PDF or PNG without signing in. An account is needed to keep quota across days or subscribe to Pro. Saved export history is not currently provided.",
   },
   {
     question: "Is Writey a text to handwriting ai model that writes like a person?",
     answer:
-      "No. Writey is a typography tool: you type or paste text, choose a handwriting-style font and paper, preview the page, and export PDF or PNG. People often search for text to handwriting ai for this job. Writey does not clone a person’s handwriting and does not use a generative model that writes like a human.",
+      "No. Writey is a typography tool: you type or paste text, choose a handwriting-style font and paper, preview the page in this free online editor, and export PDF or PNG. People often search for text to handwriting ai for this job. Writey does not clone a person’s handwriting and does not use a generative model that writes like a human.",
   },
   {
     question: "Can I convert Hindi text as well as English?",
@@ -70,7 +70,7 @@ const HOME_FAQ = [
   {
     question: "What file formats can I download?",
     answer:
-      "You can download PDF or PNG. Both plans include these formats. Quality and watermark rules depend on your plan.",
+      "You can download PDF or PNG. This free online tool includes both formats on Free and Pro. Quality and watermark rules depend on your plan.",
   },
   {
     question: "Is it okay to submit these pages as handwritten school work?",
@@ -177,6 +177,63 @@ function homeBody() {
             This text to handwriting ai tool turns typed or pasted text into handwriting-style pages. Choose a style and paper, preview the page, and export a PDF or PNG. English and Hindi are both supported.
           </p>
         </div>
+        <section class="section output-comparison" id="output-comparison">
+          <h2>The preview is what you export</h2>
+          <p class="compare-caption">These panels use the same typographic layout. The exported PDF or PNG follows the preview you see. This is a handwriting-style page, not a photograph of someone’s handwriting.</p>
+          <div class="compare-pair" role="img" aria-label="Side-by-side typographic mock: the on-screen preview and the exported PDF page use the same handwriting-style layout.">
+            <span class="sr-only">Side-by-side typographic mock: the on-screen preview and the exported PDF page use the same handwriting-style layout.</span>
+            <div class="compare-row">
+              <figure class="compare-panel">
+                <figcaption class="compare-label">On-screen preview</figcaption>
+                <div class="compare-stage">
+                  <article class="compare-sheet is-lined">
+                    <span class="compare-sheet-label">English</span>
+                    <div class="compare-hand-latin">Personal notes — 13 November<br><br>- Pack a letter to Asha<br>- Revision points on light and shade<br>- A short journal after the evening walk</div>
+                    <div class="compare-watermark" aria-hidden="true">Writey</div>
+                  </article>
+                </div>
+              </figure>
+              <figure class="compare-panel">
+                <figcaption class="compare-label">Exported PDF page</figcaption>
+                <div class="compare-stage">
+                  <div class="export-frame">
+                    <div class="export-bar">PDF</div>
+                    <article class="compare-sheet is-lined">
+                      <span class="compare-sheet-label">English</span>
+                      <div class="compare-hand-latin">Personal notes — 13 November<br><br>- Pack a letter to Asha<br>- Revision points on light and shade<br>- A short journal after the evening walk</div>
+                      <div class="compare-watermark" aria-hidden="true">Writey</div>
+                    </article>
+                  </div>
+                </div>
+              </figure>
+            </div>
+          </div>
+          <div class="compare-pair" role="img" aria-label="Side-by-side typographic mock: the same note in a print font and as a handwriting-style page.">
+            <span class="sr-only">Side-by-side typographic mock: the same note in a print font and as a handwriting-style page.</span>
+            <p class="compare-caption">The same text, set first in a print font and then as a handwriting-style page with paper, margins, and a handwriting font.</p>
+            <div class="compare-row">
+              <figure class="compare-panel">
+                <figcaption class="compare-label">Print-font page</figcaption>
+                <div class="compare-stage">
+                  <article class="compare-sheet is-lined">
+                    <span class="compare-sheet-label">Print font</span>
+                    <div class="compare-print-latin">Personal notes — 13 November<br><br>- Pack a letter to Asha<br>- Revision points on light and shade<br>- A short journal after the evening walk</div>
+                  </article>
+                </div>
+              </figure>
+              <figure class="compare-panel">
+                <figcaption class="compare-label">Handwriting-style page</figcaption>
+                <div class="compare-stage">
+                  <article class="compare-sheet is-lined">
+                    <span class="compare-sheet-label">English</span>
+                    <div class="compare-hand-latin">Personal notes — 13 November<br><br>- Pack a letter to Asha<br>- Revision points on light and shade<br>- A short journal after the evening walk</div>
+                    <div class="compare-watermark" aria-hidden="true">Writey</div>
+                  </article>
+                </div>
+              </figure>
+            </div>
+          </div>
+        </section>
         <section class="section desk-well">
           <h2>Preview before you download</h2>
                     <div class="desk-prose">
@@ -223,14 +280,14 @@ function homeBody() {
             </article>
             <article class="desk-well">
               <h3>3. Preview and export</h3>
-              <p class="muted">Check the page in the preview, then download PDF or PNG. The first useful export can be done without an account, within Free limits.</p>
+              <p class="muted">Check the page in the preview, then download PDF or PNG from this online editor. The first useful export can be done without an account, within Free limits.</p>
             </article>
           </div>
         </section>
         <section class="section desk-well desk-split">
           <h2>Choose a handwriting style</h2>
           <p class="prose-muted">
-            Free includes 8 basic styles, including usable Latin and Devanagari handwriting styles. Pro unlocks all 11 licensed styles (the 8 Free styles plus 3 Pro styles). Writey does not clone your own handwriting.
+            Free includes 11 basic styles, including usable Latin and Devanagari handwriting styles. Pro unlocks all 15 licensed styles (the 11 Free styles plus 4 Pro styles). Writey does not clone your own handwriting.
           </p>
         </section>
         <section class="section desk-well desk-split">
@@ -242,7 +299,7 @@ function homeBody() {
         <section class="section desk-well desk-split">
           <h2>Download PDF or PNG</h2>
           <p class="prose-muted">
-            Both Free and Pro can export PDF and PNG. Free uses standard export quality and a visible watermark. Pro removes the watermark and uses higher export quality.
+            Both Free and Pro can export PDF and PNG from this online editor. Start on the Free plan, preview the page, then download a PDF or PNG. Free uses standard export quality and a visible watermark. Pro removes the watermark and uses higher export quality.
           </p>
         </section>
         <section class="section desk-well desk-split">
@@ -330,13 +387,13 @@ function hindiBody() {
         <section class="section desk-well desk-split">
           <h2>Preview Hindi pages</h2>
           <p class="prose-muted">
-            Paste or type Hindi, choose a handwriting style and paper, and preview the page before you download. You can start without an account, within Free limits.
+            Paste or type Hindi in this online editor, choose a handwriting style and paper, and preview the page before you download a PDF or PNG. You can start without an account, within Free limits.
           </p>
         </section>
         <section class="section desk-well desk-split">
           <h2>Export PDF or PNG</h2>
           <p class="prose-muted">
-            When the preview looks right, download PDF or PNG. Free exports include a visible brand watermark. Pro removes the watermark and uses higher export quality.
+            When the preview looks right, download PDF or PNG from this online editor. Free exports include a visible brand watermark. Pro removes the watermark and uses higher export quality.
           </p>
         </section>
         <section class="section desk-well desk-split">
@@ -381,7 +438,7 @@ function pricingBody() {
               <li>8 export pages per calendar month</li>
               <li>Visible brand watermark that does not cover your text</li>
               <li>Standard export quality</li>
-              <li>8 basic styles, including usable Latin and Devanagari handwriting styles</li>
+              <li>11 basic styles, including usable Latin and Devanagari handwriting styles</li>
               <li>PDF and PNG export</li>
               <li>Up to 10 preview refreshes per day, and up to 8 pages per preview</li>
               <li>Up to 2 export jobs per day, still limited by the monthly page cap</li>
@@ -398,7 +455,7 @@ function pricingBody() {
               <li>150 export pages per calendar month</li>
               <li>No watermark</li>
               <li>Higher export quality</li>
-              <li>All 11 licensed styles (the 8 Free styles plus 3 Pro styles; does not include handwriting cloning)</li>
+              <li>All 15 licensed styles (the 11 Free styles plus 4 Pro styles; does not include handwriting cloning)</li>
               <li>PDF and PNG export</li>
               <li>Up to 50 preview refreshes per day, and up to 20 pages per preview</li>
               <li>Up to 10 export jobs per day, still limited by the monthly page cap</li>
