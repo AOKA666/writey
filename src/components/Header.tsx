@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { PRIMARY_NAV } from "@/content/routes";
-import { PRICES } from "@/content/site";
 import { IconMenu, IconClose, IconPen } from "@/components/Icons";
 import { useSession } from "@/hooks/useSession";
 
@@ -49,9 +48,7 @@ export function Header() {
                 Log out
               </button>
             </>
-          ) : (
-            <p className="header-quiet">Accounts are not open yet.</p>
-          )}
+          ) : null}
           <button
             type="button"
             className="menu-toggle"
@@ -74,15 +71,8 @@ export function Header() {
           <button type="button" className="linkish" onClick={() => { close(); void logoutUser(); }}>
             Log out
           </button>
-        ) : (
-          <p className="header-quiet header-quiet--mobile">Accounts are not open yet. Payments are not open yet.</p>
-        )}
+        ) : null}
       </nav>
-      <div className="site-header__notice">
-        <p>
-          Accounts are not open yet — full preview and {PRICES.freePagesPerMonth} Free export pages available immediately without signing in. Payments are not open yet.
-        </p>
-      </div>
     </header>
   );
 }
