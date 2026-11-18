@@ -924,13 +924,23 @@ textarea.editor-input::placeholder { color: var(--muted-2); }
 }
 .editor-actions {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  flex-wrap: nowrap;
+  gap: 0.45rem;
   margin-top: 0.85rem;
   padding-top: 0.85rem;
   border-top: 1px solid color-mix(in srgb, var(--hairline) 70%, transparent);
 }
-.editor-actions .btn { flex: 1 1 auto; }
+.editor-actions .btn {
+  flex: 1 1 0;
+  min-width: 0;
+  padding-left: 0.55rem;
+  padding-right: 0.55rem;
+  white-space: nowrap;
+}
+@media (max-width: 959px) {
+  .editor-actions { flex-wrap: wrap; }
+  .editor-actions .btn { flex: 1 1 8rem; }
+}
 .preview-sheet-wrap {
   flex: 1 1 auto;
   min-height: 28rem;
@@ -969,9 +979,32 @@ textarea.editor-input::placeholder { color: var(--muted-2); }
     min-height: 32rem;
     height: 32rem;
   }
-}
-@media (max-width: 959px) {
   .workbench-panes { border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
+  .pane-toolbar {
+    position: sticky;
+    top: calc(var(--header-h) + 3.55rem);
+    z-index: 24;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding: 0.65rem 1rem 0.55rem;
+    background: inherit;
+  }
+  .editor-pane .pane-toolbar {
+    background: color-mix(in srgb, var(--paper) 55%, var(--sheet));
+  }
+  .preview-pane .pane-toolbar {
+    background: var(--chrome);
+  }
+  .preview-toolbar {
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 0.3rem;
+  }
+  .preview-toolbar .pane-toolbar__title {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .preview-toolbar__tools { flex-shrink: 0; margin-left: auto; }
 }
 @media (min-width: 960px) {
   .workbench { overflow: hidden; }
