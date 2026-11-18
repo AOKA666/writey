@@ -1,4 +1,4 @@
-import { INK_COLORS, LATIN_FALLBACK_FONT, DEVANAGARI_FONT } from "@/content/handwriting";
+import { HANDWRITING_STYLES, INK_COLORS, LATIN_FALLBACK_FONT, DEVANAGARI_FONT } from "@/content/handwriting";
 import {
   pageCountFromLines,
   type LaidOutLine,
@@ -63,11 +63,11 @@ function BilingualSpecimen({ ink, padTop, padLeft }: { ink: string; padTop: numb
         color: ink,
       }}
     >
-      <p className="sheet-specimen__kicker">English · Oxford Cursive</p>
+      <p className="sheet-specimen__kicker">English · Oxford Cursive Style</p>
       <p className="sheet-specimen__latin" style={{ fontFamily: LATIN_FALLBACK_FONT, color: ink }}>
         {SAMPLE_EN}
       </p>
-      <p className="sheet-specimen__kicker">Hindi · Kavya Devanagari</p>
+      <p className="sheet-specimen__kicker">Hindi · Kavya Devanagari Style</p>
       <p className="sheet-specimen__deva" style={{ fontFamily: DEVANAGARI_FONT, color: ink }} lang="hi">
         {SAMPLE_HI}
       </p>
@@ -83,6 +83,9 @@ export function PaperPreview({ text, settings, watermark, loading, error, langua
   const scalerRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(0);
   const ink = INK_COLORS.find((c) => c.id === settings.ink)?.value ?? "#1a3a8a";
+  const styleName = HANDWRITING_STYLES.find((style) => style.id === settings.styleId)?.name ?? "Oxford Cursive";
+  const sheetDate = new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(new Date());
+  const languageName = languageLabel;
 
   useEffect(() => {
     let cancelled = false;
@@ -139,59 +142,72 @@ export function PaperPreview({ text, settings, watermark, loading, error, langua
         return (
           <div className={`sheet-frame${page === 0 ? " is-fill" : ""}`} key={page}>
             <div
-              className={`sheet-scaler${page === 0 ? " is-fill" : ""}`}
-              ref={page === 0 ? scalerRef : undefined}
+              className={`sheet-stationery ${paperClass}`}
+              style={
+                {
+                  "--line": `${settings.lineSpacing * (scale || 1)}px`,
+                  "--pad-top": `${padTop * (scale || 1)}px`,
+                  "--pad-left": `${padLeft * (scale || 1)}px`,
+                } as CSSProperties
+              }
             >
+              {watermark ? <div className="sheet-watermark sheet-watermark--fill">WRITEY FREE</div> : null}
+              <div className="sheet-date">
+                {trimmed ? (
+                  <span className="sheet-item-label">
+                    {languageName} · {styleName} Style
+                  </span>
+                ) : (
+                  <span />
+                )}
+                <span>{sheetDate}</span>
+              </div>
               <div
-                className={`sheet-fill ${paperClass}`}
-                style={
-                  {
-                    "--line": `${settings.lineSpacing * scale}px`,
-                    "--pad-top": `${padTop * scale}px`,
-                    "--pad-left": `${padLeft * scale}px`,
-                  } as CSSProperties
-                }
+                className={`sheet-scaler${page === 0 ? " is-fill" : ""}`}
+                ref={page === 0 ? scalerRef : undefined}
               >
-                <div className={`sheet-fill-rule ${settings.paper === "blank" ? "is-hidden" : ""}`} />
-                {watermark ? <div className="sheet-watermark sheet-watermark--fill">WRITEY FREE</div> : null}
-                <div
-                  className={`sheet ${paperClass}`}
-                  style={
-                    {
-                      width: A4_WIDTH_PX,
-                      height: A4_HEIGHT_PX,
-                      transform: `scale(${scale})`,
-                      "--line": `${settings.lineSpacing}px`,
-                      "--pad-top": `${padTop}px`,
-                      "--pad-left": `${padLeft}px`,
-                    } as CSSProperties
-                  }
-                >
-                  <div className="sheet-inner">
-                    <div className="sheet-lines" />
-                    <div
-                      className="margin-rule"
-                      style={{ left: `${padLeft}px` }}
-                    />
-                    {trimmed ? (
-                      <div
-                        className="hand-lines"
-                        style={{
-                          paddingTop: settings.marginTop * MM_TO_PX,
-                          paddingRight: settings.marginRight * MM_TO_PX,
-                          paddingBottom: settings.marginBottom * MM_TO_PX,
-                          paddingLeft: settings.marginLeft * MM_TO_PX,
-                        }}
-                      >
-                        {pageLines.map((line, i) => (
-                          <LineView key={`${page}-${i}`} line={line} settings={settings} fontSize={PREVIEW_FONT_PX} />
-                        ))}
-                      </div>
-                    ) : page === 0 ? (
-                      <BilingualSpecimen ink={ink} padTop={padTop} padLeft={padLeft} />
-                    ) : null}
+                <div className={`sheet-fill ${paperClass}`}>
+                  <div
+                    className={`sheet ${paperClass}`}
+                    style={
+                      {
+                        width: A4_WIDTH_PX,
+                        height: A4_HEIGHT_PX,
+                        transform: `scale(${scale})`,
+                        "--line": `${settings.lineSpacing}px`,
+                        "--pad-top": `${padTop}px`,
+                        "--pad-left": `${padLeft}px`,
+                      } as CSSProperties
+                    }
+                  >
+                    <div className="sheet-inner">
+                      <div className="sheet-lines" />
+                      {trimmed ? (
+                        <div
+                          className="hand-lines"
+                          style={{
+                            paddingTop: settings.marginTop * MM_TO_PX,
+                            paddingRight: settings.marginRight * MM_TO_PX,
+                            paddingBottom: settings.marginBottom * MM_TO_PX,
+                            paddingLeft: settings.marginLeft * MM_TO_PX,
+                          }}
+                        >
+                          {pageLines.map((line, i) => (
+                            <LineView key={`${page}-${i}`} line={line} settings={settings} fontSize={PREVIEW_FONT_PX} />
+                          ))}
+                        </div>
+                      ) : page === 0 ? (
+                        <BilingualSpecimen ink={ink} padTop={padTop} padLeft={padLeft} />
+                      ) : null}
+                    </div>
                   </div>
                 </div>
+              </div>
+              <div className="sheet-footer">
+                <span>Writey</span>
+                <span>
+                  Page {page + 1} of {pages}
+                </span>
               </div>
             </div>
           </div>

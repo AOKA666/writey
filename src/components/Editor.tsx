@@ -14,6 +14,19 @@ import { DEFAULT_SETTINGS, pageCountFromLines, type EditorSettings } from "@/lib
 import { useSession } from "@/hooks/useSession";
 import { PaperPreview } from "@/components/PaperPreview";
 import { StateDialog } from "@/components/StateDialog";
+import {
+  IconBlank,
+  IconDraw,
+  IconEditNote,
+  IconGrid,
+  IconImage,
+  IconLanguage,
+  IconLined,
+  IconPdf,
+  IconShield,
+  IconSync,
+  IconTranslate,
+} from "@/components/Icons";
 
 const PLACEHOLDER_EN = "Paste or type your text here.";
 const PLACEHOLDER_HI = "यहाँ हिंदी (देवनागरी) में लिखें या चिपकाएँ। Paste or type your text here.";
@@ -183,7 +196,7 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
 
   return (
     <div id="editor">
-      <div className="workbench">
+      <div className="workbench" id="workbench">
         <div className="workbench-tabs" role="tablist" aria-label="Editor views">
           <button
             type="button"
@@ -217,7 +230,10 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
             aria-labelledby="tab-edit"
           >
             <div className="pane-toolbar">
-              <div className="pane-toolbar__title">Edit</div>
+              <div className="pane-toolbar__title">
+                <IconEditNote />
+                <span>Edit</span>
+              </div>
               <span className="live-badge">Live Rendering</span>
             </div>
 
@@ -230,10 +246,12 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
                 </div>
                 <div className="lang-toggle" role="group" aria-labelledby="language-label">
                   <button type="button" aria-pressed={settings.language === "en"} onClick={() => setLang("en")}>
-                    English (Latin)
+                    <IconTranslate />
+                    <span>English (Latin)</span>
                   </button>
                   <button type="button" aria-pressed={settings.language === "hi"} onClick={() => setLang("hi")}>
-                    Hindi (हिन्दी)
+                    <IconLanguage />
+                    <span>Hindi (हिन्दी)</span>
                   </button>
                 </div>
               </div>
@@ -289,15 +307,20 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
                   Paper
                 </div>
                 <div className="paper-cards" role="group" aria-labelledby="paper-label">
-                  {(["lined", "blank", "grid"] as PaperType[]).map((p) => (
+                  {([
+                    { id: "lined" as PaperType, label: "Lined", Icon: IconLined },
+                    { id: "blank" as PaperType, label: "Blank", Icon: IconBlank },
+                    { id: "grid" as PaperType, label: "Grid", Icon: IconGrid },
+                  ]).map(({ id, label, Icon }) => (
                     <button
-                      key={p}
+                      key={id}
                       type="button"
                       className="paper-card"
-                      aria-pressed={settings.paper === p}
-                      onClick={() => setSettings((s) => ({ ...s, paper: p }))}
+                      aria-pressed={settings.paper === id}
+                      onClick={() => setSettings((s) => ({ ...s, paper: id }))}
                     >
-                      {p[0].toUpperCase() + p.slice(1)}
+                      <Icon />
+                      <span>{label}</span>
                     </button>
                   ))}
                 </div>
@@ -305,9 +328,10 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
 
               <div className="slider-grid">
                 <div className="range-row">
-                  <label htmlFor="margin">
-                    Left margin <span className="muted">({settings.marginLeft} mm)</span>
-                  </label>
+                  <div className="range-row__header">
+                    <label htmlFor="margin">Left margin</label>
+                    <span className="range-row__value">{settings.marginLeft} mm</span>
+                  </div>
                   <input
                     id="margin"
                     type="range"
@@ -327,9 +351,10 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
                   />
                 </div>
                 <div className="range-row">
-                  <label htmlFor="spacing">
-                    Line spacing <span className="muted">({settings.lineSpacing} px)</span>
-                  </label>
+                  <div className="range-row__header">
+                    <label htmlFor="spacing">Line spacing</label>
+                    <span className="range-row__value">{settings.lineSpacing} px</span>
+                  </div>
                   <input
                     id="spacing"
                     type="range"
@@ -380,10 +405,13 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
                   </span>
                 </label>
                 {settings.variationEnabled ? (
+                  <details className="variation-details">
+                  <summary>Adjust tilt, pressure, and drift</summary>
                   <div className="variation-sliders">
-                    <label htmlFor="tilt">
-                      Tilt <span className="muted">({settings.variation.tilt.toFixed(2)})</span>
-                    </label>
+                    <div className="range-row__header">
+                    <label htmlFor="tilt">Tilt</label>
+                    <span className="range-row__value">{settings.variation.tilt.toFixed(2)}</span>
+                    </div>
                     <input
                       id="tilt"
                       type="range"
@@ -398,9 +426,10 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
                         }))
                       }
                     />
-                    <label htmlFor="pressure">
-                      Ink pressure <span className="muted">({settings.variation.ink_pressure.toFixed(2)})</span>
-                    </label>
+                    <div className="range-row__header">
+                    <label htmlFor="pressure">Ink pressure</label>
+                    <span className="range-row__value">{settings.variation.ink_pressure.toFixed(2)}</span>
+                    </div>
                     <input
                       id="pressure"
                       type="range"
@@ -415,9 +444,10 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
                         }))
                       }
                     />
-                    <label htmlFor="drift">
-                      Drift <span className="muted">({settings.variation.drift.toFixed(2)})</span>
-                    </label>
+                    <div className="range-row__header">
+                    <label htmlFor="drift">Drift</label>
+                    <span className="range-row__value">{settings.variation.drift.toFixed(2)}</span>
+                    </div>
                     <input
                       id="drift"
                       type="range"
@@ -433,11 +463,15 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
                       }
                     />
                   </div>
+                  </details>
                 ) : null}
               </div>
 
               <div className="usage-card">
-                <p className="usage-card__title">Acceptable usage guidance</p>
+                <p className="usage-card__title">
+                  <IconShield />
+                  <span>Acceptable usage guidance</span>
+                </p>
                 <p>
                   Use this tool for personal notes, revision, letters, journals, and classroom examples. Do not use it for academic dishonesty. Read{" "}
                   <Link
@@ -450,20 +484,21 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
                 </p>
               </div>
 
-              <p className="quota-line">
-                {entitlement.pages_used} of {entitlement.pages_limit} export pages used this month.
-                {" "}
+              <div className="quota-line">
+                <span>{entitlement.pages_used} of {entitlement.pages_limit} export pages used this month.</span>
+                <span className="quota-plan">{entitlement.plan_id === "pro" ? "Pro Plan" : "Free Plan"}</span>
+              </div>
+              <p className="quota-line-extra">
                 {Math.max(0, entitlement.previews_limit - entitlement.previews_used_today)} of {entitlement.previews_limit} preview refreshes left today.
                 {" "}
                 {Math.max(0, entitlement.jobs_limit - entitlement.jobs_used_today)} of {entitlement.jobs_limit} export jobs left today.
-                {" "}
-                Limits depend on your plan.
               </p>
             </div>
 
             <div className="editor-actions">
               <button type="button" className="btn btn-primary" onClick={() => void handlePreview()}>
-                Preview
+                <IconDraw />
+                Live Preview
               </button>
               <button
                 type="button"
@@ -471,6 +506,7 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
                 disabled={!text.trim() || busy !== null}
                 onClick={() => void handleExport("pdf")}
               >
+                <IconPdf />
                 Download PDF
               </button>
               <button
@@ -479,6 +515,7 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
                 disabled={!text.trim() || busy !== null}
                 onClick={() => void handleExport("png")}
               >
+                <IconImage />
                 Download PNG
               </button>
             </div>
@@ -492,7 +529,7 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
           >
             <div className="pane-toolbar preview-toolbar">
               <div className="pane-toolbar__title">
-                Preview
+                <span className="preview-kicker">Preview</span>
                 <span className="toolbar-dot" aria-hidden="true">
                   ·
                 </span>
@@ -501,6 +538,18 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
                   ·
                 </span>
                 <span>A4 (210 × 297 mm)</span>
+              </div>
+              <div className="preview-toolbar__tools">
+                <span className="zoom-pill">100% Zoom</span>
+                <button
+                  type="button"
+                  className="preview-sync"
+                  onClick={() => void handlePreview()}
+                  title="Refresh preview"
+                >
+                  <IconSync />
+                  <span className="visually-hidden">Refresh preview</span>
+                </button>
               </div>
             </div>
             <div className="preview-sheet-wrap" id="preview-sheet-wrap">
