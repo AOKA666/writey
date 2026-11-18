@@ -27,39 +27,51 @@ export function HomePage() {
         {import.meta.env.VITE_ENABLE_QA === "1" ? <QaControls /> : null}
         <OutputComparison />
 
-        <section className="section desk-well">
+        <section className="section copy-card-section">
           <h2>Preview before you download</h2>
-          <div className="desk-prose">
-          <p className="prose-muted">
-            You do not have to guess how the page will look. Paste your text, choose a style and paper, and preview the handwriting-style page in your browser. English and Hindi both preview in the same editor. You can start without creating an account.
-          </p>
-          <p className="prose-muted">
-            The preview shows your chosen handwriting style, paper, margins, line spacing, and ink colour before you download. When the page looks right, export a PDF or PNG. Free exports include a visible brand watermark that does not cover your text.
-          </p>
+          <div className="copy-cards">
+            <div className="copy-card copy-card--sheet">
+              <p className="prose-muted">
+                You do not have to guess how the page will look. Paste your text, choose a style and paper, and preview the handwriting-style page in your browser. English and Hindi both preview in the same editor. You can start without creating an account.
+              </p>
+            </div>
+            <div className="copy-card copy-card--sheet">
+              <p className="prose-muted">
+                The preview shows your chosen handwriting style, paper, margins, line spacing, and ink colour before you download. When the page looks right, export a PDF or PNG. Free exports include a visible brand watermark that does not cover your text.
+              </p>
+            </div>
           </div>
         </section>
 
-        <section className="section desk-well">
+        <section className="section copy-card-section">
           <h2>Typed notes should not have to stay in a print font</h2>
-          <div className="desk-prose">
-          <p className="prose-muted">
-            Typing is fast. Handwriting a full page is slow. A decorative font in a document is not the same as a page with lined, blank, or grid paper, margins, and a handwriting-style layout.
-          </p>
-          <p className="prose-muted">
-            If you need a page for personal notes, revision, a letter, a journal, or a classroom example — in English or Hindi — you should be able to preview it and export PDF or PNG without setting up an account first.
-          </p>
+          <div className="copy-cards">
+            <div className="copy-card copy-card--paper">
+              <p className="prose-muted">
+                Typing is fast. Handwriting a full page is slow. A decorative font in a document is not the same as a page with lined, blank, or grid paper, margins, and a handwriting-style layout.
+              </p>
+            </div>
+            <div className="copy-card copy-card--paper">
+              <p className="prose-muted">
+                If you need a page for personal notes, revision, a letter, a journal, or a classroom example — in English or Hindi — you should be able to preview it and export PDF or PNG without setting up an account first.
+              </p>
+            </div>
           </div>
         </section>
 
-        <section className="section desk-well">
+        <section className="section copy-card-section">
           <h2>What text to handwriting ai means on Writey</h2>
-          <div className="desk-prose">
-          <p className="prose-muted">
-            People search for text to handwriting ai when they want to convert typed text into a handwritten look. Writey does that job with typography: you type or paste text, choose a handwriting-style font and paper, preview the page, and export PDF or PNG.
-          </p>
-          <p className="prose-muted">
-            The output is typographic, not a scan of anyone’s real handwriting, and not a generative model that writes like a real person. Writey does not clone your own handwriting, and you do not upload a handwriting sample. Writey is not an official school, board, or government service.
-          </p>
+          <div className="copy-cards">
+            <div className="copy-card copy-card--sheet">
+              <p className="prose-muted">
+                People search for text to handwriting ai when they want to convert typed text into a handwritten look. Writey does that job with typography: you type or paste text, choose a handwriting-style font and paper, preview the page, and export PDF or PNG.
+              </p>
+            </div>
+            <div className="copy-card copy-card--sheet">
+              <p className="prose-muted">
+                The output is typographic, not a scan of anyone’s real handwriting, and not a generative model that writes like a real person. Writey does not clone your own handwriting, and you do not upload a handwriting sample. Writey is not an official school, board, or government service.
+              </p>
+            </div>
           </div>
         </section>
 

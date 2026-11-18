@@ -10,14 +10,19 @@ const SAMPLE_LINES = (
   </>
 );
 
-function HandwritingSheet() {
+function HandwritingSheet({ footer }: { footer?: string }) {
   return (
     <article className="compare-sheet is-lined">
-      <span className="compare-sheet-label">English</span>
       <div className="compare-hand-latin">{SAMPLE_LINES}</div>
-      <div className="compare-watermark" aria-hidden="true">
-        Writey
-      </div>
+      {footer ? <div className="compare-sheet-footer">{footer}</div> : null}
+    </article>
+  );
+}
+
+function PrintSheet() {
+  return (
+    <article className="compare-sheet is-print">
+      <div className="compare-print-latin">{SAMPLE_LINES}</div>
     </article>
   );
 }
@@ -38,21 +43,15 @@ export function OutputComparison() {
         <span className="sr-only">
           Side-by-side typographic mock: the on-screen preview and the exported PDF page use the same handwriting-style layout.
         </span>
+        <p className="compare-eyebrow">Comparison 01: Preview Fidelity</p>
         <div className="compare-row">
-          <figure className="compare-panel">
+          <figure className="compare-card">
             <figcaption className="compare-label">On-screen preview</figcaption>
-            <div className="compare-stage">
-              <HandwritingSheet />
-            </div>
+            <HandwritingSheet footer="Writey Preview Mode" />
           </figure>
-          <figure className="compare-panel">
+          <figure className="compare-card">
             <figcaption className="compare-label">Exported PDF page</figcaption>
-            <div className="compare-stage">
-              <div className="export-frame">
-                <div className="export-bar">PDF</div>
-                <HandwritingSheet />
-              </div>
-            </div>
+            <HandwritingSheet footer="Writey Page 1 (Exported PDF)" />
           </figure>
         </div>
       </div>
@@ -65,26 +64,20 @@ export function OutputComparison() {
         <span className="sr-only">
           Side-by-side typographic mock: the same note in a print font and as a handwriting-style page.
         </span>
-        <p className="compare-caption">
-          The same text, set first in a print font and then as a handwriting-style page with paper, margins, and a handwriting font.
-        </p>
+        <p className="compare-eyebrow">Comparison 02: Layout vs Generic Fonts</p>
         <div className="compare-row">
-          <figure className="compare-panel">
+          <figure className="compare-card">
             <figcaption className="compare-label">Print-font page</figcaption>
-            <div className="compare-stage">
-              <article className="compare-sheet is-lined">
-                <span className="compare-sheet-label">Print font</span>
-                <div className="compare-print-latin">{SAMPLE_LINES}</div>
-              </article>
-            </div>
+            <PrintSheet />
           </figure>
-          <figure className="compare-panel">
+          <figure className="compare-card">
             <figcaption className="compare-label">Handwriting-style page</figcaption>
-            <div className="compare-stage">
-              <HandwritingSheet />
-            </div>
+            <HandwritingSheet />
           </figure>
         </div>
+        <p className="compare-caption compare-caption--after">
+          The same text, set first in a print font and then as a handwriting-style page with paper, margins, and a handwriting font.
+        </p>
       </div>
     </section>
   );
