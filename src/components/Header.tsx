@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { PRIMARY_NAV } from "@/content/routes";
+import { PRICES } from "@/content/site";
 import { IconMenu, IconClose, IconPen } from "@/components/Icons";
 import { useSession } from "@/hooks/useSession";
 
@@ -43,16 +44,13 @@ export function Header() {
         <div className="header-actions">
           {entitlement.signed_in ? (
             <>
-              <span className="label-md muted btn-login">{entitlement.email}</span>
-              <button type="button" className="btn-login" onClick={() => void logoutUser()}>
+              <span className="header-quiet">{entitlement.email}</span>
+              <button type="button" className="header-quiet-action" onClick={() => void logoutUser()}>
                 Log out
               </button>
             </>
           ) : (
-            <>
-              <Link className="btn-login" to="/login">Log in</Link>
-              <Link className="btn-account" to="/register">Create account</Link>
-            </>
+            <p className="header-quiet">Accounts are not open yet.</p>
           )}
           <button
             type="button"
@@ -77,12 +75,14 @@ export function Header() {
             Log out
           </button>
         ) : (
-          <>
-            <Link to="/login" onClick={close}>Log in</Link>
-            <Link to="/register" onClick={close}>Create account</Link>
-          </>
+          <p className="header-quiet header-quiet--mobile">Accounts are not open yet. Payments are not open yet.</p>
         )}
       </nav>
+      <div className="site-header__notice">
+        <p>
+          Accounts are not open yet — full preview and {PRICES.freePagesPerMonth} Free export pages available immediately without signing in. Payments are not open yet.
+        </p>
+      </div>
     </header>
   );
 }

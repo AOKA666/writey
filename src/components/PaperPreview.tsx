@@ -1,6 +1,5 @@
-import { INK_COLORS } from "@/content/handwriting";
+import { INK_COLORS, LATIN_FALLBACK_FONT, DEVANAGARI_FONT } from "@/content/handwriting";
 import {
-  containsDevanagari,
   pageCountFromLines,
   type LaidOutLine,
 } from "@/lib/layout";
@@ -23,6 +22,11 @@ type Props = {
   error?: string | null;
   languageLabel: string;
 };
+
+const SAMPLE_EN =
+  "Meeting notes & personal reflection: The quiet morning hours yield the most thoughtful writing. Moving from quick typed thoughts to deliberate ink on paper creates space to remember what matters.";
+const SAMPLE_HI =
+  "व्यक्तिगत नोट्स और विचार: शांत सुबह के घंटे सबसे विचारशील लेखन लाते हैं। टाइप किए गए विचारों को कागज़ और स्याही पर उतारना एक नया सुकून देता है।";
 
 function LineView({ line, settings, fontSize }: { line: LaidOutLine; settings: EditorSettings; fontSize: number }) {
   const ink = INK_COLORS.find((c) => c.id === settings.ink)?.value ?? "#1a3a8a";
@@ -48,6 +52,29 @@ function LineView({ line, settings, fontSize }: { line: LaidOutLine; settings: E
   );
 }
 
+function BilingualSpecimen({ ink, padTop, padLeft }: { ink: string; padTop: number; padLeft: number }) {
+  return (
+    <div
+      className="sheet-specimen"
+      style={{
+        paddingTop: padTop + 24,
+        paddingLeft: padLeft,
+        paddingRight: 36,
+        color: ink,
+      }}
+    >
+      <p className="sheet-specimen__kicker">English · Oxford Cursive</p>
+      <p className="sheet-specimen__latin" style={{ fontFamily: LATIN_FALLBACK_FONT, color: ink }}>
+        {SAMPLE_EN}
+      </p>
+      <p className="sheet-specimen__kicker">Hindi · Kavya Devanagari</p>
+      <p className="sheet-specimen__deva" style={{ fontFamily: DEVANAGARI_FONT, color: ink }} lang="hi">
+        {SAMPLE_HI}
+      </p>
+    </div>
+  );
+}
+
 export function PaperPreview({ text, settings, watermark, loading, error, languageLabel }: Props) {
   const trimmed = text.trim();
   const [fontsReady, setFontsReady] = useState(
@@ -55,6 +82,7 @@ export function PaperPreview({ text, settings, watermark, loading, error, langua
   );
   const scalerRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(0);
+  const ink = INK_COLORS.find((c) => c.id === settings.ink)?.value ?? "#1a3a8a";
 
   useEffect(() => {
     let cancelled = false;
@@ -77,7 +105,13 @@ export function PaperPreview({ text, settings, watermark, loading, error, langua
     if (!el || typeof ResizeObserver === "undefined") return;
     const update = () => {
       const width = el.clientWidth;
-      if (width > 0) setScale(width / A4_WIDTH_PX);
+      const height = el.clientHeight;
+      if (width <= 0) return;
+      const scaleW = width / A4_WIDTH_PX;
+      const scaleH = height > 0 ? height / A4_HEIGHT_PX : scaleW;
+      // Prefer filling the pane width when the full A4 page still fits in height.
+      // Otherwise contain-fit so the first page is not clipped.
+      setScale(scaleW * A4_HEIGHT_PX <= height || height <= 0 ? scaleW : Math.min(scaleW, scaleH));
     };
     update();
     const ro = new ResizeObserver(update);
@@ -95,67 +129,68 @@ export function PaperPreview({ text, settings, watermark, loading, error, langua
   const visiblePages = Math.min(pages, 3);
   const paperClass =
     settings.paper === "grid" ? "is-grid" : settings.paper === "lined" ? "is-lined" : "is-blank";
-
-  const emptyHintEn = "Paste or type your text to preview a handwriting-style page.";
-  const emptyHintHi = "देवनागरी में एक छोटा वाक्य लिखें — Try a short Hindi sentence in Devanagari to see the handwriting style.";
+  const padTop = settings.marginTop * MM_TO_PX;
+  const padLeft = settings.marginLeft * MM_TO_PX;
 
   return (
-    <div className="preview-stack">
+    <div className="preview-stack" data-language={languageLabel}>
       {Array.from({ length: visiblePages }, (_, page) => {
         const pageLines = lines.filter((l) => l.page === page);
         return (
-          <div className="sheet-frame" key={page}>
-            <div className="sheet-label">
-              Sheet {page + 1}
-              {pages > 1 ? ` of ${pages}` : ""} ({languageLabel}
-              {trimmed && containsDevanagari(text) ? " · देवनागरी" : ""})
-            </div>
+          <div className={`sheet-frame${page === 0 ? " is-fill" : ""}`} key={page}>
             <div
-              className="sheet-scaler"
+              className={`sheet-scaler${page === 0 ? " is-fill" : ""}`}
               ref={page === 0 ? scalerRef : undefined}
             >
               <div
-                className={`sheet ${paperClass}`}
+                className={`sheet-fill ${paperClass}`}
                 style={
                   {
-                    width: A4_WIDTH_PX,
-                    height: A4_HEIGHT_PX,
-                    transform: `scale(${scale})`,
-                    "--line": `${settings.lineSpacing}px`,
-                    "--pad-top": `${settings.marginTop * MM_TO_PX}px`,
-                    "--pad-left": `${settings.marginLeft * MM_TO_PX}px`,
+                    "--line": `${settings.lineSpacing * scale}px`,
+                    "--pad-top": `${padTop * scale}px`,
+                    "--pad-left": `${padLeft * scale}px`,
                   } as CSSProperties
                 }
               >
-                <div className="sheet-inner">
-                  <div className="sheet-lines" />
-                  <div
-                    className="margin-rule"
-                    style={{ left: `${settings.marginLeft * MM_TO_PX}px` }}
-                  />
-                  {watermark ? <div className="sheet-watermark">WRITEY</div> : null}
-                  {trimmed ? (
+                <div className={`sheet-fill-rule ${settings.paper === "blank" ? "is-hidden" : ""}`} />
+                {watermark ? <div className="sheet-watermark sheet-watermark--fill">WRITEY FREE</div> : null}
+                <div
+                  className={`sheet ${paperClass}`}
+                  style={
+                    {
+                      width: A4_WIDTH_PX,
+                      height: A4_HEIGHT_PX,
+                      transform: `scale(${scale})`,
+                      "--line": `${settings.lineSpacing}px`,
+                      "--pad-top": `${padTop}px`,
+                      "--pad-left": `${padLeft}px`,
+                    } as CSSProperties
+                  }
+                >
+                  <div className="sheet-inner">
+                    <div className="sheet-lines" />
                     <div
-                      className="hand-lines"
-                      style={{
-                        paddingTop: settings.marginTop * MM_TO_PX,
-                        paddingRight: settings.marginRight * MM_TO_PX,
-                        paddingBottom: settings.marginBottom * MM_TO_PX,
-                        paddingLeft: settings.marginLeft * MM_TO_PX,
-                      }}
-                    >
-                      {pageLines.map((line, i) => (
-                        <LineView key={`${page}-${i}`} line={line} settings={settings} fontSize={PREVIEW_FONT_PX} />
-                      ))}
-                    </div>
-                  ) : (
-                    <>
-                      <p className="sheet-empty-hint">{emptyHintEn}</p>
-                      <p className="sheet-empty-hint hi" style={{ top: "38%" }}>
-                        {emptyHintHi}
-                      </p>
-                    </>
-                  )}
+                      className="margin-rule"
+                      style={{ left: `${padLeft}px` }}
+                    />
+                    {trimmed ? (
+                      <div
+                        className="hand-lines"
+                        style={{
+                          paddingTop: settings.marginTop * MM_TO_PX,
+                          paddingRight: settings.marginRight * MM_TO_PX,
+                          paddingBottom: settings.marginBottom * MM_TO_PX,
+                          paddingLeft: settings.marginLeft * MM_TO_PX,
+                        }}
+                      >
+                        {pageLines.map((line, i) => (
+                          <LineView key={`${page}-${i}`} line={line} settings={settings} fontSize={PREVIEW_FONT_PX} />
+                        ))}
+                      </div>
+                    ) : page === 0 ? (
+                      <BilingualSpecimen ink={ink} padTop={padTop} padLeft={padLeft} />
+                    ) : null}
+                  </div>
                 </div>
               </div>
             </div>

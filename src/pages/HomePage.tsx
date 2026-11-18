@@ -17,6 +17,7 @@ export function HomePage() {
       <Header />
       <main id="main" className="page-wrap">
         <div className="hero-block">
+          <p className="hero-eyebrow">Bilingual English &amp; Hindi</p>
           <h1 className="display-md">Text to Handwriting AI Converter</h1>
           <p className="lede">
             This text to handwriting ai tool turns typed or pasted text into handwriting-style pages. Choose a style and paper, preview the page, and export a PDF or PNG. English and Hindi are both supported.

@@ -172,6 +172,7 @@ function renderLegal(id, h1) {
 function homeBody() {
   return `<main id="main" class="page-wrap">
         <div class="hero-block">
+          <p class="hero-eyebrow">Bilingual English &amp; Hindi</p>
           <h1 class="display-md">Text to Handwriting AI Converter</h1>
           <p class="lede">
             This text to handwriting ai tool turns typed or pasted text into handwriting-style pages. Choose a style and paper, preview the page, and export a PDF or PNG. English and Hindi are both supported.

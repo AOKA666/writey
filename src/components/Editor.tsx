@@ -14,7 +14,6 @@ import { DEFAULT_SETTINGS, pageCountFromLines, type EditorSettings } from "@/lib
 import { useSession } from "@/hooks/useSession";
 import { PaperPreview } from "@/components/PaperPreview";
 import { StateDialog } from "@/components/StateDialog";
-import { IconLock } from "@/components/Icons";
 
 const PLACEHOLDER_EN = "Paste or type your text here.";
 const PLACEHOLDER_HI = "यहाँ हिंदी (देवनागरी) में लिखें या चिपकाएँ। Paste or type your text here.";
@@ -54,6 +53,7 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
   const [previewError, setPreviewError] = useState<string | null>(null);
   const [previewLoading, setPreviewLoading] = useState(false);
   const [busy, setBusy] = useState<"pdf" | "png" | null>(null);
+  const [mobileTab, setMobileTab] = useState<"edit" | "preview">("edit");
 
   useEffect(() => {
     const lang = parseLangFromLocation(location.search, location.hash) ?? initialLanguage;
@@ -106,6 +106,7 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
       await new Promise((r) => setTimeout(r, 250));
       await consume("previews");
       track("preview_generated", { language: settings.language, page_count: pageEstimate, style_id: settings.styleId, paper_type: settings.paper });
+      setMobileTab("preview");
     } catch {
       setPreviewError("We could not refresh the preview. Check your connection and try again. Your text is still in the editor.");
       setDialog("preview-error");
@@ -163,249 +164,364 @@ export function Editor({ initialLanguage }: { initialLanguage?: "en" | "hi" }) {
   }
 
   const placeholder = settings.language === "hi" ? PLACEHOLDER_HI : PLACEHOLDER_EN;
+  const selectedStyle = HANDWRITING_STYLES.find((style) => style.id === settings.styleId);
+  const freeStyleCount = HANDWRITING_STYLES.filter((style) => style.plan === "free").length;
+  const totalStyleCount = HANDWRITING_STYLES.length;
+  const paperCaption =
+    settings.paper === "lined" ? "Lined Paper" : settings.paper === "grid" ? "Grid Paper" : "Blank Paper";
+  const inkLabel = INK_COLORS.find((c) => c.id === settings.ink)?.label ?? "Ink";
+  const availableCaption =
+    entitlement.plan_id === "pro"
+      ? `${totalStyleCount} of ${totalStyleCount} styles available`
+      : `${freeStyleCount} of ${totalStyleCount} styles available`;
+
+  function onStyleSelect(id: string) {
+    const style = HANDWRITING_STYLES.find((item) => item.id === id);
+    if (!style) return;
+    pickStyle(style.id, style.plan);
+  }
 
   return (
     <div id="editor">
-      <div className="editor-grid">
-        <div className="desk-well">
-          <div className="editor-top">
-            <label className="field-label" htmlFor="editor-input">
-              Your text
-            </label>
-            <div className="lang-toggle" role="group" aria-label="Language">
-              <button type="button" aria-pressed={settings.language === "en"} onClick={() => setLang("en")}>
-                English
-              </button>
-              <button type="button" aria-pressed={settings.language === "hi"} onClick={() => setLang("hi")}>
-                Hindi
-              </button>
-            </div>
-          </div>
-          <textarea
-            id="editor-input"
-            className="editor-input"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder={placeholder}
-            lang={settings.language === "hi" ? "hi" : "en"}
-          />
-          <div className="control-grid">
-            <div>
-              <div className="style-list-label" id="style-label">
-                Handwriting style
-              </div>
-              <div className="style-list" role="listbox" aria-labelledby="style-label">
-                {HANDWRITING_STYLES.map((style) => {
-                  const locked = style.plan === "pro" && entitlement.plan_id !== "pro";
-                  return (
-                    <button
-                      type="button"
-                      key={style.id}
-                      className={`style-option${locked ? " is-locked" : ""}`}
-                      aria-pressed={settings.styleId === style.id}
-                      onClick={() => pickStyle(style.id, style.plan)}
-                    >
-                      <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
-                        {locked ? <IconLock /> : <span className={`dot${settings.styleId === style.id ? " is-on" : ""}`} />}
-                        {style.name}
-                      </span>
-                      <span className="licence-tag">{style.licenceLabel}</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-            <div>
-              <div className="style-list-label" id="paper-label">
-                Paper
-              </div>
-              <div className="seg" role="group" aria-labelledby="paper-label">
-                {(["lined", "blank", "grid"] as PaperType[]).map((p) => (
-                  <button
-                    key={p}
-                    type="button"
-                    aria-pressed={settings.paper === p}
-                    onClick={() => setSettings((s) => ({ ...s, paper: p }))}
-                  >
-                    {p[0].toUpperCase() + p.slice(1)}
-                  </button>
-                ))}
-              </div>
-              <div className="style-list-label" style={{ marginTop: "0.85rem" }} id="ink-label">
-                Ink colour
-              </div>
-              <div className="seg" role="group" aria-labelledby="ink-label">
-                {INK_COLORS.map((c) => (
-                  <button
-                    key={c.id}
-                    type="button"
-                    aria-pressed={settings.ink === c.id}
-                    onClick={() => setSettings((s) => ({ ...s, ink: c.id }))}
-                  >
-                    {c.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-            <div className="range-row">
-              <label htmlFor="margin">
-                Margins <span className="muted">({settings.marginLeft} mm)</span>
-              </label>
-              <input
-                id="margin"
-                type="range"
-                min={10}
-                max={32}
-                value={settings.marginLeft}
-                onChange={(e) => {
-                  const v = Number(e.target.value);
-                  setSettings((s) => ({
-                    ...s,
-                    marginLeft: v,
-                    marginRight: Math.max(10, v - 4),
-                    marginTop: Math.max(12, v - 2),
-                    marginBottom: Math.max(12, v - 2),
-                  }));
-                }}
-              />
-              <label htmlFor="spacing">
-                Line spacing <span className="muted">({settings.lineSpacing} px)</span>
-              </label>
-              <input
-                id="spacing"
-                type="range"
-                min={26}
-                max={48}
-                value={settings.lineSpacing}
-                onChange={(e) => setSettings((s) => ({ ...s, lineSpacing: Number(e.target.value) }))}
-              />
-            </div>
-            <div>
-              <label htmlFor="variation-toggle" style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                <input
-                  id="variation-toggle"
-                  type="checkbox"
-                  checked={settings.variationEnabled}
-                  onChange={(e) => setSettings((s) => ({ ...s, variationEnabled: e.target.checked }))}
-                />
-                Natural variation
-              </label>
-              <p className="hint">
-                Adds slight tilt, ink pressure, and baseline drift so the page looks more natural. This is for appearance only. It is not a detection-avoidance tool.
-              </p>
-              {settings.variationEnabled ? (
-                <>
-                  <label htmlFor="tilt">
-                    Tilt <span className="muted">({settings.variation.tilt.toFixed(2)})</span>
-                  </label>
-                  <input
-                    id="tilt"
-                    type="range"
-                    min={0}
-                    max={1}
-                    step={0.05}
-                    value={settings.variation.tilt}
-                    onChange={(e) =>
-                      setSettings((s) => ({
-                        ...s,
-                        variation: { ...s.variation, tilt: Number(e.target.value) },
-                      }))
-                    }
-                  />
-                  <label htmlFor="pressure">
-                    Ink pressure <span className="muted">({settings.variation.ink_pressure.toFixed(2)})</span>
-                  </label>
-                  <input
-                    id="pressure"
-                    type="range"
-                    min={0}
-                    max={1}
-                    step={0.05}
-                    value={settings.variation.ink_pressure}
-                    onChange={(e) =>
-                      setSettings((s) => ({
-                        ...s,
-                        variation: { ...s.variation, ink_pressure: Number(e.target.value) },
-                      }))
-                    }
-                  />
-                  <label htmlFor="drift">
-                    Drift <span className="muted">({settings.variation.drift.toFixed(2)})</span>
-                  </label>
-                  <input
-                    id="drift"
-                    type="range"
-                    min={0}
-                    max={1}
-                    step={0.05}
-                    value={settings.variation.drift}
-                    onChange={(e) =>
-                      setSettings((s) => ({
-                        ...s,
-                        variation: { ...s.variation, drift: Number(e.target.value) },
-                      }))
-                    }
-                  />
-                </>
-              ) : null}
-            </div>
-          </div>
-          <div className="btn-row" style={{ marginTop: "1.1rem" }}>
-            <button type="button" className="btn btn-secondary" onClick={() => void handlePreview()}>
-              Preview
-            </button>
-            <button
-              type="button"
-              className="btn btn-primary"
-              disabled={!text.trim() || busy !== null}
-              onClick={() => void handleExport("pdf")}
-            >
-              Download PDF
-            </button>
-            <button
-              type="button"
-              className="btn btn-primary"
-              disabled={!text.trim() || busy !== null}
-              onClick={() => void handleExport("png")}
-            >
-              Download PNG
-            </button>
-          </div>
-          <p className="microcopy">
-            <span aria-hidden="true">✦</span>
-            <span>
-              Use this tool for personal notes, revision, letters, journals, and classroom examples. Do not use it for academic dishonesty. Read{" "}
-              <Link
-                to="/acceptable-use"
-                onClick={() => track("acceptable_use_clicked", { plan_id: entitlement.plan_id })}
-              >
-                Acceptable Use
-              </Link>
-              .
-            </span>
-          </p>
-          {entitlement.watermark ? (
-            <p className="watermark-note">Free exports include a visible brand watermark that does not cover your text.</p>
-          ) : null}
-          <p className="quota-line">
-            {entitlement.pages_used} of {entitlement.pages_limit} export pages used this month.
-            {" "}
-            {Math.max(0, entitlement.previews_limit - entitlement.previews_used_today)} of {entitlement.previews_limit} preview refreshes left today.
-            {" "}
-            {Math.max(0, entitlement.jobs_limit - entitlement.jobs_used_today)} of {entitlement.jobs_limit} export jobs left today.
-            {" "}
-            Limits depend on your plan.
-          </p>
+      <div className="workbench">
+        <div className="workbench-tabs" role="tablist" aria-label="Editor views">
+          <button
+            type="button"
+            role="tab"
+            id="tab-edit"
+            aria-controls="panel-edit"
+            aria-selected={mobileTab === "edit"}
+            className={mobileTab === "edit" ? "is-active" : undefined}
+            onClick={() => setMobileTab("edit")}
+          >
+            Edit
+          </button>
+          <button
+            type="button"
+            role="tab"
+            id="tab-preview"
+            aria-controls="panel-preview"
+            aria-selected={mobileTab === "preview"}
+            className={mobileTab === "preview" ? "is-active" : undefined}
+            onClick={() => setMobileTab("preview")}
+          >
+            Preview
+          </button>
         </div>
-        <div>
-          <PaperPreview
-            text={text}
-            settings={settings}
-            watermark={entitlement.watermark}
-            loading={previewLoading || qa.preview === "loading"}
-            error={previewError}
-            languageLabel={settings.language === "hi" ? "Hindi" : "English"}
-          />
+
+        <div className="workbench-panes">
+          <section
+            className={`editor-pane${mobileTab === "edit" ? " is-active" : ""}`}
+            id="panel-edit"
+            role="tabpanel"
+            aria-labelledby="tab-edit"
+          >
+            <div className="pane-toolbar">
+              <div className="pane-toolbar__title">Edit</div>
+              <span className="live-badge">Live Rendering</span>
+            </div>
+
+            <div className="editor-body">
+              <div className="field-block">
+                <div className="field-row">
+                  <span className="field-label" id="language-label">
+                    Language
+                  </span>
+                </div>
+                <div className="lang-toggle" role="group" aria-labelledby="language-label">
+                  <button type="button" aria-pressed={settings.language === "en"} onClick={() => setLang("en")}>
+                    English (Latin)
+                  </button>
+                  <button type="button" aria-pressed={settings.language === "hi"} onClick={() => setLang("hi")}>
+                    Hindi (हिन्दी)
+                  </button>
+                </div>
+              </div>
+
+              <div className="field-block">
+                <div className="field-row">
+                  <label className="field-label" htmlFor="editor-input">
+                    Your text
+                  </label>
+                  <span className="char-count">{text.length} chars</span>
+                </div>
+                <textarea
+                  id="editor-input"
+                  className="editor-input"
+                  value={text}
+                  onChange={(e) => setText(e.target.value)}
+                  placeholder={placeholder}
+                  lang={settings.language === "hi" ? "hi" : "en"}
+                  rows={4}
+                />
+              </div>
+
+              <div className="field-block">
+                <div className="field-row">
+                  <label className="field-label" htmlFor="style-select">
+                    Handwriting style
+                  </label>
+                  <span className="style-availability">{availableCaption}</span>
+                </div>
+                <select
+                  id="style-select"
+                  className="style-select"
+                  value={settings.styleId}
+                  onChange={(e) => onStyleSelect(e.target.value)}
+                >
+                  {HANDWRITING_STYLES.map((style) => {
+                    const locked = style.plan === "pro" && entitlement.plan_id !== "pro";
+                    return (
+                      <option key={style.id} value={style.id}>
+                        {style.name} ({style.plan === "pro" ? "Pro" : "Free"}
+                        {locked ? " — included with Pro" : ""})
+                      </option>
+                    );
+                  })}
+                </select>
+                {selectedStyle ? (
+                  <p className="licence-note">{selectedStyle.licenceLabel}</p>
+                ) : null}
+              </div>
+
+              <div className="field-block">
+                <div className="field-label" id="paper-label">
+                  Paper
+                </div>
+                <div className="paper-cards" role="group" aria-labelledby="paper-label">
+                  {(["lined", "blank", "grid"] as PaperType[]).map((p) => (
+                    <button
+                      key={p}
+                      type="button"
+                      className="paper-card"
+                      aria-pressed={settings.paper === p}
+                      onClick={() => setSettings((s) => ({ ...s, paper: p }))}
+                    >
+                      {p[0].toUpperCase() + p.slice(1)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="slider-grid">
+                <div className="range-row">
+                  <label htmlFor="margin">
+                    Left margin <span className="muted">({settings.marginLeft} mm)</span>
+                  </label>
+                  <input
+                    id="margin"
+                    type="range"
+                    min={10}
+                    max={32}
+                    value={settings.marginLeft}
+                    onChange={(e) => {
+                      const v = Number(e.target.value);
+                      setSettings((s) => ({
+                        ...s,
+                        marginLeft: v,
+                        marginRight: Math.max(10, v - 4),
+                        marginTop: Math.max(12, v - 2),
+                        marginBottom: Math.max(12, v - 2),
+                      }));
+                    }}
+                  />
+                </div>
+                <div className="range-row">
+                  <label htmlFor="spacing">
+                    Line spacing <span className="muted">({settings.lineSpacing} px)</span>
+                  </label>
+                  <input
+                    id="spacing"
+                    type="range"
+                    min={26}
+                    max={48}
+                    value={settings.lineSpacing}
+                    onChange={(e) => setSettings((s) => ({ ...s, lineSpacing: Number(e.target.value) }))}
+                  />
+                </div>
+              </div>
+
+              <div className="field-block">
+                <div className="field-row">
+                  <div className="field-label" id="ink-label">
+                    Ink colour
+                  </div>
+                  <span className="ink-current">{inkLabel}</span>
+                </div>
+                <div className="ink-swatches" role="group" aria-labelledby="ink-label">
+                  {INK_COLORS.map((c) => (
+                    <button
+                      key={c.id}
+                      type="button"
+                      className="ink-swatch"
+                      style={{ background: c.value }}
+                      aria-pressed={settings.ink === c.id}
+                      aria-label={c.label}
+                      title={c.label}
+                      onClick={() => setSettings((s) => ({ ...s, ink: c.id }))}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <div className="field-block">
+                <label htmlFor="variation-toggle" className="variation-toggle">
+                  <input
+                    id="variation-toggle"
+                    type="checkbox"
+                    checked={settings.variationEnabled}
+                    onChange={(e) => setSettings((s) => ({ ...s, variationEnabled: e.target.checked }))}
+                  />
+                  <span>
+                    <span className="field-label">Natural variation</span>
+                    <span className="hint">
+                      Adds slight tilt, ink pressure, and baseline drift so the page looks more natural. This is for appearance only. It is not a detection-avoidance tool.
+                    </span>
+                  </span>
+                </label>
+                {settings.variationEnabled ? (
+                  <div className="variation-sliders">
+                    <label htmlFor="tilt">
+                      Tilt <span className="muted">({settings.variation.tilt.toFixed(2)})</span>
+                    </label>
+                    <input
+                      id="tilt"
+                      type="range"
+                      min={0}
+                      max={1}
+                      step={0.05}
+                      value={settings.variation.tilt}
+                      onChange={(e) =>
+                        setSettings((s) => ({
+                          ...s,
+                          variation: { ...s.variation, tilt: Number(e.target.value) },
+                        }))
+                      }
+                    />
+                    <label htmlFor="pressure">
+                      Ink pressure <span className="muted">({settings.variation.ink_pressure.toFixed(2)})</span>
+                    </label>
+                    <input
+                      id="pressure"
+                      type="range"
+                      min={0}
+                      max={1}
+                      step={0.05}
+                      value={settings.variation.ink_pressure}
+                      onChange={(e) =>
+                        setSettings((s) => ({
+                          ...s,
+                          variation: { ...s.variation, ink_pressure: Number(e.target.value) },
+                        }))
+                      }
+                    />
+                    <label htmlFor="drift">
+                      Drift <span className="muted">({settings.variation.drift.toFixed(2)})</span>
+                    </label>
+                    <input
+                      id="drift"
+                      type="range"
+                      min={0}
+                      max={1}
+                      step={0.05}
+                      value={settings.variation.drift}
+                      onChange={(e) =>
+                        setSettings((s) => ({
+                          ...s,
+                          variation: { ...s.variation, drift: Number(e.target.value) },
+                        }))
+                      }
+                    />
+                  </div>
+                ) : null}
+              </div>
+
+              <div className="usage-card">
+                <p className="usage-card__title">Acceptable usage guidance</p>
+                <p>
+                  Use this tool for personal notes, revision, letters, journals, and classroom examples. Do not use it for academic dishonesty. Read{" "}
+                  <Link
+                    to="/acceptable-use"
+                    onClick={() => track("acceptable_use_clicked", { plan_id: entitlement.plan_id })}
+                  >
+                    Acceptable Use
+                  </Link>
+                  .
+                </p>
+              </div>
+
+              <p className="quota-line">
+                {entitlement.pages_used} of {entitlement.pages_limit} export pages used this month.
+                {" "}
+                {Math.max(0, entitlement.previews_limit - entitlement.previews_used_today)} of {entitlement.previews_limit} preview refreshes left today.
+                {" "}
+                {Math.max(0, entitlement.jobs_limit - entitlement.jobs_used_today)} of {entitlement.jobs_limit} export jobs left today.
+                {" "}
+                Limits depend on your plan.
+              </p>
+            </div>
+
+            <div className="editor-actions">
+              <button type="button" className="btn btn-primary" onClick={() => void handlePreview()}>
+                Preview
+              </button>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                disabled={!text.trim() || busy !== null}
+                onClick={() => void handleExport("pdf")}
+              >
+                Download PDF
+              </button>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                disabled={!text.trim() || busy !== null}
+                onClick={() => void handleExport("png")}
+              >
+                Download PNG
+              </button>
+            </div>
+          </section>
+
+          <section
+            className={`preview-pane${mobileTab === "preview" ? " is-active" : ""}`}
+            id="panel-preview"
+            role="tabpanel"
+            aria-labelledby="tab-preview"
+          >
+            <div className="pane-toolbar preview-toolbar">
+              <div className="pane-toolbar__title">
+                Preview
+                <span className="toolbar-dot" aria-hidden="true">
+                  ·
+                </span>
+                <span id="preview-paper-indicator">{paperCaption}</span>
+                <span className="toolbar-dot" aria-hidden="true">
+                  ·
+                </span>
+                <span>A4 (210 × 297 mm)</span>
+              </div>
+            </div>
+            <div className="preview-sheet-wrap" id="preview-sheet-wrap">
+              <PaperPreview
+                text={text}
+                settings={settings}
+                watermark={entitlement.watermark}
+                loading={previewLoading || qa.preview === "loading"}
+                error={previewError}
+                languageLabel={settings.language === "hi" ? "Hindi" : "English"}
+              />
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div className="workbench-notes">
+        {entitlement.watermark ? (
+          <p className="watermark-note">Free exports include a visible brand watermark that does not cover your text.</p>
+        ) : null}
+        <div className="diff-card">
           <p className="diff-statement">
             Preview and export without an account. The preview is what you get — your PDF or PNG follows this page. This is handwriting fonts and typographic layout, not a handwriting clone, and not a generative model that writes like a real person.
           </p>
