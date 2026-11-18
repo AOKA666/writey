@@ -183,89 +183,87 @@ function homeBody() {
           <p class="compare-caption">These panels use the same typographic layout. The exported PDF or PNG follows the preview you see. This is a handwriting-style page, not a photograph of someone’s handwriting.</p>
           <div class="compare-pair" role="img" aria-label="Side-by-side typographic mock: the on-screen preview and the exported PDF page use the same handwriting-style layout.">
             <span class="sr-only">Side-by-side typographic mock: the on-screen preview and the exported PDF page use the same handwriting-style layout.</span>
+            <p class="compare-eyebrow">Comparison 01: Preview Fidelity</p>
             <div class="compare-row">
-              <figure class="compare-panel">
+              <figure class="compare-card">
                 <figcaption class="compare-label">On-screen preview</figcaption>
-                <div class="compare-stage">
-                  <article class="compare-sheet is-lined">
-                    <span class="compare-sheet-label">English</span>
-                    <div class="compare-hand-latin">Personal notes — 13 November<br><br>- Pack a letter to Asha<br>- Revision points on light and shade<br>- A short journal after the evening walk</div>
-                    <div class="compare-watermark" aria-hidden="true">Writey</div>
-                  </article>
-                </div>
+                <article class="compare-sheet is-lined">
+                  <div class="compare-hand-latin">Personal notes — 13 November<br><br>- Pack a letter to Asha<br>- Revision points on light and shade<br>- A short journal after the evening walk</div>
+                  <div class="compare-sheet-footer">Writey Preview Mode</div>
+                </article>
               </figure>
-              <figure class="compare-panel">
+              <figure class="compare-card">
                 <figcaption class="compare-label">Exported PDF page</figcaption>
-                <div class="compare-stage">
-                  <div class="export-frame">
-                    <div class="export-bar">PDF</div>
-                    <article class="compare-sheet is-lined">
-                      <span class="compare-sheet-label">English</span>
-                      <div class="compare-hand-latin">Personal notes — 13 November<br><br>- Pack a letter to Asha<br>- Revision points on light and shade<br>- A short journal after the evening walk</div>
-                      <div class="compare-watermark" aria-hidden="true">Writey</div>
-                    </article>
-                  </div>
-                </div>
+                <article class="compare-sheet is-lined">
+                  <div class="compare-hand-latin">Personal notes — 13 November<br><br>- Pack a letter to Asha<br>- Revision points on light and shade<br>- A short journal after the evening walk</div>
+                  <div class="compare-sheet-footer">Writey Page 1 (Exported PDF)</div>
+                </article>
               </figure>
             </div>
           </div>
           <div class="compare-pair" role="img" aria-label="Side-by-side typographic mock: the same note in a print font and as a handwriting-style page.">
             <span class="sr-only">Side-by-side typographic mock: the same note in a print font and as a handwriting-style page.</span>
-            <p class="compare-caption">The same text, set first in a print font and then as a handwriting-style page with paper, margins, and a handwriting font.</p>
+            <p class="compare-eyebrow">Comparison 02: Layout vs Generic Fonts</p>
             <div class="compare-row">
-              <figure class="compare-panel">
+              <figure class="compare-card">
                 <figcaption class="compare-label">Print-font page</figcaption>
-                <div class="compare-stage">
-                  <article class="compare-sheet is-lined">
-                    <span class="compare-sheet-label">Print font</span>
-                    <div class="compare-print-latin">Personal notes — 13 November<br><br>- Pack a letter to Asha<br>- Revision points on light and shade<br>- A short journal after the evening walk</div>
-                  </article>
-                </div>
+                <article class="compare-sheet is-print">
+                  <div class="compare-print-latin">Personal notes — 13 November<br><br>- Pack a letter to Asha<br>- Revision points on light and shade<br>- A short journal after the evening walk</div>
+                </article>
               </figure>
-              <figure class="compare-panel">
+              <figure class="compare-card">
                 <figcaption class="compare-label">Handwriting-style page</figcaption>
-                <div class="compare-stage">
-                  <article class="compare-sheet is-lined">
-                    <span class="compare-sheet-label">English</span>
-                    <div class="compare-hand-latin">Personal notes — 13 November<br><br>- Pack a letter to Asha<br>- Revision points on light and shade<br>- A short journal after the evening walk</div>
-                    <div class="compare-watermark" aria-hidden="true">Writey</div>
-                  </article>
-                </div>
+                <article class="compare-sheet is-lined">
+                  <div class="compare-hand-latin">Personal notes — 13 November<br><br>- Pack a letter to Asha<br>- Revision points on light and shade<br>- A short journal after the evening walk</div>
+                </article>
               </figure>
+            </div>
+            <p class="compare-caption compare-caption--after">The same text, set first in a print font and then as a handwriting-style page with paper, margins, and a handwriting font.</p>
+          </div>
+        </section>
+        <section class="section copy-card-section">
+          <h2>Preview before you download</h2>
+          <div class="copy-cards">
+            <div class="copy-card copy-card--sheet">
+              <p class="prose-muted">
+                You do not have to guess how the page will look. Paste your text, choose a style and paper, and preview the handwriting-style page in your browser. English and Hindi both preview in the same editor. You can start without creating an account.
+              </p>
+            </div>
+            <div class="copy-card copy-card--sheet">
+              <p class="prose-muted">
+                The preview shows your chosen handwriting style, paper, margins, line spacing, and ink colour before you download. When the page looks right, export a PDF or PNG. Free exports include a visible brand watermark that does not cover your text.
+              </p>
             </div>
           </div>
         </section>
-        <section class="section desk-well">
-          <h2>Preview before you download</h2>
-                    <div class="desk-prose">
-<p class="prose-muted">
-            You do not have to guess how the page will look. Paste your text, choose a style and paper, and preview the handwriting-style page in your browser. English and Hindi both preview in the same editor. You can start without creating an account.
-          </p>
-          <p class="prose-muted">
-            The preview shows your chosen handwriting style, paper, margins, line spacing, and ink colour before you download. When the page looks right, export a PDF or PNG. Free exports include a visible brand watermark that does not cover your text.
-          </p>
-          </div>
-        </section>
-        <section class="section desk-well">
+        <section class="section copy-card-section">
           <h2>Typed notes should not have to stay in a print font</h2>
-                    <div class="desk-prose">
-<p class="prose-muted">
-            Typing is fast. Handwriting a full page is slow. A decorative font in a document is not the same as a page with lined, blank, or grid paper, margins, and a handwriting-style layout.
-          </p>
-          <p class="prose-muted">
-            If you need a page for personal notes, revision, a letter, a journal, or a classroom example — in English or Hindi — you should be able to preview it and export PDF or PNG without setting up an account first.
-          </p>
+          <div class="copy-cards">
+            <div class="copy-card copy-card--paper">
+              <p class="prose-muted">
+                Typing is fast. Handwriting a full page is slow. A decorative font in a document is not the same as a page with lined, blank, or grid paper, margins, and a handwriting-style layout.
+              </p>
+            </div>
+            <div class="copy-card copy-card--paper">
+              <p class="prose-muted">
+                If you need a page for personal notes, revision, a letter, a journal, or a classroom example — in English or Hindi — you should be able to preview it and export PDF or PNG without setting up an account first.
+              </p>
+            </div>
           </div>
         </section>
-        <section class="section desk-well">
+        <section class="section copy-card-section">
           <h2>What text to handwriting ai means on Writey</h2>
-                    <div class="desk-prose">
-<p class="prose-muted">
-            People search for text to handwriting ai when they want to convert typed text into a handwritten look. Writey does that job with typography: you type or paste text, choose a handwriting-style font and paper, preview the page, and export PDF or PNG.
-          </p>
-          <p class="prose-muted">
-            The output is typographic, not a scan of anyone’s real handwriting, and not a generative model that writes like a real person. Writey does not clone your own handwriting, and you do not upload a handwriting sample. Writey is not an official school, board, or government service.
-          </p>
+          <div class="copy-cards">
+            <div class="copy-card copy-card--sheet">
+              <p class="prose-muted">
+                People search for text to handwriting ai when they want to convert typed text into a handwritten look. Writey does that job with typography: you type or paste text, choose a handwriting-style font and paper, preview the page, and export PDF or PNG.
+              </p>
+            </div>
+            <div class="copy-card copy-card--sheet">
+              <p class="prose-muted">
+                The output is typographic, not a scan of anyone’s real handwriting, and not a generative model that writes like a real person. Writey does not clone your own handwriting, and you do not upload a handwriting sample. Writey is not an official school, board, or government service.
+              </p>
+            </div>
           </div>
         </section>
         <section class="section">
