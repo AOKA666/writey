@@ -75,81 +75,84 @@ export function HomePage() {
           </div>
         </section>
 
-        <section className="section">
-          <h2 className="center">How it works</h2>
+        <section className="section copy-card-section">
+          <h2>How it works</h2>
           <div className="how-grid">
-            <article className="desk-well">
+            <article className="copy-card copy-card--sheet copy-card--inset copy-card--pad-6">
               <h3>1. Paste or type your text</h3>
               <p className="muted">Add English or Hindi text in the editor. You can switch language without leaving the page.</p>
             </article>
-            <article className="desk-well">
+            <article className="copy-card copy-card--sheet copy-card--inset copy-card--pad-6">
               <h3>2. Choose a style and paper</h3>
               <p className="muted">Pick a handwriting style and lined, blank, or grid paper. Adjust margins, line spacing, and ink colour if you need to.</p>
             </article>
-            <article className="desk-well">
+            <article className="copy-card copy-card--sheet copy-card--inset copy-card--pad-6">
               <h3>3. Preview and export</h3>
               <p className="muted">Check the page in the preview, then download PDF or PNG from this online editor. The first useful export can be done without an account, within Free limits.</p>
             </article>
           </div>
         </section>
 
-        <section className="section desk-well desk-split">
-          <h2>Choose a handwriting style</h2>
-          <p className="prose-muted">
-            Free includes 11 basic styles, including usable Latin and Devanagari handwriting styles. Pro unlocks all 15 licensed styles (the 11 Free styles plus 4 Pro styles). Writey does not clone your own handwriting.
-          </p>
-        </section>
-
-        <section className="section desk-well desk-split" id="hindi-support">
-          <h2>English and Hindi</h2>
-          <p className="prose-muted">
-            The interface is in English. The editor can preview and export both English and Hindi (Devanagari). Hindi is a first-class input and rendering capability, not a leftover print font. For a focused walkthrough, see the{" "}
-            <Link to="/hindi">Hindi support page</Link>.
-          </p>
-        </section>
-
-        <section className="section desk-well desk-split">
-          <h2>Download PDF or PNG</h2>
-          <p className="prose-muted">
-            Both Free and Pro can export PDF and PNG from this online editor. Start on the Free plan, preview the page, then download a PDF or PNG. Free uses standard export quality and a visible watermark. Pro removes the watermark and uses higher export quality.
-          </p>
-        </section>
-
-        <section className="section desk-well desk-split">
-          <h2>Appropriate uses</h2>
-          <div>
-            <p className="prose-muted">Writey is designed for:</p>
-            <ul className="list-plain">
-              <li>Personal notes and organisation</li>
-              <li>Revision materials for your own learning</li>
-              <li>Letters and journals</li>
-              <li>Accessibility needs, when writing at length is difficult and you still want a handwritten look</li>
-              <li>Teacher or classroom examples, where that is allowed</li>
-            </ul>
-            <p className="prose-muted">These are the uses we show on the site. Read Acceptable Use before you export.</p>
+        <section className="section copy-card-section">
+          <div className="copy-stack-grid">
+            <div>
+              <h2>Choose a handwriting style</h2>
+              <p className="prose-muted">
+                Free includes 11 basic styles, including usable Latin and Devanagari handwriting styles. Pro unlocks all 15 licensed styles (the 11 Free styles plus 4 Pro styles). Writey does not clone your own handwriting.
+              </p>
+            </div>
+            <div id="hindi-support">
+              <h2>English and Hindi</h2>
+              <p className="prose-muted">
+                The interface is in English. The editor can preview and export both English and Hindi (Devanagari). Hindi is a first-class input and rendering capability, not a leftover print font. For a focused walkthrough, see the{" "}
+                <Link to="/hindi">Hindi support page</Link>.
+              </p>
+            </div>
           </div>
         </section>
 
-        <section className="section desk-well desk-split">
-          <h2>What Writey does not do</h2>
-          <ul className="list-plain">
-            <li>We do not build or sell features whose purpose is to evade teachers, OCR, or detection tools.</li>
-            <li>We do not offer a Lifetime plan.</li>
-            <li>We do not promise unlimited pages or unlimited previews. Every plan has caps.</li>
-            <li>Maths, tables, and languages beyond Hindi are not included. Writey does not clone your handwriting.</li>
-          </ul>
+        <section className="section copy-card-section">
+          <div className="copy-stack-block">
+            <h2>Download PDF or PNG</h2>
+            <p className="prose-muted">
+              Both Free and Pro can export PDF and PNG from this online editor. Start on the Free plan, preview the page, then download a PDF or PNG. Free uses standard export quality and a visible watermark. Pro removes the watermark and uses higher export quality.
+            </p>
+          </div>
+          <div className="uses-grid">
+            <div className="copy-card copy-card--sheet copy-card--inset copy-card--pad-8">
+              <h2>Appropriate uses</h2>
+              <p className="prose-muted">Writey is designed for:</p>
+              <ul className="list-plain">
+                <li>Personal notes and organisation</li>
+                <li>Revision materials for your own learning</li>
+                <li>Letters and journals</li>
+                <li>Accessibility needs, when writing at length is difficult and you still want a handwritten look</li>
+                <li>Teacher or classroom examples, where that is allowed</li>
+              </ul>
+              <p className="prose-muted">These are the uses we show on the site. Read Acceptable Use before you export.</p>
+            </div>
+            <div className="copy-card copy-card--paper copy-card--inset copy-card--pad-8">
+              <h2>What Writey does not do</h2>
+              <ul className="list-plain">
+                <li>We do not build or sell features whose purpose is to evade teachers, OCR, or detection tools.</li>
+                <li>We do not offer a Lifetime plan.</li>
+                <li>We do not promise unlimited pages or unlimited previews. Every plan has caps.</li>
+                <li>Maths, tables, and languages beyond Hindi are not included. Writey does not clone your handwriting.</li>
+              </ul>
+            </div>
+          </div>
         </section>
 
-        <section className="section">
-          <h2>Free and Pro plans</h2>
-          <div className="desk-prose">
+        <section className="section copy-card-section">
+          <div className="plan-intro">
+            <h2>Free and Pro plans</h2>
             <p className="prose-muted">
               Start with a useful Free allowance. Upgrade to Pro for more pages, more handwriting styles, higher export quality, and no watermark.
             </p>
             <p className="prose-muted">{PRICE_STATUS_SENTENCE}</p>
           </div>
           <div className="plan-cards">
-            <article className="desk-well">
+            <article className="copy-card copy-card--sheet copy-card--inset copy-card--pad-8">
               <h3>Free</h3>
               <p className="plan-price">{PRICES.free}</p>
               <p className="muted">
@@ -162,7 +165,7 @@ export function HomePage() {
                 <li><IconCheck /> Start without an account</li>
               </ul>
             </article>
-            <article className="desk-well">
+            <article className="copy-card copy-card--sheet copy-card--inset copy-card--pad-8">
               <h3>Pro</h3>
               <p className="plan-price">
                 {PRICES.proMonthly} / month or {PRICES.proYearly} / year
@@ -187,27 +190,31 @@ export function HomePage() {
           </div>
         </section>
 
-        <section className="section desk-well">
+        <section className="section copy-card-section">
           <h2>Frequently asked questions</h2>
-          {HOME_FAQ.map((item) => (
-            <div className="faq-item" key={item.id}>
-              <h3 className="q">{item.question}</h3>
-              <p className="muted">{item.answer}</p>
-            </div>
-          ))}
+          <div className="home-faq-list">
+            {HOME_FAQ.map((item) => (
+              <div className="copy-card copy-card--sheet copy-card--inset copy-card--pad-6 faq-item" key={item.id}>
+                <h3 className="q">{item.question}</h3>
+                <p className="muted">{item.answer}</p>
+              </div>
+            ))}
+          </div>
           <p>
             More answers are on the <Link to="/faq">FAQ page</Link>.
           </p>
         </section>
 
-        <section className="section desk-well cta-band">
-          <h2>Convert your text now</h2>
-          <p className="prose-muted">
-            Open this text to handwriting ai converter, paste your text, and preview a handwriting-style page. You can start without an account.
-          </p>
-          <div className="btn-row" style={{ justifyContent: "center" }}>
-            <a className="btn btn-primary" href="/#editor">Start converting</a>
-            <Link className="btn btn-secondary" to="/pricing">See pricing</Link>
+        <section className="section copy-card-section">
+          <div className="copy-card copy-card--sheet copy-card--inset cta-inset">
+            <h2>Convert your text now</h2>
+            <p className="prose-muted">
+              Open this text to handwriting ai converter, paste your text, and preview a handwriting-style page. You can start without an account.
+            </p>
+            <div className="btn-row">
+              <a className="btn btn-primary" href="/#editor">Start converting</a>
+              <Link className="btn btn-secondary" to="/pricing">See pricing</Link>
+            </div>
           </div>
         </section>
       </main>

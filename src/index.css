@@ -1510,6 +1510,115 @@ textarea.editor-input::placeholder { color: var(--muted-2); }
   }
 }
 
+/* Lower homepage typography (How it works through CTA).
+   Scoped so FAQ, pricing, login, and legal .desk-well pages stay unchanged. */
+.copy-stack-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem; /* Stitch gap-12 */
+  align-items: start;
+}
+@media (min-width: 768px) {
+  .copy-stack-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.copy-stack-grid > * > h2 {
+  margin: 0 0 1rem;
+}
+.copy-stack-grid > * > p {
+  margin: 0;
+}
+.copy-stack-block {
+  max-width: 48rem;
+  margin: 0 0 3.5rem;
+}
+.copy-stack-block > h2 {
+  margin: 0 0 0.75rem;
+}
+.copy-stack-block > p {
+  margin: 0;
+}
+.copy-card--inset {
+  border-color: color-mix(in srgb, var(--navy) 15%, transparent);
+}
+.copy-card--pad-6 {
+  padding: 1.5rem;
+}
+.copy-card--pad-8 {
+  padding: 2rem;
+}
+.copy-card--pad-10 {
+  padding: 2.5rem;
+}
+.uses-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: stretch;
+}
+@media (min-width: 768px) {
+  .uses-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.uses-grid > .copy-card > h2 {
+  margin: 0 0 1rem;
+}
+.uses-grid .list-plain {
+  margin: 0.5rem 0 1rem;
+}
+.plan-intro {
+  max-width: 48rem;
+  margin: 0 0 3rem;
+  display: grid;
+  gap: 0.5rem;
+}
+.plan-intro > h2,
+.plan-intro > p {
+  margin: 0;
+}
+.copy-card-section .plan-cards {
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+.home-faq-list {
+  display: grid;
+  gap: 1rem;
+}
+.home-faq-list .faq-item {
+  margin: 0;
+}
+.home-faq-list + p {
+  margin: 2rem 0 0;
+}
+.copy-card-section .how-grid {
+  gap: 1.5rem;
+}
+.copy-card-section .how-grid .copy-card > h3 {
+  margin: 0 0 0.5rem;
+}
+.copy-card-section .how-grid .copy-card > p {
+  margin: 0;
+}
+.cta-inset {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2.5rem;
+  text-align: center;
+  box-sizing: border-box;
+}
+.cta-inset > h2 {
+  margin: 0 0 1rem;
+}
+.cta-inset > p {
+  margin: 0 auto 2rem;
+  max-width: 40rem;
+}
+.cta-inset .btn-row {
+  justify-content: center;
+}
+
 /* 2026-11-17 addendum: typographic output comparison and editor differentiation.
    HTML/CSS typographic mock of Writey's own output. Not a photograph,
    not a competitor screenshot. Scoped so it does not restyle the live editor sheet. */
