@@ -24,9 +24,9 @@ type Props = {
 };
 
 const SAMPLE_EN =
-  "Meeting notes & personal reflection: The quiet morning hours yield the most thoughtful writing. Moving from quick typed thoughts to deliberate ink on paper creates space to remember what matters.";
+  "Welcome to Writey — thanks for visiting. Type on the left, choose a handwriting style, and this preview is the page you can export as a PDF or PNG.";
 const SAMPLE_HI =
-  "व्यक्तिगत नोट्स और विचार: शांत सुबह के घंटे सबसे विचारशील लेखन लाते हैं। टाइप किए गए विचारों को कागज़ और स्याही पर उतारना एक नया सुकून देता है।";
+  "Writey में आपका स्वागत है, आने के लिए धन्यवाद। बाईं ओर अपना पाठ लिखें, लिखावट शैली चुनें — यह पूर्वावलोकन वही पृष्ठ है जो PDF या PNG में मिलेगा।";
 
 function LineView({ line, settings, fontSize }: { line: LaidOutLine; settings: EditorSettings; fontSize: number }) {
   const ink = INK_COLORS.find((c) => c.id === settings.ink)?.value ?? "#1a3a8a";
@@ -52,7 +52,27 @@ function LineView({ line, settings, fontSize }: { line: LaidOutLine; settings: E
   );
 }
 
-function BilingualSpecimen({ ink, padTop, padLeft }: { ink: string; padTop: number; padLeft: number }) {
+function BilingualSpecimen({
+  ink,
+  padTop,
+  padLeft,
+  styleId,
+}: {
+  ink: string;
+  padTop: number;
+  padLeft: number;
+  styleId: string;
+}) {
+  const style = HANDWRITING_STYLES.find((item) => item.id === styleId);
+  const script = style?.script ?? "latin";
+  const styleName = style?.name ?? "Oxford Cursive";
+  const usesLatin = script === "latin" || script === "both";
+  const usesDevanagari = script === "devanagari" || script === "both";
+  const latinFont = usesLatin ? (style?.fontFamily ?? LATIN_FALLBACK_FONT) : LATIN_FALLBACK_FONT;
+  const devaFont = usesDevanagari ? (style?.fontFamily ?? DEVANAGARI_FONT) : DEVANAGARI_FONT;
+  const latinLabel = usesLatin ? `English · ${styleName} Style` : "English · Oxford Cursive Style";
+  const devaLabel = usesDevanagari ? `Hindi · ${styleName} Style` : "Hindi · Kavya Devanagari Style";
+
   return (
     <div
       className="sheet-specimen"
@@ -63,12 +83,12 @@ function BilingualSpecimen({ ink, padTop, padLeft }: { ink: string; padTop: numb
         color: ink,
       }}
     >
-      <p className="sheet-specimen__kicker">English · Oxford Cursive Style</p>
-      <p className="sheet-specimen__latin" style={{ fontFamily: LATIN_FALLBACK_FONT, color: ink }}>
+      <p className="sheet-specimen__kicker">{latinLabel}</p>
+      <p className="sheet-specimen__latin" style={{ fontFamily: latinFont, color: ink }}>
         {SAMPLE_EN}
       </p>
-      <p className="sheet-specimen__kicker">Hindi · Kavya Devanagari Style</p>
-      <p className="sheet-specimen__deva" style={{ fontFamily: DEVANAGARI_FONT, color: ink }} lang="hi">
+      <p className="sheet-specimen__kicker">{devaLabel}</p>
+      <p className="sheet-specimen__deva" style={{ fontFamily: devaFont, color: ink }} lang="hi">
         {SAMPLE_HI}
       </p>
     </div>
@@ -197,7 +217,7 @@ export function PaperPreview({ text, settings, watermark, loading, error, langua
                           ))}
                         </div>
                       ) : page === 0 ? (
-                        <BilingualSpecimen ink={ink} padTop={padTop} padLeft={padLeft} />
+                        <BilingualSpecimen ink={ink} padTop={padTop} padLeft={padLeft} styleId={settings.styleId} />
                       ) : null}
                     </div>
                   </div>
