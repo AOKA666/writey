@@ -30,182 +30,193 @@ export function PricingPage() {
           <p className="prose-muted">{PRICE_STATUS_SENTENCE} {TAX_LINE}</p>
         </div>
 
-        <section className="section desk-well">
-          <h2>Who these plans are for</h2>
-          <p className="prose-muted">
-            Writey is for people who want to turn typed or pasted English or Hindi text into handwriting-style pages for personal notes, revision, letters, journals, accessibility needs, or classroom examples.
-          </p>
-        </section>
-
-        <div className="plan-cards section">
-          <article className="desk-well">
-            <h2>Free plan</h2>
-            <p className="plan-price">{PRICES.free}, USD</p>
-            <ul className="list-plain">
-              <li>{PRICES.freePagesPerMonth} export pages per calendar month</li>
-              <li>Visible brand watermark that does not cover your text</li>
-              <li>Standard export quality</li>
-              <li>11 basic styles, including usable Latin and Devanagari handwriting styles</li>
-              <li>PDF and PNG export</li>
-              <li>Up to {PRICES.freePreviewPerDay} preview refreshes per day, and up to {PRICES.freePagesPerPreview} pages per preview</li>
-              <li>Up to {PRICES.freeJobsPerDay} export jobs per day, still limited by the monthly page cap</li>
-              <li>Saved export history is not currently provided.</li>
-              <li>Core path works without an account; sign in to keep quota across days</li>
-            </ul>
-            <Link className="btn btn-primary" to="/#editor" style={{ marginTop: "1rem" }}>
-              Start free
-            </Link>
-          </article>
-          <article className="desk-well">
-            <h2>Pro plan</h2>
-            <p className="plan-price">
-              {PRICES.proMonthly} / month or {PRICES.proYearly} / year, USD
-            </p>
-            <ul className="list-plain">
-              <li>{PRICES.proPagesPerMonth} export pages per calendar month</li>
-              <li>No watermark</li>
-              <li>Higher export quality</li>
-              <li>All 15 licensed styles (the 11 Free styles plus 4 Pro styles; does not include handwriting cloning)</li>
-              <li>PDF and PNG export</li>
-              <li>Up to {PRICES.proPreviewPerDay} preview refreshes per day, and up to {PRICES.proPagesPerPreview} pages per preview</li>
-              <li>Up to {PRICES.proJobsPerDay} export jobs per day, still limited by the monthly page cap</li>
-              <li>Saved export history is not currently provided.</li>
-              <li>Account required for billing and quota</li>
-            </ul>
+        <section className="section copy-card-section">
+          <div className="copy-stack-block">
+            <h2>Who these plans are for</h2>
             <p className="prose-muted">
-              Neither plan is unlimited. After you reach a cap, wait for the quota to reset or contact support.
+              Writey is for people who want to turn typed or pasted English or Hindi text into handwriting-style pages for personal notes, revision, letters, journals, accessibility needs, or classroom examples.
             </p>
-            <button
-              type="button"
-              className="btn btn-primary"
-              style={{ marginTop: "1rem" }}
-              onClick={async () => {
-                await requestCheckout();
-                setPaymentsOpen(true);
-              }}
-            >
-              Upgrade to Pro
-            </button>
-          </article>
-        </div>
-
-        <section className="section desk-well">
-          <h2>Plan comparison</h2>
-          <div className="comparison-table">
-            <table>
-              <thead>
-                <tr>
-                  <th>Item</th>
-                  <th>Free</th>
-                  <th>Pro</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Display price</td>
-                  <td>{PRICES.free}</td>
-                  <td>{PRICES.proMonthly} / month or {PRICES.proYearly} / year</td>
-                </tr>
-                <tr>
-                  <td>Currency</td>
-                  <td>USD</td>
-                  <td>USD</td>
-                </tr>
-                <tr>
-                  <td>Export pages / month</td>
-                  <td>{PRICES.freePagesPerMonth}</td>
-                  <td>{PRICES.proPagesPerMonth}</td>
-                </tr>
-                <tr>
-                  <td>Watermark</td>
-                  <td>Visible brand watermark that does not cover your text</td>
-                  <td>No watermark</td>
-                </tr>
-                <tr>
-                  <td>Export formats</td>
-                  <td>PDF, PNG</td>
-                  <td>PDF, PNG</td>
-                </tr>
-                <tr>
-                  <td>Export quality</td>
-                  <td>Standard</td>
-                  <td>Higher export quality</td>
-                </tr>
-                <tr>
-                  <td>Styles</td>
-                  <td>11 basic styles, including usable Latin and Devanagari handwriting styles</td>
-                  <td>All 15 licensed styles (the 11 Free styles plus 4 Pro styles; does not include handwriting cloning)</td>
-                </tr>
-                <tr>
-                  <td>Preview</td>
-                  <td>Up to {PRICES.freePreviewPerDay} refreshes / day; up to {PRICES.freePagesPerPreview} pages per preview</td>
-                  <td>Up to {PRICES.proPreviewPerDay} refreshes / day; up to {PRICES.proPagesPerPreview} pages per preview</td>
-                </tr>
-                <tr>
-                  <td>Daily export jobs</td>
-                  <td>Up to {PRICES.freeJobsPerDay}, still limited by the monthly page cap</td>
-                  <td>Up to {PRICES.proJobsPerDay}, still limited by the monthly page cap</td>
-                </tr>
-                <tr>
-                  <td>History</td>
-                  <td>Saved export history is not currently provided.</td>
-                  <td>Saved export history is not currently provided.</td>
-                </tr>
-                <tr>
-                  <td>Login</td>
-                  <td>Core path works without an account; sign in to keep quota across days</td>
-                  <td>Account required for billing and quota</td>
-                </tr>
-              </tbody>
-            </table>
+          </div>
+          <div className="plan-cards">
+            <article className="copy-card copy-card--sheet copy-card--inset copy-card--pad-8">
+              <h2>Free plan</h2>
+              <p className="plan-price">{PRICES.free}, USD</p>
+              <ul className="list-plain">
+                <li>{PRICES.freePagesPerMonth} export pages per calendar month</li>
+                <li>Visible brand watermark that does not cover your text</li>
+                <li>Standard export quality</li>
+                <li>11 basic styles, including usable Latin and Devanagari handwriting styles</li>
+                <li>PDF and PNG export</li>
+                <li>Up to {PRICES.freePreviewPerDay} preview refreshes per day, and up to {PRICES.freePagesPerPreview} pages per preview</li>
+                <li>Up to {PRICES.freeJobsPerDay} export jobs per day, still limited by the monthly page cap</li>
+                <li>Saved export history is not currently provided.</li>
+                <li>Core path works without an account; sign in to keep quota across days</li>
+              </ul>
+              <Link className="btn btn-primary" to="/#editor" style={{ marginTop: "1rem" }}>
+                Start free
+              </Link>
+            </article>
+            <article className="copy-card copy-card--sheet copy-card--inset copy-card--pad-8">
+              <h2>Pro plan</h2>
+              <p className="plan-price">
+                {PRICES.proMonthly} / month or {PRICES.proYearly} / year, USD
+              </p>
+              <ul className="list-plain">
+                <li>{PRICES.proPagesPerMonth} export pages per calendar month</li>
+                <li>No watermark</li>
+                <li>Higher export quality</li>
+                <li>All 15 licensed styles (the 11 Free styles plus 4 Pro styles; does not include handwriting cloning)</li>
+                <li>PDF and PNG export</li>
+                <li>Up to {PRICES.proPreviewPerDay} preview refreshes per day, and up to {PRICES.proPagesPerPreview} pages per preview</li>
+                <li>Up to {PRICES.proJobsPerDay} export jobs per day, still limited by the monthly page cap</li>
+                <li>Saved export history is not currently provided.</li>
+                <li>Account required for billing and quota</li>
+              </ul>
+              <p className="prose-muted">
+                Neither plan is unlimited. After you reach a cap, wait for the quota to reset or contact support.
+              </p>
+              <button
+                type="button"
+                className="btn btn-primary"
+                style={{ marginTop: "1rem" }}
+                onClick={async () => {
+                  await requestCheckout();
+                  setPaymentsOpen(true);
+                }}
+              >
+                Upgrade to Pro
+              </button>
+            </article>
           </div>
         </section>
 
-        <section className="section desk-well">
-          <h2>What is not included</h2>
-          <ul className="list-plain">
-            <li>No Lifetime plan</li>
-            <li>No immediate purchase of Business, Teams, or Education</li>
-            <li>No detection-avoidance features</li>
-            <li>No handwriting cloning, high-quality maths or tables, or languages beyond Hindi</li>
-            <li>No unlimited preview or unlimited export promise</li>
-          </ul>
-          <p className="prose-muted">We do not sell detection-avoidance features, exam-season passes, or a Lifetime plan.</p>
-        </section>
-
-        <section className="section desk-well">
-          <h2>Taxes, refunds, and payments</h2>
-          <p className="prose-muted">{TAX_LINE}</p>
-          <p className="prose-muted">
-            Payments will be processed by a third-party provider, to be confirmed. We do not name a payment vendor as if it were already contracted.
-          </p>
-          <p className="prose-muted">
-            Refund requests are handled under our Refund Policy. The commercial window is still being confirmed. This draft does not take away rights that applicable law says you cannot give up.
-          </p>
-          <p className="prose-muted">
-            See <Link to="/terms">Terms of Use</Link> and <Link to="/refund">Refund &amp; Cancellation Policy</Link>. Also read{" "}
-            <Link to="/acceptable-use">Acceptable Use</Link>.
-          </p>
-        </section>
-
-        <section className="section desk-well">
-          <h2>Teams and Education</h2>
-          <p className="prose-muted">
-            If you need Teams or Education access, join the waitlist or contact us. This is not a paid plan and has no public price.
-          </p>
-          <button type="button" className="btn btn-secondary" onClick={() => { setWaitlistOk(false); setWaitlistOpen(true); }}>
-            Join the waitlist
-          </button>
-        </section>
-
-        <section className="section desk-well">
-          <h2>Pricing questions</h2>
-          {PRICING_FAQ.map((item) => (
-            <div className="faq-item" key={item.id}>
-              <h3 className="q">{item.question}</h3>
-              <p className="muted">{item.answer}</p>
+        <section className="section copy-card-section">
+          <h2>Plan comparison</h2>
+          <div className="copy-card copy-card--sheet copy-card--inset copy-card--pad-8">
+            <div className="comparison-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Free</th>
+                    <th>Pro</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Display price</td>
+                    <td>{PRICES.free}</td>
+                    <td>{PRICES.proMonthly} / month or {PRICES.proYearly} / year</td>
+                  </tr>
+                  <tr>
+                    <td>Currency</td>
+                    <td>USD</td>
+                    <td>USD</td>
+                  </tr>
+                  <tr>
+                    <td>Export pages / month</td>
+                    <td>{PRICES.freePagesPerMonth}</td>
+                    <td>{PRICES.proPagesPerMonth}</td>
+                  </tr>
+                  <tr>
+                    <td>Watermark</td>
+                    <td>Visible brand watermark that does not cover your text</td>
+                    <td>No watermark</td>
+                  </tr>
+                  <tr>
+                    <td>Export formats</td>
+                    <td>PDF, PNG</td>
+                    <td>PDF, PNG</td>
+                  </tr>
+                  <tr>
+                    <td>Export quality</td>
+                    <td>Standard</td>
+                    <td>Higher export quality</td>
+                  </tr>
+                  <tr>
+                    <td>Styles</td>
+                    <td>11 basic styles, including usable Latin and Devanagari handwriting styles</td>
+                    <td>All 15 licensed styles (the 11 Free styles plus 4 Pro styles; does not include handwriting cloning)</td>
+                  </tr>
+                  <tr>
+                    <td>Preview</td>
+                    <td>Up to {PRICES.freePreviewPerDay} refreshes / day; up to {PRICES.freePagesPerPreview} pages per preview</td>
+                    <td>Up to {PRICES.proPreviewPerDay} refreshes / day; up to {PRICES.proPagesPerPreview} pages per preview</td>
+                  </tr>
+                  <tr>
+                    <td>Daily export jobs</td>
+                    <td>Up to {PRICES.freeJobsPerDay}, still limited by the monthly page cap</td>
+                    <td>Up to {PRICES.proJobsPerDay}, still limited by the monthly page cap</td>
+                  </tr>
+                  <tr>
+                    <td>History</td>
+                    <td>Saved export history is not currently provided.</td>
+                    <td>Saved export history is not currently provided.</td>
+                  </tr>
+                  <tr>
+                    <td>Login</td>
+                    <td>Core path works without an account; sign in to keep quota across days</td>
+                    <td>Account required for billing and quota</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-          ))}
+          </div>
+        </section>
+
+        <section className="section copy-card-section">
+          <h2>What is not included</h2>
+          <div className="copy-card copy-card--sheet copy-card--inset copy-card--pad-8">
+            <ul className="list-plain">
+              <li>No Lifetime plan</li>
+              <li>No immediate purchase of Business, Teams, or Education</li>
+              <li>No detection-avoidance features</li>
+              <li>No handwriting cloning, high-quality maths or tables, or languages beyond Hindi</li>
+              <li>No unlimited preview or unlimited export promise</li>
+            </ul>
+            <p className="prose-muted">We do not sell detection-avoidance features, exam-season passes, or a Lifetime plan.</p>
+          </div>
+        </section>
+
+        <section className="section copy-card-section">
+          <h2>Taxes, refunds, and payments</h2>
+          <div className="copy-card copy-card--sheet copy-card--inset copy-card--pad-8">
+            <p className="prose-muted">{TAX_LINE}</p>
+            <p className="prose-muted">
+              Payments will be processed by a third-party provider, to be confirmed. We do not name a payment vendor as if it were already contracted.
+            </p>
+            <p className="prose-muted">
+              Refund requests are handled under our Refund Policy. The commercial window is still being confirmed. This draft does not take away rights that applicable law says you cannot give up.
+            </p>
+            <p className="prose-muted">
+              See <Link to="/terms">Terms of Use</Link> and <Link to="/refund">Refund &amp; Cancellation Policy</Link>. Also read{" "}
+              <Link to="/acceptable-use">Acceptable Use</Link>.
+            </p>
+          </div>
+        </section>
+
+        <section className="section copy-card-section">
+          <h2>Teams and Education</h2>
+          <div className="copy-card copy-card--sheet copy-card--inset copy-card--pad-8">
+            <p className="prose-muted">
+              If you need Teams or Education access, join the waitlist or contact us. This is not a paid plan and has no public price.
+            </p>
+            <button type="button" className="btn btn-secondary" onClick={() => { setWaitlistOk(false); setWaitlistOpen(true); }}>
+              Join the waitlist
+            </button>
+          </div>
+        </section>
+
+        <section className="section copy-card-section">
+          <h2>Pricing questions</h2>
+          <div className="home-faq-list">
+            {PRICING_FAQ.map((item) => (
+              <div className="copy-card copy-card--sheet copy-card--inset copy-card--pad-6 faq-item" key={item.id}>
+                <h3 className="q">{item.question}</h3>
+                <p className="muted">{item.answer}</p>
+              </div>
+            ))}
+          </div>
           <div className="btn-row">
             <Link className="btn btn-primary" to="/#editor">Start free</Link>
             <button

@@ -18,20 +18,24 @@ export function FaqPage() {
           </p>
         </div>
         {FAQ_GROUPS.map((group) => (
-          <section className="section desk-well" key={group.heading}>
+          <section className="section copy-card-section" key={group.heading}>
             <h2>{group.heading}</h2>
-            {group.items.map((item) => (
-              <div className="faq-item" key={item.id}>
-                <h3 className="q">{item.question}</h3>
-                <p className="muted" style={{ whiteSpace: "pre-wrap" }}>{item.answer}</p>
-              </div>
-            ))}
+            <div className="home-faq-list">
+              {group.items.map((item) => (
+                <div className="copy-card copy-card--sheet copy-card--inset copy-card--pad-6 faq-item" key={item.id}>
+                  <h3 className="q">{item.question}</h3>
+                  <p className="muted" style={{ whiteSpace: "pre-wrap" }}>{item.answer}</p>
+                </div>
+              ))}
+            </div>
           </section>
         ))}
-        <section className="section desk-well cta-band">
-          <div className="btn-row" style={{ justifyContent: "center" }}>
-            <Link className="btn btn-primary" to="/#editor">Open the converter</Link>
-            <Link className="btn btn-secondary" to="/acceptable-use">Read acceptable use</Link>
+        <section className="section copy-card-section">
+          <div className="copy-card copy-card--sheet copy-card--inset cta-inset">
+            <div className="btn-row">
+              <Link className="btn btn-primary" to="/#editor">Open the converter</Link>
+              <Link className="btn btn-secondary" to="/acceptable-use">Read acceptable use</Link>
+            </div>
           </div>
         </section>
       </main>

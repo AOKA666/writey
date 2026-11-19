@@ -1379,11 +1379,14 @@ textarea.editor-input::placeholder { color: var(--muted-2); }
 }
 .comparison-table {
   width: 100%;
+  max-width: 100%;
   border-collapse: collapse;
   font-size: 15px;
   display: block;
   overflow-x: auto;
+  overscroll-behavior-x: contain;
   margin: 1rem 0;
+  box-sizing: border-box;
 }
 .comparison-table table { width: 100%; min-width: 28rem; border-collapse: collapse; }
 .comparison-table th, .comparison-table td {
@@ -1473,8 +1476,7 @@ textarea.editor-input::placeholder { color: var(--muted-2); }
   .btn { min-height: 44px; }
 }
 
-/* Mid-page marketing cards: scoped so FAQ, pricing, login, and later
-   homepage .desk-well surfaces are not restyled into this pattern. */
+/* Mid-page marketing cards. Login and legal .desk-well pages stay unchanged. */
 .copy-card-section {
   border-top: 1px solid color-mix(in srgb, var(--navy) 10%, transparent);
 }
@@ -1510,8 +1512,9 @@ textarea.editor-input::placeholder { color: var(--muted-2); }
   }
 }
 
-/* Lower homepage typography (How it works through CTA).
-   Scoped so FAQ, pricing, login, and legal .desk-well pages stay unchanged. */
+/* Lower typography (How it works through CTA, reused on /hindi, /pricing, /faq).
+   Login and legal .desk-well pages stay unchanged. Homepage mid/lower rules
+   below must not regress. */
 .copy-stack-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1617,6 +1620,34 @@ textarea.editor-input::placeholder { color: var(--muted-2); }
 }
 .cta-inset .btn-row {
   justify-content: center;
+}
+
+/* Inner-page typography helpers. Do not tighten or restyle homepage mid/lower cards. */
+.hero-block .hero-note {
+  margin: 1.5rem 0 0;
+}
+.copy-stack-block > p + p {
+  margin-top: 1rem;
+}
+.copy-card,
+.plan-cards,
+.copy-card-section {
+  max-width: 100%;
+}
+.copy-card .comparison-table {
+  margin: 0;
+  max-width: 100%;
+}
+.copy-card > .list-plain + .prose-muted,
+.copy-card > .prose-muted + .prose-muted {
+  margin-top: 1rem;
+}
+.copy-card > .prose-muted + .btn,
+.copy-card > .prose-muted + .btn-row {
+  margin-top: 1.25rem;
+}
+.home-faq-list + .btn-row {
+  margin-top: 2rem;
 }
 
 /* 2026-11-17 addendum: typographic output comparison and editor differentiation.

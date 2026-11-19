@@ -27,17 +27,14 @@ export function HindiPage() {
               Download PNG
             </Link>
           </div>
-        </div>
-
-        <section className="section desk-well">
-          <p className="muted">
+          <p className="muted hero-note">
             This is a language support page, not a second homepage and not a verified primary keyword landing page.
           </p>
-        </section>
+        </div>
 
-        <section className="section desk-well">
-          <h2>Devanagari support</h2>
-          <div className="desk-prose">
+        <section className="section copy-card-section">
+          <div className="copy-stack-block">
+            <h2>Devanagari support</h2>
             <p className="prose-muted">
               Writey can preview and export Hindi text written in Devanagari. The handwriting style should look handwritten, not like a plain print font dropped onto the page. English remains available in the same editor.
             </p>
@@ -45,45 +42,50 @@ export function HindiPage() {
               Specimen fonts are licensed under SIL OFL 1.1. Devanagari quality is still a limitation of these specimens. Do not treat Hindi first-class commercial fonts as already delivered, and do not treat handwriting cloning as supported.
             </p>
           </div>
-        </section>
-
-        <section className="section desk-well desk-split">
-          <h2>Preview Hindi pages</h2>
-          <p className="prose-muted">
-            Paste or type Hindi in this online editor, choose a handwriting style and paper, and preview the page before you download a PDF or PNG. You can start without an account, within Free limits.
-          </p>
-        </section>
-
-        <section className="section desk-well desk-split">
-          <h2>Export PDF or PNG</h2>
-          <p className="prose-muted">
-            When the preview looks right, download PDF or PNG from this online editor. Free exports include a visible brand watermark. Pro removes the watermark and uses higher export quality.
-          </p>
-        </section>
-
-        <section className="section desk-well desk-split">
-          <h2>Use the same editor for English</h2>
-          <p className="prose-muted">
-            You do not need a separate product for English. Switch the language control in the editor to move between English and Hindi.
-          </p>
-        </section>
-
-        <section className="section desk-well desk-split">
-          <h2>Appropriate uses</h2>
-          <p className="prose-muted">
-            Use Hindi or English pages for personal notes, revision, letters, journals, accessibility needs, and classroom examples. Do not use exports for academic dishonesty. Read{" "}
-            <Link to="/acceptable-use">Acceptable Use</Link>.
-          </p>
-        </section>
-
-        <section className="section desk-well">
-          <h2>Hindi questions</h2>
-          {HINDI_FAQ.map((item) => (
-            <div className="faq-item" key={item.id}>
-              <h3 className="q">{item.question}</h3>
-              <p className="muted">{item.answer}</p>
+          <div className="copy-stack-grid">
+            <div>
+              <h2>Preview Hindi pages</h2>
+              <p className="prose-muted">
+                Paste or type Hindi in this online editor, choose a handwriting style and paper, and preview the page before you download a PDF or PNG. You can start without an account, within Free limits.
+              </p>
             </div>
-          ))}
+            <div>
+              <h2>Export PDF or PNG</h2>
+              <p className="prose-muted">
+                When the preview looks right, download PDF or PNG from this online editor. Free exports include a visible brand watermark. Pro removes the watermark and uses higher export quality.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="section copy-card-section">
+          <div className="copy-stack-grid">
+            <div>
+              <h2>Use the same editor for English</h2>
+              <p className="prose-muted">
+                You do not need a separate product for English. Switch the language control in the editor to move between English and Hindi.
+              </p>
+            </div>
+            <div>
+              <h2>Appropriate uses</h2>
+              <p className="prose-muted">
+                Use Hindi or English pages for personal notes, revision, letters, journals, accessibility needs, and classroom examples. Do not use exports for academic dishonesty. Read{" "}
+                <Link to="/acceptable-use">Acceptable Use</Link>.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="section copy-card-section">
+          <h2>Hindi questions</h2>
+          <div className="home-faq-list">
+            {HINDI_FAQ.map((item) => (
+              <div className="copy-card copy-card--sheet copy-card--inset copy-card--pad-6 faq-item" key={item.id}>
+                <h3 className="q">{item.question}</h3>
+                <p className="muted">{item.answer}</p>
+              </div>
+            ))}
+          </div>
           <div className="btn-row">
             <Link className="btn btn-primary" to="/#editor?lang=hi">
               Open the editor in Hindi

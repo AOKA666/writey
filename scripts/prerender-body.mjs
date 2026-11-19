@@ -43,6 +43,36 @@ function homeFaqBlock(items) {
     .join("\n            ");
 }
 
+
+function faqCardBlock(items, preWrap = false) {
+  const style = preWrap ? ' style="white-space: pre-wrap"' : "";
+  return items
+    .map(
+      (item) => `<div class="copy-card copy-card--sheet copy-card--inset copy-card--pad-6 faq-item">
+              <h3 class="q">${esc(item.question)}</h3>
+              <p class="muted"${style}>${esc(item.answer)}</p>
+            </div>`,
+    )
+    .join("\n            ");
+}
+
+const PRICING_FAQ = [
+  {
+    question: "Is Pro unlimited?",
+    answer:
+      "No. Pro allows up to 150 export pages per month, and previews have daily caps.",
+  },
+  {
+    question: "Do I need to pay to try Writey?",
+    answer:
+      "No. The Free plan is $0 and can complete a useful preview and export, with a watermark and monthly limits.",
+  },
+  {
+    question: "Can I buy a Lifetime plan?",
+    answer: "No. We do not sell a Lifetime plan.",
+  },
+];
+
 const faqData = JSON.parse(readFileSync(join(root, "src/content/faq.json"), "utf8"));
 
 const HINDI_FAQ = [
@@ -410,50 +440,65 @@ function hindiBody() {
           <p class="lede">
             Type or paste Hindi in Devanagari, preview a handwriting-style page, and export PDF or PNG. This page explains Hindi support in the same Writey editor.
           </p>
-        </div>
-        <section class="section desk-well">
-          <p class="muted">
+          <div class="btn-row" style="margin-top: 1rem">
+            <a class="btn btn-primary" href="/#editor?lang=hi">Open the editor in Hindi</a>
+            <a class="btn btn-secondary" href="/#editor?lang=hi">Download PDF</a>
+            <a class="btn btn-secondary" href="/#editor?lang=hi">Download PNG</a>
+          </div>
+          <p class="muted hero-note">
             This is a language support page, not a second homepage and not a verified primary keyword landing page.
           </p>
-        </section>
-        <section class="section desk-well">
-          <h2>Devanagari support</h2>
-                    <div class="desk-prose">
-<p class="prose-muted">
-            Writey can preview and export Hindi text written in Devanagari. The handwriting style should look handwritten, not like a plain print font dropped onto the page. English remains available in the same editor.
-          </p>
-          <p class="prose-muted">
-            Specimen fonts are licensed under SIL OFL 1.1. Devanagari quality is still a limitation of these specimens. Do not treat Hindi first-class commercial fonts as already delivered, and do not treat handwriting cloning as supported.
-          </p>
+        </div>
+        <section class="section copy-card-section">
+          <div class="copy-stack-block">
+            <h2>Devanagari support</h2>
+            <p class="prose-muted">
+              Writey can preview and export Hindi text written in Devanagari. The handwriting style should look handwritten, not like a plain print font dropped onto the page. English remains available in the same editor.
+            </p>
+            <p class="prose-muted">
+              Specimen fonts are licensed under SIL OFL 1.1. Devanagari quality is still a limitation of these specimens. Do not treat Hindi first-class commercial fonts as already delivered, and do not treat handwriting cloning as supported.
+            </p>
+          </div>
+          <div class="copy-stack-grid">
+            <div>
+              <h2>Preview Hindi pages</h2>
+              <p class="prose-muted">
+                Paste or type Hindi in this online editor, choose a handwriting style and paper, and preview the page before you download a PDF or PNG. You can start without an account, within Free limits.
+              </p>
+            </div>
+            <div>
+              <h2>Export PDF or PNG</h2>
+              <p class="prose-muted">
+                When the preview looks right, download PDF or PNG from this online editor. Free exports include a visible brand watermark. Pro removes the watermark and uses higher export quality.
+              </p>
+            </div>
           </div>
         </section>
-        <section class="section desk-well desk-split">
-          <h2>Preview Hindi pages</h2>
-          <p class="prose-muted">
-            Paste or type Hindi in this online editor, choose a handwriting style and paper, and preview the page before you download a PDF or PNG. You can start without an account, within Free limits.
-          </p>
+        <section class="section copy-card-section">
+          <div class="copy-stack-grid">
+            <div>
+              <h2>Use the same editor for English</h2>
+              <p class="prose-muted">
+                You do not need a separate product for English. Switch the language control in the editor to move between English and Hindi.
+              </p>
+            </div>
+            <div>
+              <h2>Appropriate uses</h2>
+              <p class="prose-muted">
+                Use Hindi or English pages for personal notes, revision, letters, journals, accessibility needs, and classroom examples. Do not use exports for academic dishonesty. Read <a href="/acceptable-use">Acceptable Use</a>.
+              </p>
+            </div>
+          </div>
         </section>
-        <section class="section desk-well desk-split">
-          <h2>Export PDF or PNG</h2>
-          <p class="prose-muted">
-            When the preview looks right, download PDF or PNG from this online editor. Free exports include a visible brand watermark. Pro removes the watermark and uses higher export quality.
-          </p>
-        </section>
-        <section class="section desk-well desk-split">
-          <h2>Use the same editor for English</h2>
-          <p class="prose-muted">
-            You do not need a separate product for English. Switch the language control in the editor to move between English and Hindi.
-          </p>
-        </section>
-        <section class="section desk-well desk-split">
-          <h2>Appropriate uses</h2>
-          <p class="prose-muted">
-            Use Hindi or English pages for personal notes, revision, letters, journals, accessibility needs, and classroom examples. Do not use exports for academic dishonesty. Read Acceptable Use.
-          </p>
-        </section>
-        <section class="section desk-well">
+        <section class="section copy-card-section">
           <h2>Hindi questions</h2>
-          ${faqBlock(HINDI_FAQ)}
+          <div class="home-faq-list">
+            ${faqCardBlock(HINDI_FAQ)}
+          </div>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="/#editor?lang=hi">Open the editor in Hindi</a>
+            <a class="btn btn-secondary" href="/pricing">See pricing</a>
+          </div>
         </section>
       </main>`;
 }
@@ -467,58 +512,184 @@ function pricingBody() {
           </p>
           <p class="prose-muted">${esc(PRICE_STATUS_SENTENCE)} ${esc(TAX_LINE)}</p>
         </div>
-        <section class="section desk-well">
-          <h2>Who these plans are for</h2>
-          <p class="prose-muted">
-            Writey is for people who want to turn typed or pasted English or Hindi text into handwriting-style pages for personal notes, revision, letters, journals, accessibility needs, or classroom examples.
-          </p>
-        </section>
-        <div class="plan-cards section">
-          <article class="desk-well">
-            <h2>Free plan</h2>
-            <p class="plan-price">$0, USD</p>
-            <ul class="list-plain">
-              <li>8 export pages per calendar month</li>
-              <li>Visible brand watermark that does not cover your text</li>
-              <li>Standard export quality</li>
-              <li>11 basic styles, including usable Latin and Devanagari handwriting styles</li>
-              <li>PDF and PNG export</li>
-              <li>Up to 10 preview refreshes per day, and up to 8 pages per preview</li>
-              <li>Up to 2 export jobs per day, still limited by the monthly page cap</li>
-              <li>Saved export history is not currently provided.</li>
-              <li>Core path works without an account; sign in to keep quota across days</li>
-            </ul>
-          </article>
-          <article class="desk-well">
-            <h2>Pro plan</h2>
-            <p class="plan-price">
-              $3.99 / month or $39 / year, USD
-            </p>
-            <ul class="list-plain">
-              <li>150 export pages per calendar month</li>
-              <li>No watermark</li>
-              <li>Higher export quality</li>
-              <li>All 15 licensed styles (the 11 Free styles plus 4 Pro styles; does not include handwriting cloning)</li>
-              <li>PDF and PNG export</li>
-              <li>Up to 50 preview refreshes per day, and up to 20 pages per preview</li>
-              <li>Up to 10 export jobs per day, still limited by the monthly page cap</li>
-              <li>Saved export history is not currently provided.</li>
-              <li>Account required for billing and quota</li>
-            </ul>
+        <section class="section copy-card-section">
+          <div class="copy-stack-block">
+            <h2>Who these plans are for</h2>
             <p class="prose-muted">
-              Neither plan is unlimited. After you reach a cap, wait for the quota to reset or contact support.
+              Writey is for people who want to turn typed or pasted English or Hindi text into handwriting-style pages for personal notes, revision, letters, journals, accessibility needs, or classroom examples.
             </p>
-          </article>
-        </div>
+          </div>
+          <div class="plan-cards">
+            <article class="copy-card copy-card--sheet copy-card--inset copy-card--pad-8">
+              <h2>Free plan</h2>
+              <p class="plan-price">$0, USD</p>
+              <ul class="list-plain">
+                <li>8 export pages per calendar month</li>
+                <li>Visible brand watermark that does not cover your text</li>
+                <li>Standard export quality</li>
+                <li>11 basic styles, including usable Latin and Devanagari handwriting styles</li>
+                <li>PDF and PNG export</li>
+                <li>Up to 10 preview refreshes per day, and up to 8 pages per preview</li>
+                <li>Up to 2 export jobs per day, still limited by the monthly page cap</li>
+                <li>Saved export history is not currently provided.</li>
+                <li>Core path works without an account; sign in to keep quota across days</li>
+              </ul>
+              <a class="btn btn-primary" href="/#editor" style="margin-top: 1rem">Start free</a>
+            </article>
+            <article class="copy-card copy-card--sheet copy-card--inset copy-card--pad-8">
+              <h2>Pro plan</h2>
+              <p class="plan-price">
+                $3.99 / month or $39 / year, USD
+              </p>
+              <ul class="list-plain">
+                <li>150 export pages per calendar month</li>
+                <li>No watermark</li>
+                <li>Higher export quality</li>
+                <li>All 15 licensed styles (the 11 Free styles plus 4 Pro styles; does not include handwriting cloning)</li>
+                <li>PDF and PNG export</li>
+                <li>Up to 50 preview refreshes per day, and up to 20 pages per preview</li>
+                <li>Up to 10 export jobs per day, still limited by the monthly page cap</li>
+                <li>Saved export history is not currently provided.</li>
+                <li>Account required for billing and quota</li>
+              </ul>
+              <p class="prose-muted">
+                Neither plan is unlimited. After you reach a cap, wait for the quota to reset or contact support.
+              </p>
+              <button type="button" class="btn btn-primary" style="margin-top: 1rem">Upgrade to Pro</button>
+            </article>
+          </div>
+        </section>
+        <section class="section copy-card-section">
+          <h2>Plan comparison</h2>
+          <div class="copy-card copy-card--sheet copy-card--inset copy-card--pad-8">
+            <div class="comparison-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Free</th>
+                    <th>Pro</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Display price</td>
+                    <td>$0</td>
+                    <td>$3.99 / month or $39 / year</td>
+                  </tr>
+                  <tr>
+                    <td>Currency</td>
+                    <td>USD</td>
+                    <td>USD</td>
+                  </tr>
+                  <tr>
+                    <td>Export pages / month</td>
+                    <td>8</td>
+                    <td>150</td>
+                  </tr>
+                  <tr>
+                    <td>Watermark</td>
+                    <td>Visible brand watermark that does not cover your text</td>
+                    <td>No watermark</td>
+                  </tr>
+                  <tr>
+                    <td>Export formats</td>
+                    <td>PDF, PNG</td>
+                    <td>PDF, PNG</td>
+                  </tr>
+                  <tr>
+                    <td>Export quality</td>
+                    <td>Standard</td>
+                    <td>Higher export quality</td>
+                  </tr>
+                  <tr>
+                    <td>Styles</td>
+                    <td>11 basic styles, including usable Latin and Devanagari handwriting styles</td>
+                    <td>All 15 licensed styles (the 11 Free styles plus 4 Pro styles; does not include handwriting cloning)</td>
+                  </tr>
+                  <tr>
+                    <td>Preview</td>
+                    <td>Up to 10 refreshes / day; up to 8 pages per preview</td>
+                    <td>Up to 50 refreshes / day; up to 20 pages per preview</td>
+                  </tr>
+                  <tr>
+                    <td>Daily export jobs</td>
+                    <td>Up to 2, still limited by the monthly page cap</td>
+                    <td>Up to 10, still limited by the monthly page cap</td>
+                  </tr>
+                  <tr>
+                    <td>History</td>
+                    <td>Saved export history is not currently provided.</td>
+                    <td>Saved export history is not currently provided.</td>
+                  </tr>
+                  <tr>
+                    <td>Login</td>
+                    <td>Core path works without an account; sign in to keep quota across days</td>
+                    <td>Account required for billing and quota</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+        <section class="section copy-card-section">
+          <h2>What is not included</h2>
+          <div class="copy-card copy-card--sheet copy-card--inset copy-card--pad-8">
+            <ul class="list-plain">
+              <li>No Lifetime plan</li>
+              <li>No immediate purchase of Business, Teams, or Education</li>
+              <li>No detection-avoidance features</li>
+              <li>No handwriting cloning, high-quality maths or tables, or languages beyond Hindi</li>
+              <li>No unlimited preview or unlimited export promise</li>
+            </ul>
+            <p class="prose-muted">We do not sell detection-avoidance features, exam-season passes, or a Lifetime plan.</p>
+          </div>
+        </section>
+        <section class="section copy-card-section">
+          <h2>Taxes, refunds, and payments</h2>
+          <div class="copy-card copy-card--sheet copy-card--inset copy-card--pad-8">
+            <p class="prose-muted">${esc(TAX_LINE)}</p>
+            <p class="prose-muted">
+              Payments will be processed by a third-party provider, to be confirmed. We do not name a payment vendor as if it were already contracted.
+            </p>
+            <p class="prose-muted">
+              Refund requests are handled under our Refund Policy. The commercial window is still being confirmed. This draft does not take away rights that applicable law says you cannot give up.
+            </p>
+            <p class="prose-muted">
+              See <a href="/terms">Terms of Use</a> and <a href="/refund">Refund &amp; Cancellation Policy</a>. Also read <a href="/acceptable-use">Acceptable Use</a>.
+            </p>
+          </div>
+        </section>
+        <section class="section copy-card-section">
+          <h2>Teams and Education</h2>
+          <div class="copy-card copy-card--sheet copy-card--inset copy-card--pad-8">
+            <p class="prose-muted">
+              If you need Teams or Education access, join the waitlist or contact us. This is not a paid plan and has no public price.
+            </p>
+            <button type="button" class="btn btn-secondary">Join the waitlist</button>
+          </div>
+        </section>
+        <section class="section copy-card-section">
+          <h2>Pricing questions</h2>
+          <div class="home-faq-list">
+            ${faqCardBlock(PRICING_FAQ)}
+          </div>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="/#editor">Start free</a>
+            <button type="button" class="btn btn-secondary">Upgrade to Pro</button>
+          </div>
+        </section>
       </main>`;
 }
 
 function faqBody() {
   const sections = faqData.groups
     .map((group) => {
-      return `<section class="section desk-well">
+      return `<section class="section copy-card-section">
             <h2>${esc(group.heading)}</h2>
-            ${faqBlock(group.items)}
+            <div class="home-faq-list">
+            ${faqCardBlock(group.items, true)}
+            </div>
           </section>`;
     })
     .join("\n        ");
@@ -530,6 +701,14 @@ function faqBody() {
           </p>
         </div>
         ${sections}
+        <section class="section copy-card-section">
+          <div class="copy-card copy-card--sheet copy-card--inset cta-inset">
+            <div class="btn-row">
+              <a class="btn btn-primary" href="/#editor">Open the converter</a>
+              <a class="btn btn-secondary" href="/acceptable-use">Read acceptable use</a>
+            </div>
+          </div>
+        </section>
       </main>`;
 }
 
