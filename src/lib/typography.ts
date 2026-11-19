@@ -108,3 +108,28 @@ export function innerWidthPx(
 ): number {
   return (widthMm - marginLeftMm - marginRightMm) * MM_TO_PX;
 }
+
+/** Mobile on-screen preview typography only. Export and layoutDocument stay on PREVIEW_FONT_PX / A4. */
+export const MOBILE_PREVIEW_MAX_WIDTH_PX = 959;
+export const MOBILE_PREVIEW_FONT_PX = 22;
+export const MOBILE_PREVIEW_LINE_HEIGHT_PX = 30;
+export const MOBILE_PREVIEW_RULING_PX = 32;
+
+export function layoutMobilePreviewDocument(
+  text: string,
+  settings: EditorSettings,
+  contentWidthPx: number,
+  contentHeightPx: number,
+): LaidOutLine[] {
+  if (contentWidthPx <= 0 || contentHeightPx <= 0) return [];
+  return wrapAndPaginate(text, {
+    widthMm: contentWidthPx / MM_TO_PX,
+    heightMm: contentHeightPx / MM_TO_PX,
+    margin: { top: 0, right: 0, bottom: 0, left: 0 },
+    lineSpacingPx: MOBILE_PREVIEW_RULING_PX,
+    fontSizePx: MOBILE_PREVIEW_FONT_PX,
+    measure: createStyleMeasure(settings.styleId, MOBILE_PREVIEW_FONT_PX),
+    variation: settings.variation,
+    variationEnabled: settings.variationEnabled,
+  });
+}

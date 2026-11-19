@@ -992,7 +992,7 @@ textarea.editor-input::placeholder { color: var(--muted-2); }
 @media (max-width: 959px) {
   .preview-sheet-wrap {
     min-height: 32rem;
-    height: 32rem;
+    height: auto;
   }
   .workbench-panes { border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
   .workbench-tabs {
@@ -1312,6 +1312,42 @@ textarea.editor-input::placeholder { color: var(--muted-2); }
   margin: 0;
   font-size: 24px;
   line-height: 36px;
+}
+@media (max-width: 959px) {
+  /* Readable stationery card: handwriting size only. Chrome typography is unchanged. */
+  .sheet-readable {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: visible;
+    min-height: 16rem;
+  }
+  .sheet-frame.is-readable,
+  .sheet-frame.is-readable.is-fill,
+  .sheet-frame.is-readable .sheet-stationery,
+  .sheet-frame.is-readable .sheet-scaler.is-readable,
+  .sheet-frame.is-readable.is-fill .sheet-stationery,
+  .sheet-scaler.is-readable.is-fill {
+    height: auto;
+    min-height: 0;
+    flex: 1 1 auto;
+    aspect-ratio: auto;
+  }
+  .preview-pane.is-active .preview-sheet-wrap .preview-stack,
+  .preview-pane.is-active .preview-sheet-wrap .sheet-frame.is-readable.is-fill,
+  .preview-pane.is-active .preview-sheet-wrap .sheet-frame.is-readable.is-fill .sheet-stationery {
+    min-height: 32rem;
+  }
+  .sheet-frame.is-readable .sheet-specimen {
+    max-width: 100%;
+  }
+  .sheet-specimen__latin,
+  .sheet-specimen__deva {
+    font-size: 22px;
+    line-height: 30px;
+  }
+  .sheet-specimen__kicker {
+    font-size: 15px;
+  }
 }
 .preview-status {
   min-height: 1.4rem;
