@@ -1629,21 +1629,22 @@ textarea.editor-input::placeholder { color: var(--muted-2); }
 .copy-stack-block > p + p {
   margin-top: 1rem;
 }
-.copy-card,
 .plan-cards,
 .copy-card-section {
   max-width: 100%;
+  min-width: 0;
 }
 .copy-card .comparison-table {
   margin: 0;
   max-width: 100%;
 }
-.copy-card > .list-plain + .prose-muted,
-.copy-card > .prose-muted + .prose-muted {
+/* Keep .cta-inset at 42rem; a later .copy-card max-width:100% would regress the homepage CTA. */
+.copy-card-section > .copy-card > .list-plain + .prose-muted,
+.copy-card-section > .copy-card > .prose-muted + .prose-muted {
   margin-top: 1rem;
 }
-.copy-card > .prose-muted + .btn,
-.copy-card > .prose-muted + .btn-row {
+.copy-card-section > .copy-card > .prose-muted + .btn,
+.copy-card-section > .copy-card > .prose-muted + .btn-row {
   margin-top: 1.25rem;
 }
 .home-faq-list + .btn-row {
